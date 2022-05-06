@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">StudyBear</string>
+    <string name="company_logo">company_logo</string>
+    <string name="sign_in">Sign In</string>
+    <string name="welcome_to_study_bear">Welcome to Study Bear</string>
+    <string name="email_note">Please use RVCE email-id only</string>
+    <string name="firebase_logo">Firebase Logo</string>
+    <string name="google_logo">Google Logo</string>
+    <string name="privacy_policy">Privacy policy</string>
 </resources>

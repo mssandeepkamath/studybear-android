@@ -86,7 +86,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
                 .placeholder(R.drawable.placeholder)
                 .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    Toast.makeText(activity,"Sorry, Failed to load contents",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,"Sorry,Failed to load contents!",Toast.LENGTH_SHORT).show()
                     return false
                 }
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
@@ -105,8 +105,9 @@ class HomeFragment : Fragment(),View.OnClickListener {
             if(count==7)
             {
                 shimmer.hideShimmer()
-                handler.removeCallbacks(runnable!!)
                 count=0
+                handler.removeCallbacks(runnable!!)
+
             }
         }.also { runnable = it }, 10)
 

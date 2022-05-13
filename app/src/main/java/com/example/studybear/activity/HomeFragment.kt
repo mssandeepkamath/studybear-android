@@ -3,59 +3,49 @@ package com.example.studybear.activity
 import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
-
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
-
 import com.example.studybear.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.bumptech.glide.request.target.Target
-
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.handleCoroutineException
-import kotlin.concurrent.thread
 
 
 
 class HomeFragment : Fragment(),View.OnClickListener {
 
     lateinit var myTextView: TextView
-    lateinit var gifReward: ImageView
     lateinit var shimmer: ShimmerFrameLayout
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
-    lateinit var imageOne:ImageView
-    lateinit var imageTwo:ImageView
-    lateinit var imageThree:ImageView
-    lateinit var imageFour:ImageView
-    lateinit var imageFive:ImageView
-    lateinit var imageSix:ImageView
+    lateinit var cardOne:CardView
+    lateinit var cardTwo:CardView
+    lateinit var cardThree:CardView
+    lateinit var cardFour:CardView
+    lateinit var cardFive:CardView
+    lateinit var cardSix:CardView
     lateinit var rewardBanner:ImageView
     var count:Int=0
     val urlHashMap= hashMapOf<Int,String>(R.id.imgOne to "https://i.ibb.co/7XY8C5r/business-3d-girl-with-a-book-1-min.png",
@@ -77,12 +67,12 @@ class HomeFragment : Fragment(),View.OnClickListener {
         bottomNavigationView=(activity as MainActivity).findViewById(R.id.vwBottomNavigation)
         navigationView=(activity as MainActivity).findViewById(R.id.vwNavigation)
         drawerLayout=(activity as MainActivity).findViewById(R.id.lytDrawer)
-        imageOne=view.findViewById(R.id.imgOne)
-        imageTwo=view.findViewById(R.id.imgTwo)
-        imageThree=view.findViewById(R.id.imgThree)
-        imageFour=view.findViewById(R.id.imgFour)
-        imageFive=view.findViewById(R.id.imgFive)
-        imageSix=view.findViewById(R.id.imgSix)
+        cardOne=view.findViewById(R.id.cardOne)
+        cardTwo=view.findViewById(R.id.cardTwo)
+        cardThree=view.findViewById(R.id.cardThree)
+        cardFour=view.findViewById(R.id.cardFour)
+        cardFive=view.findViewById(R.id.cardFive)
+        cardSix=view.findViewById(R.id.cardSix)
         rewardBanner=view.findViewById(R.id.gifRewardBanner)
         var handler: Handler = Handler()
         var runnable: Runnable? = null
@@ -120,12 +110,12 @@ class HomeFragment : Fragment(),View.OnClickListener {
             }
         }.also { runnable = it }, 10)
 
-        imageOne.setOnClickListener(this)
-        imageTwo.setOnClickListener(this)
-        imageThree.setOnClickListener(this)
-        imageFour.setOnClickListener(this)
-        imageFive.setOnClickListener(this)
-        imageSix.setOnClickListener(this)
+        cardOne.setOnClickListener(this)
+        cardTwo.setOnClickListener(this)
+        cardThree.setOnClickListener(this)
+        cardFour.setOnClickListener(this)
+        cardFive.setOnClickListener(this)
+        cardSix.setOnClickListener(this)
         rewardBanner.setOnClickListener(this)
 
 return view
@@ -149,7 +139,7 @@ return view
     override fun onClick(v: View?) {
 
         when (v?.id) {
-            R.id.imgOne ->
+            R.id.cardOne ->
             {
                 navigationView.checkedItem?.isChecked = true
                 bottomNavigationView.menu.findItem(R.id.bottom_notes).setChecked(true)
@@ -158,7 +148,7 @@ return view
                 navigationView.setCheckedItem(R.id.notes)
                 (activity as MainActivity).supportActionBar?.title="Notes"
             }
-            R.id.imgTwo ->
+            R.id.cardTwo ->
             {
                 navigationView.checkedItem?.isChecked = true
                 bottomNavigationView.menu.findItem(R.id.bottom_discuss).setChecked(true)
@@ -167,25 +157,25 @@ return view
                 navigationView.setCheckedItem(R.id.discuss)
                 (activity as MainActivity).supportActionBar?.title="Discuss"
             }
-            R.id.imgThree ->
+            R.id.cardThree ->
             {
                 navigationView.checkedItem?.isChecked = true
                 navigationView.setCheckedItem(R.id.coding_events)
 
             }
-            R.id.imgFour ->
+            R.id.cardFour ->
             {
                 navigationView.checkedItem?.isChecked = true
                 navigationView.setCheckedItem(R.id.news)
 
             }
-            R.id.imgFive ->
+            R.id.cardFive ->
             {
                 navigationView.checkedItem?.isChecked = true
                 navigationView.setCheckedItem(R.id.teachers)
 
             }
-            R.id.imgSix ->
+            R.id.cardSix ->
             {
 
                 drawerLayout.openDrawer(GravityCompat.START)

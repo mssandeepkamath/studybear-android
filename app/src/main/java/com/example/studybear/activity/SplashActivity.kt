@@ -33,9 +33,9 @@ class SplashActivity : Activity() {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
-                    }, 1300
+                    }, 700
                 )
-            }, 1150)
+            }, 700)
     }
 
 

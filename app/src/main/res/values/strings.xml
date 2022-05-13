@@ -28,6 +28,8 @@
     <string name="rate_our_app">Rate us</string>
     <string name="events">Events</string>
     <string name="more">More</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="web_client_id">911830907608-e5ruetagib0i5roee6iabb9k0rikvura.apps.googleusercontent.com</string>
 
 
 </resources>

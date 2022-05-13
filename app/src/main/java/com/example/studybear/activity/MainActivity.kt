@@ -1,6 +1,7 @@
 package com.example.studybear.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -94,6 +95,8 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                 }
                 R.id.about_us -> {
+                    val intent= Intent(this,LoginActivity::class.java)
+                    startActivity(intent)
                     drawerLayout.closeDrawers()
                 }
                 R.id.account -> {

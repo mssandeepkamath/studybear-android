@@ -13,4 +13,26 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="TitleBarTextAppearance" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="BottomNavigationTextAppearance" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="NavigationTextAppearance" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 </resources>

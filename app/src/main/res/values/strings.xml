@@ -7,4 +7,27 @@
     <string name="firebase_logo">Firebase Logo</string>
     <string name="google_logo">Google Logo</string>
     <string name="privacy_policy">Privacy policy</string>
+    <string name="company_name">Study Bear</string>
+    <string name="demo_name">Good XYZ</string>
+    <string name="coding_events">Coding events</string>
+    <string name="news">News</string>
+    <string name="circular">Circulars</string>
+    <string name="teacher">Teachers</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="notes">Notes</string>
+    <string name="discuss">Discuss</string>
+    <string name="report_bugs">Report bug</string>
+    <string name="about_us">About us</string>
+    <string name="company_name_caps">STUDY BEAR</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rate_our_app">Rate us</string>
+    <string name="events">Events</string>
+    <string name="more">More</string>
+
+
 </resources>

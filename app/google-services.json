@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "911830907608",
+    "project_id": "studybear-79c4e",
+    "storage_bucket": "studybear-79c4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911830907608:android:6cbf87a3304d3e960c35ad",
+        "android_client_info": {
+          "package_name": "com.example.studybear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "911830907608-90il8s550qthdo0tljs2icsoat6mtmls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studybear",
+            "certificate_hash": "8d1e7f65e88c416912d21617b5dd50b2db428a79"
+          }
+        },
+        {
+          "client_id": "911830907608-e5ruetagib0i5roee6iabb9k0rikvura.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX9k0SdAGcjQWj0JQHOkebu1PbqdTE5xc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "911830907608-e5ruetagib0i5roee6iabb9k0rikvura.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,11 +1,13 @@
-package com.example.studybear
+package com.example.studybear.activity
 
+import android.graphics.drawable.Animatable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.studybear.R
 
 class LoginActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
@@ -14,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
     }
+
+
 }

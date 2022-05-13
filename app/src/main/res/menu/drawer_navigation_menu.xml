@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/grpFeatures"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/notes"
+            android:icon="@drawable/ic_notes"
+            android:title="@string/notes" />
+        <item
+            android:id="@+id/discuss"
+            android:icon="@drawable/ic_discuss"
+            android:title="@string/discuss" />
+        <item
+            android:id="@+id/coding_events"
+            android:icon="@drawable/ic_events"
+            android:title="@string/coding_events" />
+        <item
+            android:id="@+id/news"
+            android:icon="@drawable/ic_news"
+            android:title="@string/news" />
+        <item
+            android:id="@+id/circular"
+            android:icon="@drawable/ic_circular"
+            android:title="@string/circular" />
+        <item
+            android:id="@+id/teachers"
+            android:icon="@drawable/ic_teacher"
+            android:title="@string/teacher" />
+        <item
+            android:id="@+id/leaderboard"
+            android:icon="@drawable/ic_leader_board"
+            android:title="@string/leaderboard" />
+        <item
+            android:id="@+id/account"
+            android:icon="@drawable/ic_account"
+            android:title="@string/account" />
+
+
+    </group>
+
+
+    <group
+        android:id="@+id/grpAdditional"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/rate_us"
+            android:icon="@drawable/ic_rate_us"
+            android:title="@string/rate_our_app" />
+
+        <item
+            android:id="@+id/report_bug"
+            android:icon="@drawable/ic_bugs"
+            android:title="@string/report_bugs" />
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_about_us"
+            android:title="@string/about_us" />
+    </group>
+
+
+</menu>

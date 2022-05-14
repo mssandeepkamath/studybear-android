@@ -51,6 +51,17 @@ scrollView
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
+         <ProgressBar
+             android:id="@+id/barProgress"
+             android:layout_width="@dimen/_100sdp"
+             android:layout_height="@dimen/_100sdp"
+             android:layout_gravity="center"
+             android:layout_margin="@dimen/_25sdp"
+             android:progressBackgroundTint="@color/red"
+             android:indeterminateTint="@color/red"
+
+             />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +70,6 @@ scrollView
                 app:cardCornerRadius="@dimen/_20sdp"
                 app:cardElevation="@dimen/_5sdp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_136sdp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
@@ -98,7 +108,7 @@ scrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/email_note"
                 android:textColor="@color/red"
@@ -139,7 +149,7 @@ scrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/privacy_policy"
                 android:textColor="@color/black"

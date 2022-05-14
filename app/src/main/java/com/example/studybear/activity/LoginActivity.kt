@@ -1,11 +1,13 @@
 package com.example.studybear.activity
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var signInButton: CardView
+    lateinit var progressBar: ProgressBar
 
 
     companion object {
@@ -36,6 +39,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         signInButton = findViewById(R.id.cardSignIn)
+        progressBar=findViewById(R.id.barProgress)
+        progressBarVisibility(R.color.white)
+
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
@@ -46,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         signInButton.setOnClickListener {
+            progressBarVisibility(R.color.red)
             signInGoogle()
         }
 
@@ -92,13 +99,27 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("SignInActivity", "signInWithCredential:success")
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, AccountVerificationActivity::class.java)
+                    progressBarVisibility(R.color.white)
                     startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(this,"Something went wrong!",Toast.LENGTH_SHORT).show()
+                    progressBarVisibility(R.color.white)
                 }
             }
+    }
+
+
+    override fun onResume() {
+        progressBarVisibility(R.color.white)
+        super.onResume()
+    }
+
+    fun progressBarVisibility(color:Int)
+    {
+        progressBar.indeterminateDrawable
+            .setColorFilter(ContextCompat.getColor(this,color),PorterDuff.Mode.SRC_IN )
     }
 
 }

@@ -104,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this,"Something went wrong!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Please check your connectivity!",Toast.LENGTH_SHORT).show()
                     progressBarVisibility(R.color.white)
                 }
             }

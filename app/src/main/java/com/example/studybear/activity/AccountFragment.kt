@@ -33,7 +33,7 @@ class AccountFragment : Fragment() {
     lateinit var phone:TextView
     lateinit var extra:TextView
     lateinit var button: Button
-    private lateinit var googleSignInClient: GoogleSignInClient
+
 
 
     @SuppressLint("CheckResult")
@@ -87,12 +87,6 @@ class AccountFragment : Fragment() {
         val emailId:String?=current_user?.email
 
         button.setOnClickListener {
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.web_client_id))
-                .requestEmail()
-                .build()
-            googleSignInClient = GoogleSignIn.getClient(activity as MainActivity, gso)
-            googleSignInClient.signOut()
             auth.signOut()
             val intent= Intent(activity,LoginActivity::class.java)
             startActivity(intent)

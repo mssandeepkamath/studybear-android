@@ -2,6 +2,7 @@ package com.example.studybear.activity
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
@@ -28,9 +29,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.bumptech.glide.request.target.Target
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-
+import com.google.firebase.auth.FirebaseAuth
 
 
 class HomeFragment : Fragment(),View.OnClickListener {
@@ -47,6 +51,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
     lateinit var cardFive:CardView
     lateinit var cardSix:CardView
     lateinit var rewardBanner:ImageView
+
     var count:Int=0
     val urlHashMap= hashMapOf<Int,String>(R.id.imgOne to "https://i.ibb.co/7XY8C5r/business-3d-girl-with-a-book-1-min.png",
         R.id.imgTwo to "https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png",
@@ -62,6 +67,8 @@ class HomeFragment : Fragment(),View.OnClickListener {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+
         myTextView = view.findViewById(R.id.txt_type_writter)
         shimmer = view.findViewById(R.id.lytShimmer)
         bottomNavigationView=(activity as MainActivity).findViewById(R.id.vwBottomNavigation)

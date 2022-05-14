@@ -87,13 +87,11 @@ class AccountVerificationActivity : AppCompatActivity() {
 
         val current_user=auth.currentUser
         val email_id=current_user?.email
-
-
         Handler().postDelayed(
             {
                 if(current_user==null)
                 {
-                    Toast.makeText(this,"Something went wrong!",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"Something went wrong..",Toast.LENGTH_LONG).show()
                     googleSignInClient.signOut()
                     current_user?.delete()
                     val intent=Intent(this,LoginActivity::class.java)
@@ -114,7 +112,7 @@ class AccountVerificationActivity : AppCompatActivity() {
                 }
                 else
                 {
-                    Toast.makeText(this,"Please use RVCE email id!",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"Please use RVCE email id",Toast.LENGTH_LONG).show()
                     googleSignInClient.signOut()
                     current_user.delete()
                     Handler().postDelayed(
@@ -125,12 +123,8 @@ class AccountVerificationActivity : AppCompatActivity() {
                         },1000
                     )
                 }
-
-
             },4000
         )
-
-
     }
 
     fun TextView.typeWrite(lifecycleOwner: LifecycleOwner, text: String, intervalMs: Long) {
@@ -141,6 +135,10 @@ class AccountVerificationActivity : AppCompatActivity() {
                 this@typeWrite.text = text.take(it + 1)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        Toast.makeText(this,"Please wait..",Toast.LENGTH_SHORT).show()
     }
 
 

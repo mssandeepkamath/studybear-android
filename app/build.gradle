@@ -61,5 +61,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

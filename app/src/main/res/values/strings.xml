@@ -31,6 +31,31 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="web_client_id">911830907608-e5ruetagib0i5roee6iabb9k0rikvura.apps.googleusercontent.com</string>
     <string name="hold_on">Hold on</string>
-
+    <string name="semester">Your semester</string>
+    <string name="point">Your points</string>
+    <string name="here_s_what_you_have_achieved">Here\'s what you have achieved.</string>
+    <string name="learn_more_about_studybear">Learn more about Studybear.</string>
+    <string name="help_us_in_making_studybear_bug_free">Help us in making Studybear bug free.</string>
+    <string name="feedback_report_bug">Feedback / Report bug</string>
+    <string name="log_out">Log out</string>
+    <string name="get_back_soon">Get back soon.</string>
+    <string name="explore_notes">EXPLORE NOTES</string>
+    <string name="notes_description">One stop solution for all the notes</string>
+    <string name="experience_our_features">Experience our features</string>
+    <string name="notes_explanation">Daily classroom notes at your fingertips, also upload and earn rewards!</string>
+    <string name="discuss_description">Discuss with your peers</string>
+    <string name="discuss_explanation">Share your knowledge, ideas, doubts and have unlimited fun!</string>
+    <string name="explore_discuss">EXPLORE DISCUSS</string>
+    <string name="events_description">Get updated about the coding events</string>
+    <string name="events_explanation">Give contests on Codeforces and more, become a master!</string>
+    <string name="explore_coding_events">EXPLORE EVENTS</string>
+    <string name="news_description">Get updated about all the latest technology</string>
+    <string name="news_explanation">Read news related to technology, become industry ready!</string>
+    <string name="explore_news">EXPLORE NEWS</string>
+    <string name="teachers_description">Connect to your teachers, get doubts cleared</string>
+    <string name="teachers_explanation">All the ways to stay connected to your teacher at your fingertips!</string>
+    <string name="explore_teachers">EXPLORE TEACHERS</string>
+    <string name="crafted_with">Made with</string>
+    <string name="by_kamath_and_hegde">by Kamath &amp; Hegde</string>
 
 </resources>

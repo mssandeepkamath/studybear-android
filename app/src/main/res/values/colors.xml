@@ -11,5 +11,6 @@
     <color name="grey">#EBEBEB</color>
     <color name="twitter_blue">#1DA1F2</color>
     <color name="bg">#F7F7F7</color>
+    <color name="text_grey">#333333</color>
 
 </resources>

@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.studybear.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -23,6 +25,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.skydoves.powerspinner.PowerSpinnerView
 
 class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     var prev: MenuItem? = null
     lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -71,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             navigationView = findViewById(R.id.vwNavigation)
             appBar=findViewById(R.id.lytAppBar)
 
+
             setUpToolbar()
             val actionBarDrawerToggle = ActionBarDrawerToggle(this@MainActivity,
                 drawerLayout,
@@ -89,18 +94,13 @@ class MainActivity : AppCompatActivity() {
 
                 when (it.itemId) {
                     R.id.notes -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.lytFrame, NotesFragment())
-                            .commit()
+                        replaceFragement(NotesFragment(),"2")
                         supportActionBar?.title = "Notes"
                         bottomNavigationView.selectedItemId = R.id.bottom_notes
                         drawerLayout.closeDrawers()
                     }
                     R.id.discuss -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.lytFrame, DiscussFragment())
-                            .commit()
-
+                        replaceFragement(DiscussFragment(),"3")
                         supportActionBar?.title = "Discuss"
                         bottomNavigationView.selectedItemId = R.id.bottom_discuss
                         drawerLayout.closeDrawers()
@@ -129,9 +129,7 @@ class MainActivity : AppCompatActivity() {
                         drawerLayout.closeDrawers()
                     }
                     R.id.account -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.lytFrame, AccountFragment())
-                            .commit()
+                        replaceFragement(AccountFragment(),"4")
                         supportActionBar?.title = "Account"
                         bottomNavigationView.selectedItemId = R.id.bottom_account
                         drawerLayout.closeDrawers()
@@ -148,33 +146,25 @@ class MainActivity : AppCompatActivity() {
                 appBar.setExpanded(true)
                 when (it.itemId) {
                     R.id.home -> {
-                        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, HomeFragment())
-                            .commit()
+                        replaceFragement(HomeFragment(),"1")
                         supportActionBar?.title = "Home"
                         navigationView.checkedItem?.isChecked = false
 
                     }
                     R.id.bottom_notes -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.lytFrame, NotesFragment())
-                            .commit()
+                        replaceFragement(NotesFragment(),"2")
                         supportActionBar?.title = "Notes"
                         navigationView.setCheckedItem(R.id.notes)
                         navigationView.checkedItem?.isChecked = true
                     }
                     R.id.bottom_discuss -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.lytFrame, DiscussFragment())
-                            .commit()
-
+                        replaceFragement(DiscussFragment(),"3")
                         supportActionBar?.title = "Discuss"
                         navigationView.setCheckedItem(R.id.discuss)
                         navigationView.checkedItem?.isChecked = true
                     }
                     R.id.bottom_account -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.lytFrame, AccountFragment())
-                            .commit()
+                        replaceFragement(AccountFragment(),"4")
                         supportActionBar?.title = "Account"
                         navigationView.setCheckedItem(R.id.account)
                         navigationView.checkedItem?.isChecked = true
@@ -187,8 +177,7 @@ class MainActivity : AppCompatActivity() {
             val imageHome = headerLayout.findViewById<ImageView>(R.id.img_home)
             imageHome.setOnClickListener {
 
-                supportFragmentManager.beginTransaction().replace(R.id.lytFrame, HomeFragment())
-                    .commit()
+                replaceFragement(HomeFragment(),"1")
                 supportActionBar?.title = "Home"
                 bottomNavigationView.selectedItemId = R.id.home
                 drawerLayout.closeDrawers()
@@ -197,9 +186,6 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-
-
-
 
     }
 
@@ -218,21 +204,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun homeFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, HomeFragment()).commit()
+        replaceFragement(HomeFragment(),"1")
         supportActionBar?.title = "Home"
         navigationView.checkedItem?.isChecked = false
     }
 
-    override fun onBackPressed() {
-        val frag = supportFragmentManager.findFragmentById(R.id.lytFrame)
-        bottomNavigationView.selectedItemId = R.id.home
-        when (frag) {
-            !is HomeFragment -> homeFragment()
-            else -> super.onBackPressed()
-        }
-
+    fun replaceFragement(fragment:Fragment,tag:String)
+    {
+        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment,tag).commit()
     }
 
+    override fun onBackPressed() {
+        val fragment = supportFragmentManager.findFragmentByTag("4")
+        val spinner = fragment?.activity?.findViewById<PowerSpinnerView>(R.id.spinnerSem)
+        val frag = supportFragmentManager.findFragmentById(R.id.lytFrame)
+        bottomNavigationView.selectedItemId = R.id.home
+
+        if (spinner?.isShowing == true) {
+            spinner.dismiss()
+        }else
+        {
+            when (frag) {
+                !is HomeFragment -> homeFragment()
+                else -> super.onBackPressed()
+            }
+
+        }
+
+        }
 
 
-}
+    }

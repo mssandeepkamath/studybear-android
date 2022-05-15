@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/img_home"
         android:fontFamily="@font/roboto"
-        android:text="Good Afternoon"
+        android:text="StudyBear"
         android:textColor="@color/black"
         android:textSize="@dimen/_17sdp"
         android:singleLine="true"

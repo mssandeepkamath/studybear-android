@@ -3,15 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable-anydpi/ic_arrow.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable-anydpi/ic_coding_event.xml" value="0.1375" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/background_border.xml" value="0.1" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/background_gradient.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/card_border.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/ic_study_bear_launcher.xml" value="0.1405" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/image_border.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/font/.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/font/baloo_bhai.xml" value="0.168875587858059" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/font/baloo_paaji.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/font/oneFont.xml" value="0.18896964514749892" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/font/roboto.xml" value="0.168875587858059" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/font/roboto_thin.xml" value="0.18896964514749892" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout-v23/fragment_account.xml" value="0.2" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/activity_account_verification.xml" value="0.12" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/activity_drawer_header.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/activity_login.xml" value="0.16666666666666666" />

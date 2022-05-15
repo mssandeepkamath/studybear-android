@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         signInButton.setOnClickListener {
-            progressBarVisibility(R.color.red)
+            progressBarVisibility(R.color.red)//set visible
             signInGoogle()
         }
 
@@ -67,28 +67,21 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+        progressBarVisibility(R.color.white)
         if(requestCode== Req_Code)
         {
             val task=GoogleSignIn.getSignedInAccountFromIntent(data)
-            val exception=task.exception
-            if(task.isSuccessful)
-            {
+
                 try
                 {
                     val account=task.getResult(ApiException::class.java)!!
                     firebaseAuthWithGoogle(account.idToken!!)
-                    Log.d("LoginActivity", "Got ID token.")
+                    progressBarVisibility(R.color.red)
                 }
                 catch(e:ApiException)
                 {
                     Log.d("LoginActivity", e.toString())
                 }
-
-            }else
-            {
-                Log.d("LoginActivity", exception.toString())
-            }
         }
 
     }
@@ -100,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d("SignInActivity", "signInWithCredential:success")
                     val intent = Intent(this, AccountVerificationActivity::class.java)
-                    progressBarVisibility(R.color.white)
+                    progressBarVisibility(R.color.white) //hide progress bar
                     startActivity(intent)
                     finish()
                 } else {
@@ -110,11 +103,6 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-
-    override fun onResume() {
-        progressBarVisibility(R.color.white)
-        super.onResume()
-    }
 
     fun progressBarVisibility(color:Int)
     {

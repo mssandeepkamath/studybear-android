@@ -1,2 +1,2 @@
 # StudyBear
-"C:\Users\mssan\Downloads\Untitled designbear.png"
+C:\Users\mssan\Downloads\Untitled designbear.png

@@ -68,7 +68,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         R.id.imgFour to "https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png",
         R.id.imgFive to "https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png",
         R.id.imgSix to "https://i.ibb.co/CVXb3fh/business-3d-341-min.png",
-        R.id.gifRewardBanner to "https://i.ibb.co/nbWdnCc/ezgif-com-gif-maker-3.gif",
+        R.id.gifRewardBanner to "https://i.ibb.co/z8zBv99/banner-studybear-Portrait-5.gif",
         R.id.imgNotes to "https://i.ibb.co/8xRLRcr/notes.gif",
         R.id.imgDiscuss to "https://i.ibb.co/VYb00n7/discuss.gif",
         R.id.imgEvents to "https://i.ibb.co/C2Qgt8Z/coding-events.gif",
@@ -102,7 +102,9 @@ class HomeFragment : Fragment(),View.OnClickListener {
         var handler: Handler = Handler()
         var runnable: Runnable? = null
         shimmer.startShimmer()
-       myTextView.typeWrite(this,"Wassup buddy?",150L)
+        myTextView.typeWrite(this,"QUESTION OF THE DAY",50L)
+
+
 
         for(data in urlHashMap)
         {
@@ -148,6 +150,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         cardEvents.setOnClickListener(this)
         cardNews.setOnClickListener(this)
         cardTeachers  .setOnClickListener(this)
+        myTextView.setOnClickListener(this)
 
 
 return view
@@ -159,6 +162,7 @@ return view
     }
 
     fun TextView.typeWrite(lifecycleOwner: LifecycleOwner, text: String, intervalMs: Long) {
+
         this@typeWrite.text = "Wassup buddy?"
         lifecycleOwner.lifecycleScope.launch {
             repeat(text.length) {
@@ -253,6 +257,10 @@ return view
                 navigationView.checkedItem?.isChecked = true
                 navigationView.setCheckedItem(R.id.teachers)
 
+            }
+            R.id.txt_type_writter->
+            {
+                Toast.makeText(activity,"Coming soon!",Toast.LENGTH_SHORT).show()
             }
 
         }

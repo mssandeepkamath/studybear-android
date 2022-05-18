@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/black"
     android:id="@+id/bg_SplashActivity"
-    tools:context=".activity.SplashActivity">
+    tools:context=".activity.activity.SplashActivity">
 
 
     <TextView

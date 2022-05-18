@@ -1,4 +1,4 @@
-package com.example.studybear.activity
+package com.example.studybear.activity.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -17,11 +16,13 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.studybear.R
+import com.example.studybear.activity.activity.LoginActivity
+import com.example.studybear.activity.activity.MainActivity
+import com.example.studybear.activity.util.ConnectionManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerView
-import com.skydoves.powerspinner.createPowerSpinnerView
 
 
 class AccountFragment : Fragment(), View.OnClickListener {
@@ -36,6 +37,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
     lateinit var logOut: RelativeLayout
     lateinit var spinner: PowerSpinnerView
     lateinit var navigationView: NavigationView
+
 
 
     @SuppressLint("CheckResult")
@@ -54,7 +56,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
         reportBug = view.findViewById(R.id.lytReport)
         logOut = view.findViewById(R.id.lytLogOut)
         spinner = view.findViewById(R.id.spinnerSem)
-        spinner.lifecycleOwner=MainActivity()//prevent memory leakage
+        spinner.lifecycleOwner= MainActivity()//prevent memory leakage
         navigationView=(activity as MainActivity).findViewById(R.id.vwNavigation)
         //get semester from data base
         spinner.selectItemByIndex(3) //TODO

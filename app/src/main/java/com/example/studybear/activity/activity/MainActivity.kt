@@ -1,6 +1,5 @@
-package com.example.studybear.activity
+package com.example.studybear.activity.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,13 +10,14 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.studybear.R
+import com.example.studybear.activity.fragment.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -34,38 +34,37 @@ class MainActivity : AppCompatActivity() {
     lateinit var frameLayout: FrameLayout
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var navigationView: NavigationView
-    lateinit var appBar:AppBarLayout
+    lateinit var appBar: AppBarLayout
     var prev: MenuItem? = null
     lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    var flagBottom: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         super.onCreate(savedInstanceState)
-        auth= FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-        val current_user=auth.currentUser
-        val email_id=current_user?.email
-        val flag=if(email_id==null) true
-        else !email_id.contains("@rvce.edu.in",true)
+        val current_user = auth.currentUser
+        val email_id = current_user?.email
+        val flag = if (email_id == null) true
+        else !email_id.contains("@rvce.edu.in", true)
 
-        if(flag)
-        {
-            Toast.makeText(this,"Please use RVCE email id",Toast.LENGTH_LONG).show()
+        if (flag) {
+            Toast.makeText(this, "Please use RVCE email id", Toast.LENGTH_LONG).show()
             googleSignInClient.signOut()
             current_user!!.delete()
-            val intent= Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }
-        else
-        {
+        } else {
+
             setContentView(R.layout.activity_main)
             drawerLayout = findViewById(R.id.lytDrawer)
             coordinatorLayout = findViewById(R.id.lytCoordinator)
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             frameLayout = findViewById(R.id.lytFrame)
             bottomNavigationView = findViewById(R.id.vwBottomNavigation)
             navigationView = findViewById(R.id.vwNavigation)
-            appBar=findViewById(R.id.lytAppBar)
+            appBar = findViewById(R.id.lytAppBar)
 
 
             setUpToolbar()
@@ -94,48 +93,51 @@ class MainActivity : AppCompatActivity() {
 
                 when (it.itemId) {
                     R.id.notes -> {
-                        replaceFragement(NotesFragment(),"2")
-                        supportActionBar?.title = "Notes"
-                        bottomNavigationView.selectedItemId = R.id.bottom_notes
-                        drawerLayout.closeDrawers()
+                        replaceFragment(NotesFragment(), "2", "Notes", R.id.bottom_notes, it)
+
                     }
                     R.id.discuss -> {
-                        replaceFragement(DiscussFragment(),"3")
-                        supportActionBar?.title = "Discuss"
-                        bottomNavigationView.selectedItemId = R.id.bottom_discuss
-                        drawerLayout.closeDrawers()
+                        replaceFragment(DiscussFragment(), "3", "Discuss", R.id.bottom_discuss, it)
                     }
                     R.id.coding_events -> {
-                        drawerLayout.closeDrawers()
+                        if (flagBottom == false) {
+                            bottomNavigationView.menu.clear()
+                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                        }
+                        replaceFragment(EventsFragment(),"6","Coding Events",null,it)
+                        flagBottom = true
                     }
                     R.id.news -> {
-                        drawerLayout.closeDrawers()
+                        if (flagBottom == false) {
+                            bottomNavigationView.menu.clear()
+                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                        }
+
+                        replaceFragment(NewsFragment(), "5", "Technology news", null, it)
+                        flagBottom = true
+
                     }
                     R.id.circular -> {
-                        drawerLayout.closeDrawers()
+
+                        //          replaceFragment(CircularsFragment(),"7","Circulars",null,it)
                     }
                     R.id.teachers -> {
-                        drawerLayout.closeDrawers()
+                        //          replaceFragment(TeachersFragment(),"8","Teachers",null,it)
                     }
                     R.id.leaderboard -> {
-                        drawerLayout.closeDrawers()
+                        //          replaceFragment(LeaderBoardFragment(),"9","Leaderboard",null,it)
                     }
                     R.id.report_bug -> {
-                        drawerLayout.closeDrawers()
+                        //implicit intent
                     }
                     R.id.about_us -> {
-                        val intent= Intent(this,LoginActivity::class.java)
-                        startActivity(intent)
-                        drawerLayout.closeDrawers()
+                        //          replaceFragment(AboutUsFragment(),"10","About us",null,it)
                     }
                     R.id.account -> {
-                        replaceFragement(AccountFragment(),"4")
-                        supportActionBar?.title = "Account"
-                        bottomNavigationView.selectedItemId = R.id.bottom_account
-                        drawerLayout.closeDrawers()
+                        replaceFragment(AccountFragment(), "4", "Accounts", R.id.bottom_account, it)
                     }
                     R.id.rate_us -> {
-                        drawerLayout.closeDrawers()
+                        //implicit intent
                     }
 
                 }
@@ -146,28 +148,26 @@ class MainActivity : AppCompatActivity() {
                 appBar.setExpanded(true)
                 when (it.itemId) {
                     R.id.home -> {
-                        replaceFragement(HomeFragment(),"1")
-                        supportActionBar?.title = "Home"
+                        replaceFragmentBottom(HomeFragment(), "1", "Home", null, false)
                         navigationView.checkedItem?.isChecked = false
 
                     }
                     R.id.bottom_notes -> {
-                        replaceFragement(NotesFragment(),"2")
-                        supportActionBar?.title = "Notes"
-                        navigationView.setCheckedItem(R.id.notes)
-                        navigationView.checkedItem?.isChecked = true
+                        replaceFragmentBottom(NotesFragment(), "2", "Notes", R.id.notes, true)
+
                     }
                     R.id.bottom_discuss -> {
-                        replaceFragement(DiscussFragment(),"3")
-                        supportActionBar?.title = "Discuss"
-                        navigationView.setCheckedItem(R.id.discuss)
-                        navigationView.checkedItem?.isChecked = true
+                        replaceFragmentBottom(DiscussFragment(), "3", "Discuss", R.id.discuss, true)
                     }
                     R.id.bottom_account -> {
-                        replaceFragement(AccountFragment(),"4")
-                        supportActionBar?.title = "Account"
-                        navigationView.setCheckedItem(R.id.account)
-                        navigationView.checkedItem?.isChecked = true
+                        replaceFragmentBottom(AccountFragment(), "4", "Account", R.id.account, true)
+                    }
+                    R.id.newHome -> {
+                        bottomNavigationView.menu.clear()
+                        bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
+                        flagBottom = false
+                        replaceFragmentBottom(HomeFragment(), "1", "Home", null, false)
+
                     }
 
                 }
@@ -176,17 +176,21 @@ class MainActivity : AppCompatActivity() {
             val headerLayout = navigationView.getHeaderView(0)
             val imageHome = headerLayout.findViewById<ImageView>(R.id.img_home)
             imageHome.setOnClickListener {
-
-                replaceFragement(HomeFragment(),"1")
-                supportActionBar?.title = "Home"
-                bottomNavigationView.selectedItemId = R.id.home
-                drawerLayout.closeDrawers()
-
+                replaceFragment(HomeFragment(), "1", "Home", R.id.home, null)
             }
 
 
         }
 
+    }
+
+
+    fun BottomNavigationView.uncheckAllItems() {
+        menu.setGroupCheckable(0, true, false)
+        for (i in 0 until menu.size()) {
+            menu.getItem(i).isChecked = false
+        }
+        menu.setGroupCheckable(0, true, true)
     }
 
     fun setUpToolbar() {
@@ -204,34 +208,85 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun homeFragment() {
-        replaceFragement(HomeFragment(),"1")
-        supportActionBar?.title = "Home"
-        navigationView.checkedItem?.isChecked = false
+        replaceFragmentBottom(HomeFragment(), "1", "Home", null, false)
     }
 
-    fun replaceFragement(fragment:Fragment,tag:String)
-    {
-        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment,tag).commit()
+    fun replaceFragment(fragment: Fragment, tag: String, title: String, id: Int?, it: MenuItem?) {
+        if (flagBottom and (it != navigationView.menu.findItem(R.id.news))) {
+            bottomNavigationView.menu.clear()
+            bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
+            flagBottom = false
+        }
+        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag).addToBackStack(null).commit()
+        supportActionBar?.title = title
+        if (id != null)
+            bottomNavigationView.selectedItemId = id
+
+        drawerLayout.closeDrawers()
+    }
+
+    fun replaceFragmentBottom(
+        fragment: Fragment,
+        tag: String,
+        title: String,
+        id: Int?,
+        flag: Boolean,
+    ) {
+        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag).addToBackStack(null).commit()
+        supportActionBar?.title = title
+        if (id != null)
+            navigationView.setCheckedItem(id)
+        navigationView.checkedItem?.isChecked = flag
     }
 
     override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentByTag("4")
-        val spinner = fragment?.activity?.findViewById<PowerSpinnerView>(R.id.spinnerSem)
+        val fragment1 = supportFragmentManager.findFragmentByTag("4")
+        val fragment2 = supportFragmentManager.findFragmentByTag("5")
+        val spinner = fragment1?.activity?.findViewById<PowerSpinnerView>(R.id.spinnerSem)
+        val refresh = fragment2?.activity?.findViewById<SwipeRefreshLayout>(R.id.lytRefresh)
         val frag = supportFragmentManager.findFragmentById(R.id.lytFrame)
+
+        if (flagBottom) {
+            bottomNavigationView.menu.clear()
+            bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
+            flagBottom = false
+        }
         bottomNavigationView.selectedItemId = R.id.home
+
+
 
         if (spinner?.isShowing == true) {
             spinner.dismiss()
-        }else
-        {
+        } else {
+
             when (frag) {
-                !is HomeFragment -> homeFragment()
-                else -> super.onBackPressed()
+                is NewsFragment -> {
+
+                    if (refresh?.isRefreshing == true)
+                        println("Cannot go back")
+                    else
+                    {
+
+                        homeFragment()
+                    }
+
+
+                }
+                !is HomeFragment -> {
+                    homeFragment()
+                }
+
+                else -> {
+                  ActivityCompat.finishAffinity(this)
+                }
+
+
+
             }
 
         }
 
-        }
-
-
     }
+
+
+}

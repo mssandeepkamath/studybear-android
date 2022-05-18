@@ -4,6 +4,7 @@
     <group
         android:id="@+id/grpBottomFeatures"
         android:checkableBehavior="single"
+
         >
         <item
             android:id="@+id/home"

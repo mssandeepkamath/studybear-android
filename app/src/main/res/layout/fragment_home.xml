@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".activity.HomeFragment">
+    tools:context=".activity.fragment.HomeFragment">
 
 
     <LinearLayout
@@ -425,7 +425,6 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp"
                             android:textStyle="bold"
-
                             />
 
 

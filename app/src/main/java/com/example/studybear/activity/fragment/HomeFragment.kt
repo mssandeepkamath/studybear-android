@@ -1,10 +1,7 @@
-package com.example.studybear.activity
+package com.example.studybear.activity.fragment
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.media.Image
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -13,13 +10,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -31,13 +25,11 @@ import com.example.studybear.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.bumptech.glide.request.target.Target
+import com.example.studybear.activity.activity.MainActivity
+import com.example.studybear.activity.util.ConnectionManager
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
 
 
 class HomeFragment : Fragment(),View.OnClickListener {
@@ -61,6 +53,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
     lateinit var cardTeachers:CardView
 
 
+
     var count:Int=0
     val urlHashMap= hashMapOf<Int,String>(R.id.imgOne to "https://i.ibb.co/7XY8C5r/business-3d-girl-with-a-book-1-min.png",
         R.id.imgTwo to "https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png",
@@ -82,6 +75,10 @@ class HomeFragment : Fragment(),View.OnClickListener {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        if(ConnectionManager().checkConnectivity(activity as Context)==false)
+        {
+            ConnectionManager().createDialogRecycler(activity as Context)
+        }
         myTextView = view.findViewById(R.id.txt_type_writter)
         shimmer = view.findViewById(R.id.lytShimmer)
         bottomNavigationView=(activity as MainActivity).findViewById(R.id.vwBottomNavigation)
@@ -103,6 +100,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         var runnable: Runnable? = null
         shimmer.startShimmer()
         myTextView.typeWrite(this,"QUESTION OF THE DAY",50L)
+
 
 
 
@@ -177,38 +175,34 @@ return view
         when (v?.id) {
             R.id.cardOne ->
             {
-                navigationView.checkedItem?.isChecked = true
-                bottomNavigationView.menu.findItem(R.id.bottom_notes).setChecked(true)
-                (activity as MainActivity).supportFragmentManager.beginTransaction()
-                    .replace(R.id.lytFrame, NotesFragment()).commit()
-                navigationView.setCheckedItem(R.id.notes)
-                (activity as MainActivity).supportActionBar?.title="Notes"
+                replaceFragment(NotesFragment(),"2","Notes",R.id.notes,R.id.bottom_notes,true)
             }
             R.id.cardTwo  ->
             {
-                navigationView.checkedItem?.isChecked = true
-                bottomNavigationView.menu.findItem(R.id.bottom_discuss).setChecked(true)
-                (activity as MainActivity).supportFragmentManager.beginTransaction()
-                    .replace(R.id.lytFrame, DiscussFragment()).commit()
-                navigationView.setCheckedItem(R.id.discuss)
-                (activity as MainActivity).supportActionBar?.title="Discuss"
+
+                replaceFragment(DiscussFragment(),"3","Discuss",R.id.discuss,R.id.bottom_discuss,true)
+
             }
             R.id.cardThree ->
             {
-                navigationView.checkedItem?.isChecked = true
-                navigationView.setCheckedItem(R.id.coding_events)
-
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(EventsFragment(),"6","Coding Events",R.id.coding_events,null,true)
+                (activity as MainActivity).flagBottom=true
             }
             R.id.cardFour ->
             {
-                navigationView.checkedItem?.isChecked = true
-                navigationView.setCheckedItem(R.id.news)
+
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(NewsFragment(),"5","Technology news",R.id.news,null,true)
+                (activity as MainActivity).flagBottom=true
+
 
             }
             R.id.cardFive  ->
             {
-                navigationView.checkedItem?.isChecked = true
-                navigationView.setCheckedItem(R.id.teachers)
+//                                replaceFragment(TeachersFragment(),"8","Teachers",R.id.teachers,null,true)
 
             }
             R.id.cardSix ->
@@ -219,43 +213,35 @@ return view
             }
             R.id.gifRewardBanner ->
             {
-                navigationView.setCheckedItem(R.id.leaderboard)
-                navigationView.checkedItem?.isChecked = true
+                //                                replaceFragment(LeaderBoardFragment(),"8","Leaderboard",R.id.leaderboard,null,true)
             }
             R.id.cardNotes ->
             {
-                navigationView.checkedItem?.isChecked = true
-                bottomNavigationView.menu.findItem(R.id.bottom_notes).setChecked(true)
-                (activity as MainActivity).supportFragmentManager.beginTransaction()
-                    .replace(R.id.lytFrame, NotesFragment()).commit()
-                navigationView.setCheckedItem(R.id.notes)
-                (activity as MainActivity).supportActionBar?.title="Notes"
+                replaceFragment(NotesFragment(),"2","Notes",R.id.notes,R.id.bottom_notes,true)
             }
             R.id.cardDiscuss  ->
             {
-                navigationView.checkedItem?.isChecked = true
-                bottomNavigationView.menu.findItem(R.id.bottom_discuss).setChecked(true)
-                (activity as MainActivity).supportFragmentManager.beginTransaction()
-                    .replace(R.id.lytFrame, DiscussFragment()).commit()
-                navigationView.setCheckedItem(R.id.discuss)
-                (activity as MainActivity).supportActionBar?.title="Discuss"
+                replaceFragment(DiscussFragment(),"3","Discuss",R.id.discuss,R.id.bottom_discuss,true)
             }
             R.id.cardEvents ->
             {
-                navigationView.checkedItem?.isChecked = true
-                navigationView.setCheckedItem(R.id.coding_events)
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(EventsFragment(),"6","Coding Events",R.id.coding_events,null,true)
+                (activity as MainActivity).flagBottom=true
 
             }
             R.id.cardNews ->
             {
-                navigationView.checkedItem?.isChecked = true
-                navigationView.setCheckedItem(R.id.news)
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(NewsFragment(),"5","News",R.id.news,null,true)
+                (activity as MainActivity).flagBottom=true
 
             }
             R.id.cardTeachers  ->
             {
-                navigationView.checkedItem?.isChecked = true
-                navigationView.setCheckedItem(R.id.teachers)
+                //                                replaceFragment(TeachersFragment(),"8","Teachers",R.id.teachers,null,true)
 
             }
             R.id.txt_type_writter->
@@ -265,6 +251,23 @@ return view
 
         }
     }
+
+
+    fun replaceFragment(fragment: Fragment, tag: String, title: String, id1: Int,id2:Int?,flag:Boolean) {
+        if ((activity as MainActivity).flagBottom) {
+            bottomNavigationView.menu.clear()
+            bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
+            (activity as MainActivity).flagBottom=false
+        }
+        (activity as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag).commit()
+        navigationView.setCheckedItem(id1)
+        (activity as MainActivity).supportActionBar?.title=title
+        navigationView.checkedItem?.isChecked = true
+        if(id2!=null)
+        bottomNavigationView.menu.findItem(id2).setChecked(flag)
+
+    }
+
 
 
 }

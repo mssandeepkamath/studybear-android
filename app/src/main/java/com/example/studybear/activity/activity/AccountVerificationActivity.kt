@@ -1,10 +1,11 @@
-package com.example.studybear.activity
+package com.example.studybear.activity.activity
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,6 +29,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
 
 
 class AccountVerificationActivity : AppCompatActivity() {
@@ -37,7 +43,8 @@ class AccountVerificationActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     lateinit var shimmer:ShimmerFrameLayout
 
-    @RequiresApi(Build.VERSION_CODES.M)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
@@ -94,7 +101,7 @@ class AccountVerificationActivity : AppCompatActivity() {
                     Toast.makeText(this,"Something went wrong..",Toast.LENGTH_LONG).show()
                     googleSignInClient.signOut()
                     current_user?.delete()
-                    val intent=Intent(this,LoginActivity::class.java)
+                    val intent=Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -106,7 +113,7 @@ class AccountVerificationActivity : AppCompatActivity() {
 //                //go to web view
 //            }
                     Toast.makeText(this,"Welcome to Studybear",Toast.LENGTH_LONG).show()
-                    val intent=Intent(this,MainActivity::class.java)
+                    val intent=Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -117,7 +124,7 @@ class AccountVerificationActivity : AppCompatActivity() {
                     current_user.delete()
                     Handler().postDelayed(
                         Runnable {
-                            val intent=Intent(this,LoginActivity::class.java)
+                            val intent=Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                             finish()
                         },1000
@@ -125,7 +132,12 @@ class AccountVerificationActivity : AppCompatActivity() {
                 }
             },4000
         )
+
+
     }
+
+
+
 
     fun TextView.typeWrite(lifecycleOwner: LifecycleOwner, text: String, intervalMs: Long) {
         this@typeWrite.text = ""

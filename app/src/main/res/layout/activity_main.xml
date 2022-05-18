@@ -5,7 +5,7 @@
     android:id="@+id/lytDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.activity.MainActivity">
 
     <!--    The navigationView holds the drawer items
             The coordinator layout holds toolbar,bottom navigation bar,frame layout-->
@@ -75,6 +75,8 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/vwNavigation"

@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -48,7 +49,7 @@ class EventsFragment : Fragment() {
         progressBar = view.findViewById(R.id.barProgressEvents)
         errorTextView = view.findViewById(R.id.txtErrorEvents)
         refresh = view.findViewById(R.id.lytRefreshEvents)
-        layoutManager = LinearLayoutManager(activity)
+        layoutManager = GridLayoutManager(activity,2)
         itemArray = ArrayList()
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = EventsAdapter(activity as Context, itemArray)
@@ -91,7 +92,7 @@ class EventsFragment : Fragment() {
                             val jsonObject = JSONArray.getJSONObject(i)
                             if (jsonObject != null) {
                                 val platform = jsonObject.getString("site")
-                                val name = "Name: "+jsonObject.getString("name")
+                                val name = jsonObject.getString("name")
                                 val start ="${jsonObject.getString("start_time").subSequence(0,10)}"+"T"+jsonObject.getString("start_time").subSequence(11,19)+"Z"
                                 val end = "${jsonObject.getString("end_time").subSequence(0,10)}"+"T"+jsonObject.getString("end_time").subSequence(11,19)+"Z"
                                 val url = jsonObject.getString("url")

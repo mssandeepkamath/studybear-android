@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.fragment.DiscussFragment">
 
-    <TextView
+    <WebView
+        android:id="@+id/vwDisqus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Discuss"
-        android:gravity="center"
-        android:fontFamily="@font/baloo_bhai"
-        android:textSize="@dimen/_30sdp"/>
+        />
+
 
 </RelativeLayout>

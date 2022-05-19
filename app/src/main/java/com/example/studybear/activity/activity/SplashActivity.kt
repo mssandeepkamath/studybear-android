@@ -16,21 +16,15 @@ class SplashActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //status bar color and visibilty code
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        window.statusBarColor=ContextCompat.getColor(this,R.color.black)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         auth=FirebaseAuth.getInstance()
         val current_user=auth.currentUser
-        //2 handlers are used.
-        //first one for color update
-        //second one for intent
+        //handlers are used for intent
+
         android.os.Handler().postDelayed(
             {
-                window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-                screen = findViewById(R.id.bg_SplashActivity)
-                screen.setBackgroundColor(ContextCompat.getColor(this,R.color.white))
-                android.os.Handler().postDelayed(
-                    {
                         if(current_user!=null)
                         {
                             val intent = Intent(this, MainActivity::class.java)
@@ -44,8 +38,6 @@ class SplashActivity : Activity() {
                             finish()
                         }
 
-                    }, 1000
-                )
-            }, 700)
+            }, 1000)
     }
 }

@@ -55,12 +55,11 @@ scrollView
 
          <ProgressBar
              android:id="@+id/barProgress"
-             android:layout_width="@dimen/_100sdp"
-             android:layout_height="@dimen/_100sdp"
+             android:layout_width="@dimen/_75sdp"
+             android:layout_height="@dimen/_75sdp"
              android:layout_gravity="center"
              android:layout_margin="@dimen/_25sdp"
-             android:progressBackgroundTint="@color/blue"
-             android:indeterminateTint="@color/red"
+             android:indeterminateTint="@color/black"
 
              />
 

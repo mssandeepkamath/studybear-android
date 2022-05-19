@@ -62,5 +62,7 @@
     <string name="read_more">READ MORE</string>
     <string name="we_are_sorry_please_try_again">We are sorry, Please try again..</string>
     <string name="know_more">KNOW MORE</string>
+    <string name="add_to_calendar">Add to calendar</string>
+    <string name="to">To</string>
 
 </resources>

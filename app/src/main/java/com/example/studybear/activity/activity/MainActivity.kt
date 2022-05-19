@@ -1,6 +1,8 @@
 package com.example.studybear.activity.activity
 
+import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -16,6 +18,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bumptech.glide.Glide
 import com.example.studybear.R
 import com.example.studybear.activity.fragment.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -26,6 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.skydoves.powerspinner.PowerSpinnerView
+import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -93,18 +97,18 @@ class MainActivity : AppCompatActivity() {
 
                 when (it.itemId) {
                     R.id.notes -> {
-                        replaceFragment(NotesFragment(), "2", "Notes", R.id.bottom_notes, it)
+                        replaceFragment(NotesFragment(), "2", "Notes", R.id.bottom_notes, it,R.id.notes)
 
                     }
                     R.id.discuss -> {
-                        replaceFragment(DiscussFragment(), "3", "Discuss", R.id.bottom_discuss, it)
+                        replaceFragment(DiscussFragment(), "3", "Discuss", R.id.bottom_discuss, it,R.id.discuss)
                     }
                     R.id.coding_events -> {
                         if (flagBottom == false) {
                             bottomNavigationView.menu.clear()
                             bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
                         }
-                        replaceFragment(EventsFragment(),"6","Coding Events",null,it)
+                        replaceFragment(EventsFragment(),"6","Coding Events",null,it, R.id.coding_events)
                         flagBottom = true
                     }
                     R.id.news -> {
@@ -112,29 +116,28 @@ class MainActivity : AppCompatActivity() {
                             bottomNavigationView.menu.clear()
                             bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
                         }
-
-                        replaceFragment(NewsFragment(), "5", "Technology news", null, it)
+                        replaceFragment(NewsFragment(), "5", "Technology news", null, it,R.id.news)
                         flagBottom = true
-
                     }
+
                     R.id.circular -> {
 
-                        //          replaceFragment(CircularsFragment(),"7","Circulars",null,it)
+                        //          replaceFragment(CircularsFragment(),"7","Circulars",null,it, R.id.circular)
                     }
                     R.id.teachers -> {
-                        //          replaceFragment(TeachersFragment(),"8","Teachers",null,it)
+                        //          replaceFragment(TeachersFragment(),"8","Teachers",null,it,  R.id.teachers )
                     }
                     R.id.leaderboard -> {
-                        //          replaceFragment(LeaderBoardFragment(),"9","Leaderboard",null,it)
+                        //          replaceFragment(LeaderBoardFragment(),"9","Leaderboard",null,it, R.id.leaderboard)
                     }
                     R.id.report_bug -> {
                         //implicit intent
                     }
                     R.id.about_us -> {
-                        //          replaceFragment(AboutUsFragment(),"10","About us",null,it)
+                        //          replaceFragment(AboutUsFragment(),"10","About us",null,it,R.id.about_us )
                     }
                     R.id.account -> {
-                        replaceFragment(AccountFragment(), "4", "Accounts", R.id.bottom_account, it)
+                        replaceFragment(AccountFragment(), "4", "Accounts", R.id.bottom_account, it,R.id.account)
                     }
                     R.id.rate_us -> {
                         //implicit intent
@@ -176,7 +179,7 @@ class MainActivity : AppCompatActivity() {
             val headerLayout = navigationView.getHeaderView(0)
             val imageHome = headerLayout.findViewById<ImageView>(R.id.img_home)
             imageHome.setOnClickListener {
-                replaceFragment(HomeFragment(), "1", "Home", R.id.home, null)
+                replaceFragment(HomeFragment(), "1", "Home", R.id.home, null,R.id.img_home)
             }
 
 
@@ -211,8 +214,8 @@ class MainActivity : AppCompatActivity() {
         replaceFragmentBottom(HomeFragment(), "1", "Home", null, false)
     }
 
-    fun replaceFragment(fragment: Fragment, tag: String, title: String, id: Int?, it: MenuItem?) {
-        if (flagBottom and (it != navigationView.menu.findItem(R.id.news))) {
+    fun replaceFragment(fragment: Fragment, tag: String, title: String, id: Int?, it: MenuItem?,idClicked:Int) {
+        if (flagBottom and (it != navigationView.menu.findItem(idClicked))) {
             bottomNavigationView.menu.clear()
             bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
             flagBottom = false
@@ -239,7 +242,10 @@ class MainActivity : AppCompatActivity() {
         navigationView.checkedItem?.isChecked = flag
     }
 
+
+
     override fun onBackPressed() {
+
         val fragment1 = supportFragmentManager.findFragmentByTag("4")
         val fragment2 = supportFragmentManager.findFragmentByTag("5")
         val spinner = fragment1?.activity?.findViewById<PowerSpinnerView>(R.id.spinnerSem)
@@ -254,7 +260,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.selectedItemId = R.id.home
 
 
-
         if (spinner?.isShowing == true) {
             spinner.dismiss()
         } else {
@@ -266,7 +271,6 @@ class MainActivity : AppCompatActivity() {
                         println("Cannot go back")
                     else
                     {
-
                         homeFragment()
                     }
 
@@ -277,10 +281,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else -> {
+                    Glide.get(this).clearMemory()
+                    ClearGlideCacheAsyncTask(this).execute()
                   ActivityCompat.finishAffinity(this)
                 }
-
-
 
             }
 
@@ -288,5 +292,36 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    companion object
+    {
+        class ClearGlideCacheAsyncTask internal constructor(context: MainActivity) :
+            AsyncTask<Void?, Void?, Boolean>() {
+
+            private val activityReference: WeakReference<MainActivity> = WeakReference(context)
+            private var result = false
+
+            override fun onPostExecute(result: Boolean) {
+                super.onPostExecute(result)
+                if (result) println("Called Succes")
+            }
+
+            override fun doInBackground(vararg params: Void?): Boolean {
+                println("Called")
+                try {
+                    Glide.get(activityReference.get()!!).clearDiskCache()
+                    result = true
+                } catch (e: Exception) {
+                    println("Called Error: $e")
+                }
+                return result
+            }
+        }
+
+    }
+
 
 }
+
+
+
+

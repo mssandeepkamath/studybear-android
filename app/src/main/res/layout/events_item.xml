@@ -6,72 +6,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardEvents"
         android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:padding="@dimen/_5sdp"
+        android:layout_margin="@dimen/_5sdp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="@dimen/_2sdp"
-        >
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-
             >
+            <ImageView
+                android:id="@+id/imgEventsPhoto"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:layout_margin="@dimen/_2sdp"
+                android:scaleType="center" />
 
 
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:layout_margin="@dimen/_5sdp"
-                >
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_2sdp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtEventPlatform"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold"
-                    />
+            <TextView
+                android:id="@+id/txtEventPlatform"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                />
 
 
-                <TextView
-                    android:id="@+id/txtEventName"
-                    android:layout_below="@id/txtEventPlatform"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txtEventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/roboto"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/txtEventStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtEventName"
-                    android:layout_gravity="start"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#028808"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/to"
+                    android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:textAlignment="center"
                     android:fontFamily="@font/roboto"
-                    android:textColor="@color/green"
-                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
                     android:textStyle="normal" />
 
 
@@ -79,43 +94,35 @@
                     android:id="@+id/txtEventEnd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtEventStart"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_2sdp"
                     android:fontFamily="@font/roboto"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/_14sdp"
+                    android:textColor="#A30101"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="normal" />
 
-                <ImageView
-                    android:id="@+id/imgCalender"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_4sdp" />
-
-            </RelativeLayout>
-
+            </LinearLayout>
 
 
             <TextView
-                android:id="@+id/txtLinkEvents"
+                android:id="@+id/txtCalender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/card_border"
                 android:fontFamily="@font/roboto"
-                android:padding="@dimen/_2sdp"
-                android:text="@string/know_more"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/add_to_calendar"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:focusable="true"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
+
 
 
 

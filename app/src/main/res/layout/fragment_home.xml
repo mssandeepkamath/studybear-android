@@ -771,12 +771,12 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:fontFamily="@font/baloo_bhai"
+                android:fontFamily="@font/roboto"
                 android:gravity="start"
                 android:text="@string/crafted_with"
                 android:textColor="@color/text_grey"
                 android:textSize="@dimen/_15sdp"
-                android:textStyle="normal" />
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imgHeart"
@@ -793,12 +793,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:fontFamily="@font/baloo_bhai"
+                android:fontFamily="@font/roboto"
                 android:gravity="start"
                 android:text="@string/by_kamath_and_hegde"
                 android:textColor="@color/text_grey"
                 android:textSize="@dimen/_15sdp"
-                android:textStyle="normal" />
+                android:textStyle="bold" />
 
 
         </LinearLayout>

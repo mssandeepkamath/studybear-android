@@ -14,12 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+
+
         >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vwRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/grey"
+
             />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -35,9 +39,9 @@
 
         <ProgressBar
             android:id="@+id/barProgress"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
-            android:indeterminateTint="@color/blue"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
+            android:indeterminateTint="@color/black"
             android:layout_centerInParent="true"
             />
 

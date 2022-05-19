@@ -25,6 +25,7 @@ import com.example.studybear.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.signature.ObjectKey
 import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.util.ConnectionManager
 import com.facebook.shimmer.ShimmerFrameLayout

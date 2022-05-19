@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
             android:name=".activity.activity.AccountVerificationActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activity.activity.SplashActivity"

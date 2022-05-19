@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         signInButton.setOnClickListener {
-            progressBarVisibility(R.color.blue)//set visible
+            progressBarVisibility(R.color.black)//set visible
             signInGoogle()
         }
 
@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 {
                     val account=task.getResult(ApiException::class.java)!!
                     firebaseAuthWithGoogle(account.idToken!!)
-                    progressBarVisibility(R.color.blue)
+                    progressBarVisibility(R.color.black)
                 }
                 catch(e:ApiException)
                 {

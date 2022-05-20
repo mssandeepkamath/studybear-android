@@ -78,7 +78,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         if(ConnectionManager().checkConnectivity(activity as Context)==false)
         {
-            ConnectionManager().createDialogRecycler(activity as Context)
+            ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),activity as Context)
         }
         myTextView = view.findViewById(R.id.txt_type_writter)
         shimmer = view.findViewById(R.id.lytShimmer)
@@ -112,7 +112,6 @@ class HomeFragment : Fragment(),View.OnClickListener {
                 .placeholder(R.drawable.placeholder)
                 .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    Toast.makeText(activity,"Sorry,Failed to load contents!",Toast.LENGTH_SHORT).show()
                     return false
                 }
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
@@ -121,7 +120,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
                 }
             })
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.no_placeholder)
+                .error(R.drawable.no_placeholder_new)
                 .into(view.findViewById(data.key))
         }
 

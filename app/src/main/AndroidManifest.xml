@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
-            android:name=".activity.activity.AccountVerificationActivity"
-            android:screenOrientation="portrait"
+            android:name=".activity.activity.RazorPayDataActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.activity.AccountVerificationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.activity.SplashActivity"
             android:exported="true"
@@ -38,6 +41,13 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_fCzx5egRVmVFFA"/>
+        <meta-data
+            android:name="com.google.gms.wallet.api.enabled"
+            android:value="true"/>
     </application>
 
 </manifest>

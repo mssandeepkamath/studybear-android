@@ -64,11 +64,15 @@ class NewsFragment : Fragment() {
               itemArray.clear()
               recyclerView.adapter?.notifyDataSetChanged()
               progressLayout.visibility=View.VISIBLE
+              progressBar.visibility=View.VISIBLE
+              errorText.visibility=View.GONE
               Handler().postDelayed(
                  Runnable {
+
                      refresh.isRefreshing=false
                      volleyGetRequest()
-                     progressLayout.visibility=View.GONE
+
+
                   },1000
               )
           }
@@ -121,7 +125,7 @@ class NewsFragment : Fragment() {
                         }
 
                     } catch (e: JSONException) {
-                        progressLayout.visibility=View.VISIBLE
+                        progressLayout.visibility = View.VISIBLE
                         progressBar.visibility=View.GONE
                         errorText.visibility=View.VISIBLE
                         ToastMessage("Some unexpected error occurred.")
@@ -148,7 +152,9 @@ class NewsFragment : Fragment() {
                 .addToRequestQueue(jsonObjectRequest)
 
         } else {
-            ConnectionManager().createDialogRecycler(activity as MainActivity)
+            errorText.visibility=View.VISIBLE
+            progressBar.visibility = View.GONE
+            ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),activity as MainActivity)
         }
 
     }

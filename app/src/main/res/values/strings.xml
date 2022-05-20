@@ -60,9 +60,16 @@
     <string name="wassup_buddy">Wassup buddy?</string>
     <string name="technology_news">Technology News</string>
     <string name="read_more">READ MORE</string>
-    <string name="we_are_sorry_please_try_again">We are sorry, Please try again..</string>
+    <string name="we_are_sorry_please_try_again">We are sorry, Please refresh..</string>
     <string name="know_more">KNOW MORE</string>
     <string name="add_to_calendar">Add to calendar</string>
     <string name="to">To</string>
+    <string name="additional_information">Additional Information</string>
+    <string name="phone_number">Phone number</string>
+    <string name="phone_number_razor">Phone number</string>
+    <string name="choose_your_semester">Choose your Semester</string>
+    <string name="procced_to_payment">Procced to payment</string>
+    <string name="note_we_do_not_sell_your_data">Note: We do not sell your data</string>
+    <string name="_10_digit_phone_number">10 digit phone number</string>
 
 </resources>

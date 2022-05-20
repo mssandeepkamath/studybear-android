@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
+    android:id="@+id/parentViewHome"
     tools:context=".activity.fragment.HomeFragment">
 
 

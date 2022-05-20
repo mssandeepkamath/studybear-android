@@ -27,6 +27,7 @@ import com.example.studybear.activity.util.MySingleton
 import org.json.JSONException
 
 
+
 class EventsFragment : Fragment() {
 
 
@@ -66,11 +67,12 @@ class EventsFragment : Fragment() {
                itemArray.clear()
                 recyclerView.adapter?.notifyDataSetChanged()
                 progressLayout.visibility=View.VISIBLE
+                progressBar.visibility=View.VISIBLE
+                errorTextView.visibility=View.GONE
                 Handler().postDelayed(
                     Runnable {
                            refresh.isRefreshing=false
                              volleyJsonObjectRequest()
-                        progressLayout.visibility=View.GONE
                     }, 1000)
 
             }
@@ -115,7 +117,9 @@ class EventsFragment : Fragment() {
                 .addToRequestQueue(jsonArrayRequest)
         }else
         {
-            ConnectionManager().createDialogRecycler(activity as MainActivity)
+            errorTextView.visibility=View.VISIBLE
+            progressBar.visibility = View.GONE
+            ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),activity as MainActivity)
         }
     }
 

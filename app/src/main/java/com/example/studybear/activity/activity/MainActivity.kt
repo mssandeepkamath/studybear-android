@@ -134,6 +134,9 @@ class MainActivity : AppCompatActivity() {
                         //implicit intent
                     }
                     R.id.about_us -> {
+                        val intent=Intent(this,RazorPayDataActivity::class.java)
+                        startActivity(intent)
+                        finish()
                         //          replaceFragment(AboutUsFragment(),"10","About us",null,it,R.id.about_us )
                     }
                     R.id.account -> {

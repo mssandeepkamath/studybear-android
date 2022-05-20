@@ -90,7 +90,7 @@ class AccountVerificationActivity : AppCompatActivity() {
                 }
 
             })
-            .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.no_placeholder).into(imageView)
+            .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.no_placeholder_new).into(imageView)
 
         val current_user=auth.currentUser
         val email_id=current_user?.email

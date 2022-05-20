@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
     //check for connectivity and if not connected to internet show a alert dialog
         if(ConnectionManager().checkConnectivity(this)==false)
         {
-            ConnectionManager().createDialog(this)
+            ConnectionManager().createDialog(findViewById(R.id.parentViewLogin),this)
         }
 
 

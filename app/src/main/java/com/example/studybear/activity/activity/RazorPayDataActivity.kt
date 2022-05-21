@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,8 +15,12 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.studybear.R
+import com.example.studybear.activity.model.UserDataClass
 import com.example.studybear.activity.util.ConnectionManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
@@ -31,11 +36,14 @@ class RazorPayDataActivity : AppCompatActivity(),PaymentResultListener {
     lateinit var spinnerSemester:PowerSpinnerView
     lateinit var buttonPay:Button
     private lateinit var auth:FirebaseAuth
+    private lateinit var database:DatabaseReference
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_razor_pay_data)
         textName=findViewById(R.id.txtRazorName)
@@ -44,12 +52,15 @@ class RazorPayDataActivity : AppCompatActivity(),PaymentResultListener {
         spinnerSemester=findViewById(R.id.spinnerRazor)
         buttonPay=findViewById(R.id.btnRazorPay)
         auth= FirebaseAuth.getInstance()
+        database=Firebase.database.reference
         val current_user=auth.currentUser
         var semester:String="Demo"
         var flag=false
         val arraySemester=resources.getStringArray(R.array.semesters)
-        textName.text=current_user!!.displayName
-        textEmail.text=current_user.email
+        val name=current_user!!.displayName
+        val email=current_user.email
+        textName.text=name
+        textEmail.text=email
         spinnerSemester.lifecycleOwner= MainActivity()//prevent memory leakage
         spinnerSemester.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<Any?>
         {
@@ -70,6 +81,7 @@ class RazorPayDataActivity : AppCompatActivity(),PaymentResultListener {
             {
                 if(ConnectionManager().checkConnectivity(this)==true)
                 {
+                    database.child("branch")
 
                         startPayment(current_user.email.toString(),current_user.displayName.toString(),editPhone.text.toString())
                 }

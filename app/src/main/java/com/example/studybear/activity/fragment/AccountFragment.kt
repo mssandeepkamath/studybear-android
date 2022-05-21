@@ -19,6 +19,8 @@ import com.example.studybear.R
 import com.example.studybear.activity.activity.LoginActivity
 import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.util.ConnectionManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
@@ -120,6 +122,12 @@ class AccountFragment : Fragment(), View.OnClickListener {
             }
             R.id.lytLogOut -> {
                 auth.signOut()
+                 val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.web_client_id))
+                    .requestEmail()
+                    .build()
+                val googleSignInClient = GoogleSignIn.getClient(activity as MainActivity, gso)
+                googleSignInClient.signOut()
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
                 (activity as MainActivity).finish()

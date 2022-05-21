@@ -1,16 +1,15 @@
 package com.example.studybear.activity.activity
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
@@ -22,39 +21,44 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.studybear.R
+import com.example.studybear.activity.fragment.HomeFragment
+import com.example.studybear.activity.model.AccessControlInterface
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
 
 
-class AccountVerificationActivity : AppCompatActivity() {
+class AccountVerificationActivity : AppCompatActivity(),AccessControlInterface{
     lateinit var myTextView: TextView
     lateinit var imageView: ImageView
-    private lateinit var auth:FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-    lateinit var shimmer:ShimmerFrameLayout
-
-
+    lateinit var database: DatabaseReference
+    lateinit var shimmer: ShimmerFrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_verification)
         myTextView = findViewById(R.id.txt_type_writter_two)
         myTextView.typeWrite(this, "Verifying account..", 80L)
         imageView = findViewById(R.id.imgVerification)
-        auth= FirebaseAuth.getInstance()
-        shimmer=findViewById(R.id.lytShimmerTwo)
+        auth = FirebaseAuth.getInstance()
+        database = Firebase.database.reference
+        shimmer = findViewById(R.id.lytShimmerTwo)
 
         shimmer.startShimmer()
 
@@ -67,15 +71,14 @@ class AccountVerificationActivity : AppCompatActivity() {
 
         Glide.with(this).load("https://i.ibb.co/0FC4V4h/verification.gif")
             .placeholder(R.drawable.verfication_placeholder)
-            .listener(object :RequestListener<Drawable>
-            {
+            .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
                     target: Target<Drawable>?,
                     isFirstResource: Boolean,
                 ): Boolean {
-                  return false
+                    return false
                 }
 
                 override fun onResourceReady(
@@ -90,53 +93,42 @@ class AccountVerificationActivity : AppCompatActivity() {
                 }
 
             })
-            .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.no_placeholder_new).into(imageView)
+            .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.no_placeholder_new)
+            .into(imageView)
 
-        val current_user=auth.currentUser
-        val email_id=current_user?.email
+        val current_user = auth.currentUser
+        val email_id = current_user?.email
         Handler().postDelayed(
             {
                 if(current_user==null)
                 {
-                    Toast.makeText(this,"Something went wrong..",Toast.LENGTH_LONG).show()
+                    message(this@AccountVerificationActivity,"Something went wrong..")
                     googleSignInClient.signOut()
                     current_user?.delete()
-                    val intent=Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    intentProvider(this@AccountVerificationActivity,LoginActivity::class.java)
                 }
                 else if(email_id!!.contains("@rvce.edu.in",true))
                 {
-//            if(new_usert)
-//            {
-                    //TODO
-//                //go to web view
-//            }
-                    Toast.makeText(this,"Welcome to Studybear",Toast.LENGTH_LONG).show()
-                    val intent=Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    accessCheck(this,"Welcome to Studybear",database,current_user)
                 }
                 else
                 {
-                    Toast.makeText(this,"Please use RVCE email id",Toast.LENGTH_LONG).show()
+                    message(this@AccountVerificationActivity,"Please use RVCE email id")
                     googleSignInClient.signOut()
                     current_user.delete()
                     Handler().postDelayed(
                         Runnable {
-                            val intent=Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
-                            finish()
+
+                            intentProvider(this@AccountVerificationActivity,LoginActivity::class.java)
+
                         },1000
                     )
                 }
-            },4000
+            }, 4000
         )
 
 
     }
-
-
 
 
     fun TextView.typeWrite(lifecycleOwner: LifecycleOwner, text: String, intervalMs: Long) {
@@ -150,8 +142,14 @@ class AccountVerificationActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        Toast.makeText(this,"Please wait..",Toast.LENGTH_SHORT).show()
+        message(this@AccountVerificationActivity,"Please wait..")
+
     }
+
+
+
+
+
 
 
 }

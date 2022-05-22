@@ -208,7 +208,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_100sdp"
             android:src="@drawable/razorpay"
             android:layout_gravity="center"
             android:scaleType="centerInside"

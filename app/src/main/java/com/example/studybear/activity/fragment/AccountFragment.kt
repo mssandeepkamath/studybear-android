@@ -23,8 +23,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.protobuf.Value
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerView
+import kotlinx.coroutines.currentCoroutineContext
 
 
 class AccountFragment : Fragment(), View.OnClickListener {
@@ -39,6 +47,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
     lateinit var logOut: RelativeLayout
     lateinit var spinner: PowerSpinnerView
     lateinit var navigationView: NavigationView
+    private lateinit var database:DatabaseReference
 
 
 
@@ -50,6 +59,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
         val view = inflater.inflate(R.layout.fragment_account, container, false)
         auth = FirebaseAuth.getInstance()
+        database= Firebase.database.reference
         imageView = view.findViewById(R.id.imgProfile)
         name = view.findViewById(R.id.txtName)
         email = view.findViewById(R.id.txtEmail)
@@ -60,11 +70,23 @@ class AccountFragment : Fragment(), View.OnClickListener {
         spinner = view.findViewById(R.id.spinnerSem)
         spinner.lifecycleOwner= MainActivity()//prevent memory leakage
         navigationView=(activity as MainActivity).findViewById(R.id.vwNavigation)
-        //get semester from data base
-        spinner.selectItemByIndex(3) //TODO
         val current_user = auth.currentUser
         name.text = current_user?.displayName
         email.text = current_user?.email
+       val ref= database.child("users").child(current_user!!.uid).child("semester")
+           ref.addListenerForSingleValueEvent(object:ValueEventListener
+        {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val response=snapshot.value.toString().toInt()
+                spinner.selectItemByIndex(response-1)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                //error
+            }
+
+        })
+
 
 
         Glide.with(activity as Context).load(current_user?.photoUrl)
@@ -93,8 +115,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
     spinner.setOnSpinnerItemSelectedListener(object :OnSpinnerItemSelectedListener<Any?>
     {
         override fun onItemSelected(oldIndex: Int, oldItem: Any?, newIndex: Int, newItem: Any?) {
-            //TODO
-            //update the semester in the data base
+            ref.setValue((newIndex+1))
         }
 
     })
@@ -122,12 +143,6 @@ class AccountFragment : Fragment(), View.OnClickListener {
             }
             R.id.lytLogOut -> {
                 auth.signOut()
-                 val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(getString(R.string.web_client_id))
-                    .requestEmail()
-                    .build()
-                val googleSignInClient = GoogleSignIn.getClient(activity as MainActivity, gso)
-                googleSignInClient.signOut()
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
                 (activity as MainActivity).finish()

@@ -87,8 +87,8 @@ class NewsFragment : Fragment() {
 
     fun volleyGetRequest()
     {
-        val url =
-            "https://newsapi.org/v2/everything?q=technology%20and%20IT&language=en&pageSize=100&sortBy=publishedAt&apiKey=1d439d1ca8b14f969e345c701e93b306"
+        val url =  "https://newsapi.org/v2/everything?q=technology%20and%20IT&language=en&pageSize=100&sortBy=publishedAt&apiKey=1d439d1ca8b14f969e345c701e93b306"
+
 
         if (ConnectionManager().checkConnectivity(activity as MainActivity)){
             val jsonObjectRequest = object : JsonObjectRequest(

@@ -59,9 +59,7 @@ class AccountVerificationActivity : AppCompatActivity(),AccessControlInterface{
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
         shimmer = findViewById(R.id.lytShimmerTwo)
-
         shimmer.startShimmer()
-
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
             .requestEmail()

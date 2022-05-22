@@ -6,8 +6,8 @@
     </array>
 
     <array name="semesters">
-        <item>First semester</item>
-        <item>Second semester</item>
+        <item>First year(C cycle)</item>
+        <item>First year(P cycle)</item>
         <item>Third semester</item>
         <item>Fourth semester</item>
         <item>Fifth semester</item>

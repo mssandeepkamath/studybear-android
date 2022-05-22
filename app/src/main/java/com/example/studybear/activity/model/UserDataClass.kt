@@ -6,7 +6,11 @@ data class UserDataClass(
     var phonenumber: String?,
     var photourl: String?,
     var paidbit: Boolean?,
+    var semester:Int,
     var totaluploads:Int?,
     var totalviews:Int?,
-    var extrapoints:Int?
+    var extrapoints:Int?,
+    var razorpayorderid:String?,
+    var razorpaysignature:String?,
+    var razorpaypaymentid:String?
 )

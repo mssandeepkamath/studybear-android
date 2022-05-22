@@ -18,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 interface AccessControlInterface {
     fun accessCheck(context: Context,message: String?,database:DatabaseReference,current_user:FirebaseUser)
     {
-        database.child("branch").child("is").child("third semester").child("users").child(current_user.uid)
+        database.child("users").child(current_user.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.value==null)

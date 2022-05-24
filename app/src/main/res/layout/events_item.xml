@@ -70,21 +70,22 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="#028808"
+                    android:fontFamily="@font/share_tech"
+                    android:letterSpacing="0.0"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_11sdp"
+                    android:textColor="#028808"
+                    android:textSize="@dimen/_12sdp"
                     android:textStyle="normal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/to"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_2sdp"
-                    android:textAlignment="center"
                     android:fontFamily="@font/roboto"
+                    android:text="@string/to"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="normal" />
@@ -96,10 +97,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/_2sdp"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/share_tech"
                     android:textColor="#A30101"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_11sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:textStyle="normal" />
 
             </LinearLayout>

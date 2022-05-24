@@ -47,8 +47,8 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE);
+//        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+//            WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_razor_pay_data)
         Checkout.preload(getApplicationContext());
@@ -86,17 +86,22 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
         })
 
 
-        data class UserDataClass(
-            var name: String?,
-            var email: String?,
-            var phonenumber: String?,
-            var photourl: String?,
-            var paidbit: Boolean?,
-            var semester: String?,
-            var totaluploads: Int?,
-            var totalviews: Int?,
-            var extrapoints: Int?,
-        )
+
+//        RazorpayClient razorpay = new RazorpayClient("[YOUR_KEY_ID]", "[YOUR_KEY_SECRET]");
+//
+//        JSONObject orderRequest = new JSONObject();
+//        orderRequest.put("amount", 50000); // amount in the smallest currency unit
+//        orderRequest.put("currency", "INR");
+//        orderRequest.put("receipt", "order_rcptid_11");
+//
+//        Order order = razorpay.Orders.create(orderRequest);
+//    } catch (RazorpayException e) {
+//        // Handle Exception
+//        System.out.println(e.getMessage());
+//    }
+
+
+
 
         buttonPay.setOnClickListener {
             if ((editPhone.text.toString()
@@ -118,7 +123,6 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
                                         Toast.LENGTH_SHORT).show()
                                 }
                             }
-
                         })
                     startPayment(email!!, phonenumber)
                 } else {
@@ -194,6 +198,9 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
 
     override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
         Toast.makeText(this, "Payment unsuccessful", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this@RazorPayDataActivity, AccountVerificationActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }

@@ -69,7 +69,11 @@
     <string name="phone_number_razor">Phone number</string>
     <string name="choose_your_semester">Choose your Semester</string>
     <string name="procced_to_payment">Proceed to payment</string>
-    <string name="note_we_do_not_sell_your_data">Note: We do not sell your data</string>
+    <string name="note_we_do_not_sell_your_data">Note: Studybear do not sell your data</string>
     <string name="_10_digit_phone_number">10 digit phone number</string>
+    <string name="choose_a_unit">Choose a unit</string>
+    <string name="proceed">Proceed</string>
+    <string name="choose_a_topic">Choose a Topic</string>
+
 
 </resources>

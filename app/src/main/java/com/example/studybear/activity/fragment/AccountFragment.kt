@@ -19,6 +19,7 @@ import com.example.studybear.R
 import com.example.studybear.activity.activity.LoginActivity
 import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.util.ConnectionManager
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
@@ -29,7 +30,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.protobuf.Value
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerView
 import kotlinx.coroutines.currentCoroutineContext
@@ -48,6 +48,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
     lateinit var spinner: PowerSpinnerView
     lateinit var navigationView: NavigationView
     private lateinit var database:DatabaseReference
+    lateinit var shimmer:ShimmerFrameLayout
 
 
 
@@ -67,22 +68,25 @@ class AccountFragment : Fragment(), View.OnClickListener {
         aboutUs = view.findViewById(R.id.lytAboutUs)
         reportBug = view.findViewById(R.id.lytReport)
         logOut = view.findViewById(R.id.lytLogOut)
+        shimmer=view.findViewById(R.id.lytShimmerAccount)
         spinner = view.findViewById(R.id.spinnerSem)
         spinner.lifecycleOwner= MainActivity()//prevent memory leakage
         navigationView=(activity as MainActivity).findViewById(R.id.vwNavigation)
         val current_user = auth.currentUser
         name.text = current_user?.displayName
         email.text = current_user?.email
+        shimmer.startShimmer()
        val ref= database.child("users").child(current_user!!.uid).child("semester")
            ref.addListenerForSingleValueEvent(object:ValueEventListener
         {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val response=snapshot.value.toString().toInt()
                 spinner.selectItemByIndex(response-1)
+                shimmer.hideShimmer()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                //error
+              Toast.makeText(activity ,"Sorry, Something went wrong..",Toast.LENGTH_SHORT).show()
             }
 
         })

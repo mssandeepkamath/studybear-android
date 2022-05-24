@@ -23,7 +23,7 @@ interface AccessControlInterface {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.value==null)
                     {
-                        println(snapshot)
+                        println("Response $snapshot")
                         intentProvider(context, RazorPayDataActivity::class.java)
                     }
                     else

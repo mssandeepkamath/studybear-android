@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/baloo_bhai</item>
         <item>@font/roboto</item>
+        <item>@font/roboto_mono</item>
         <item>@font/roboto_thin</item>
+        <item>@font/share_tech</item>
     </array>
 </resources>

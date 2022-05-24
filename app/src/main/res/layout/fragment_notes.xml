@@ -3,15 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.NotesFragment">
+    tools:context=".activity.fragment.NotesFragment">
 
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/lytRefreshNotesOne"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Notes"
-        android:gravity="center"
-        android:fontFamily="@font/baloo_bhai"
-        android:textSize="@dimen/_30sdp"/>
+        android:layout_centerInParent="true"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vwRecyclerNotesOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/lytProgressNotesOne"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+        <ProgressBar
+            android:id="@+id/barProgressNotesOne"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
+            android:indeterminateTint="@color/black"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/txtErrorNotesOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/we_are_sorry_please_try_again"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_17sdp"
+            />
+
+    </RelativeLayout>
+
+
 
 
 

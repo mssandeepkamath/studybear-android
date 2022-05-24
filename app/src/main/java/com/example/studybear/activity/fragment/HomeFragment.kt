@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -31,6 +32,12 @@ import com.example.studybear.activity.util.ConnectionManager
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 class HomeFragment : Fragment(),View.OnClickListener {
@@ -52,6 +59,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
     lateinit var cardEvents:CardView
     lateinit var cardNews:CardView
     lateinit var cardTeachers:CardView
+    lateinit var refresh: SwipeRefreshLayout
 
 
 
@@ -70,18 +78,17 @@ class HomeFragment : Fragment(),View.OnClickListener {
         R.id.imgTeachers to "https://i.ibb.co/wcRMxWs/teachers.gif",
         R.id.imgHeart to "https://i.ibb.co/bdfX8kH/3d-fluency-red-heart-min.png")
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        if(ConnectionManager().checkConnectivity(activity as Context)==false)
-        {
-            ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),activity as Context)
-        }
         myTextView = view.findViewById(R.id.txt_type_writter)
         shimmer = view.findViewById(R.id.lytShimmer)
+        refresh=view.findViewById(R.id.parentViewHome)
+        refresh.setColorScheme(R.color.black);
         bottomNavigationView=(activity as MainActivity).findViewById(R.id.vwBottomNavigation)
         navigationView=(activity as MainActivity).findViewById(R.id.vwNavigation)
         drawerLayout=(activity as MainActivity).findViewById(R.id.lytDrawer)
@@ -101,40 +108,42 @@ class HomeFragment : Fragment(),View.OnClickListener {
         var runnable: Runnable? = null
         shimmer.startShimmer()
         myTextView.typeWrite(this,"QUESTION OF THE DAY",50L)
-
-
-
-
-        for(data in urlHashMap)
-        {
-            Glide.with(activity as Context)
-                .load(data.value)
-                .placeholder(R.drawable.placeholder)
-                .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    return false
-                }
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                    count++
-                    return false
-                }
-            })
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.no_placeholder_new)
-                .into(view.findViewById(data.key))
-        }
-
-
+        glideImageLoader(view)
         handler.postDelayed(Runnable {
             handler.postDelayed(runnable!!, 10)
             if(count==13)
             {
                 shimmer.hideShimmer()
                 count=0
+                refresh.isRefreshing=false
                 handler.removeCallbacks(runnable!!)
 
             }
         }.also { runnable = it }, 10)
+
+
+
+
+
+        refresh.setOnRefreshListener(object:SwipeRefreshLayout.OnRefreshListener
+            {
+                override fun onRefresh() {
+
+                    glideImageLoader(view)
+                    handler.postDelayed(Runnable {
+                        handler.postDelayed(runnable!!, 10)
+                        if(count==13)
+                        {
+                            shimmer.hideShimmer()
+                            count=0
+                            refresh.isRefreshing=false
+                            handler.removeCallbacks(runnable!!)
+
+                        }
+                    }.also { runnable = it }, 10)
+
+                }
+            })
 
         cardOne.setOnClickListener(this)
         cardTwo.setOnClickListener(this)
@@ -265,6 +274,36 @@ return view
         navigationView.checkedItem?.isChecked = true
         if(id2!=null)
         bottomNavigationView.menu.findItem(id2).setChecked(flag)
+
+    }
+
+
+    fun glideImageLoader(view:View)
+    {
+
+        if(ConnectionManager().checkConnectivity(activity as Context)==true)
+        {
+            for(data in urlHashMap)
+            {
+                Glide.with(activity as Context)
+                    .load(data.value)
+                    .placeholder(R.drawable.placeholder)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                            return false
+                        }
+                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            count++
+                            return false
+                        }
+                    })
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(R.drawable.no_placeholder_new)
+                    .into(view.findViewById(data.key))
+            }
+        }else{
+            ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),activity as Context)
+        }
 
     }
 

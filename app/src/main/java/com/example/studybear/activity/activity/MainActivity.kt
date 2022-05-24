@@ -1,13 +1,11 @@
 package com.example.studybear.activity.activity
 
-import android.content.Context
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
@@ -19,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.example.studybear.R
@@ -26,16 +25,10 @@ import com.example.studybear.activity.fragment.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.wallet.callback.OnCompleteListener
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.skydoves.powerspinner.PowerSpinnerView
 import java.lang.ref.WeakReference
 
@@ -51,13 +44,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     var flagBottom: Boolean = false
+    var timerFlag = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE);
+//        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+//            WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -88,6 +82,12 @@ class MainActivity : AppCompatActivity() {
             navigationView = findViewById(R.id.vwNavigation)
             appBar = findViewById(R.id.lytAppBar)
 
+            Handler().postDelayed(
+                {
+                    timerFlag=true
+                },2000
+            )
+
 
             setUpToolbar()
             val actionBarDrawerToggle = ActionBarDrawerToggle(this@MainActivity,
@@ -107,18 +107,33 @@ class MainActivity : AppCompatActivity() {
 
                 when (it.itemId) {
                     R.id.notes -> {
-                        replaceFragment(NotesFragment(), "2", "Notes", R.id.bottom_notes, it,R.id.notes)
+                        replaceFragment(NotesFragment(),
+                            "2",
+                            "Notes",
+                            R.id.bottom_notes,
+                            it,
+                            R.id.notes)
 
                     }
                     R.id.discuss -> {
-                        replaceFragment(DiscussFragment(), "3", "Discuss", R.id.bottom_discuss, it,R.id.discuss)
+                        replaceFragment(DiscussFragment(),
+                            "3",
+                            "Discuss",
+                            R.id.bottom_discuss,
+                            it,
+                            R.id.discuss)
                     }
                     R.id.coding_events -> {
                         if (flagBottom == false) {
                             bottomNavigationView.menu.clear()
                             bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
                         }
-                        replaceFragment(EventsFragment(),"6","Coding Events",null,it, R.id.coding_events)
+                        replaceFragment(EventsFragment(),
+                            "6",
+                            "Coding Events",
+                            null,
+                            it,
+                            R.id.coding_events)
                         flagBottom = true
                     }
                     R.id.news -> {
@@ -126,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                             bottomNavigationView.menu.clear()
                             bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
                         }
-                        replaceFragment(NewsFragment(), "5", "Technology news", null, it,R.id.news)
+                        replaceFragment(NewsFragment(), "5", "Technology news", null, it, R.id.news)
                         flagBottom = true
                     }
 
@@ -144,13 +159,18 @@ class MainActivity : AppCompatActivity() {
                         //implicit intent
                     }
                     R.id.about_us -> {
-                        val intent=Intent(this,RazorPayDataActivity::class.java)
+                        val intent = Intent(this, RazorPayDataActivity::class.java)
                         startActivity(intent)
                         finish()
                         //          replaceFragment(AboutUsFragment(),"10","About us",null,it,R.id.about_us )
                     }
                     R.id.account -> {
-                        replaceFragment(AccountFragment(), "4", "Accounts", R.id.bottom_account, it,R.id.account)
+                        replaceFragment(AccountFragment(),
+                            "4",
+                            "Accounts",
+                            R.id.bottom_account,
+                            it,
+                            R.id.account)
                     }
                     R.id.rate_us -> {
                         //implicit intent
@@ -192,7 +212,7 @@ class MainActivity : AppCompatActivity() {
             val headerLayout = navigationView.getHeaderView(0)
             val imageHome = headerLayout.findViewById<ImageView>(R.id.img_home)
             imageHome.setOnClickListener {
-                replaceFragment(HomeFragment(), "1", "Home", R.id.home, null,R.id.img_home)
+                replaceFragment(HomeFragment(), "1", "Home", R.id.home, null, R.id.img_home)
             }
 
 
@@ -227,13 +247,21 @@ class MainActivity : AppCompatActivity() {
         replaceFragmentBottom(HomeFragment(), "1", "Home", null, false)
     }
 
-    fun replaceFragment(fragment: Fragment, tag: String, title: String, id: Int?, it: MenuItem?,idClicked:Int) {
+    fun replaceFragment(
+        fragment: Fragment,
+        tag: String,
+        title: String,
+        id: Int?,
+        it: MenuItem?,
+        idClicked: Int,
+    ) {
         if (flagBottom and (it != navigationView.menu.findItem(idClicked))) {
             bottomNavigationView.menu.clear()
             bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
             flagBottom = false
         }
-        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag)
+            .addToBackStack(null).commit()
         supportActionBar?.title = title
         if (id != null)
             bottomNavigationView.selectedItemId = id
@@ -248,13 +276,13 @@ class MainActivity : AppCompatActivity() {
         id: Int?,
         flag: Boolean,
     ) {
-        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag)
+            .addToBackStack(null).commit()
         supportActionBar?.title = title
         if (id != null)
             navigationView.setCheckedItem(id)
         navigationView.checkedItem?.isChecked = flag
     }
-
 
 
     override fun onBackPressed() {
@@ -265,48 +293,48 @@ class MainActivity : AppCompatActivity() {
         val refresh = fragment2?.activity?.findViewById<SwipeRefreshLayout>(R.id.lytRefresh)
         val frag = supportFragmentManager.findFragmentById(R.id.lytFrame)
 
-        if (flagBottom) {
-            bottomNavigationView.menu.clear()
-            bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
-            flagBottom = false
-        }
-        bottomNavigationView.selectedItemId = R.id.home
+       when(frag)
+       {
+           is NotesFragmentTwo ->
+           {
+               supportFragmentManager.popBackStackImmediate()
+           }
+           else->
+           {
+               if (flagBottom) {
+                   bottomNavigationView.menu.clear()
+                   bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
+                   flagBottom = false
+               }
+               bottomNavigationView.selectedItemId = R.id.home
+               if (spinner?.isShowing == true) {
+                   spinner.dismiss()
+               }
+               else {
+                   when (frag) {
+                       !is HomeFragment -> {
+                           homeFragment()
+                       }
+                       else -> {
+                           Glide.get(this).clearMemory()
+                           ClearGlideCacheAsyncTask(this).execute()
+                           if (timerFlag) {
+                               ActivityCompat.finishAffinity(this)
+                           }
+                           else
+                           {
+                               Toast.makeText(this@MainActivity,"Please wait..",Toast.LENGTH_SHORT).show()
+                           }
+                       }
+                   }
+               }
+           }
+           }
+       }
 
 
-        if (spinner?.isShowing == true) {
-            spinner.dismiss()
-        } else {
 
-            when (frag) {
-                is NewsFragment -> {
-
-                    if (refresh?.isRefreshing == true)
-                        println("Cannot go back")
-                    else
-                    {
-                        homeFragment()
-                    }
-
-
-                }
-                !is HomeFragment -> {
-                    homeFragment()
-                }
-
-                else -> {
-                    Glide.get(this).clearMemory()
-                    ClearGlideCacheAsyncTask(this).execute()
-                  ActivityCompat.finishAffinity(this)
-                }
-
-            }
-
-        }
-
-    }
-
-    companion object
-    {
+    companion object {
         class ClearGlideCacheAsyncTask internal constructor(context: MainActivity) :
             AsyncTask<Void?, Void?, Boolean>() {
 

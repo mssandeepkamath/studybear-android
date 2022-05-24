@@ -3,24 +3,23 @@ package com.example.studybear.activity.fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.studybear.R
 import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.adapter.NotesAdapter
+import com.example.studybear.activity.model.DatabaseReferenceClass
 import com.example.studybear.activity.util.ConnectionManager
-import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.firebase.auth.FirebaseAuth
+import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -29,26 +28,30 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 
-class NotesFragment : Fragment() {
+class NotesFragmentTwo : Fragment() {
+    private lateinit var database: DatabaseReference
     lateinit var recyclerView: RecyclerView
     lateinit var layoutManager: RecyclerView.LayoutManager
-    private lateinit var database: DatabaseReference
     lateinit var progressLayout: RelativeLayout
     lateinit var progressBar: ProgressBar
     lateinit var errorText: TextView
     lateinit var refresh: SwipeRefreshLayout
+    lateinit var appBar: AppBarLayout
     val itemArray= arrayListOf<String>()
+    var myClass:DatabaseReferenceClass?=null
 
-    private lateinit var auth:FirebaseAuth
-    var semester:String?=null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
 
-        val view= inflater.inflate(R.layout.fragment_notes, container, false)
+        val view = inflater.inflate(R.layout.fragment_notes, container, false)
+        appBar = (activity as MainActivity).findViewById(R.id.lytAppBar)
+        appBar.setExpanded(true)
+        itemArray.clear()
         recyclerView=view.findViewById(R.id.vwRecyclerNotesOne)
-        layoutManager=LinearLayoutManager(activity as MainActivity)
+        layoutManager= LinearLayoutManager(activity as MainActivity)
         progressBar=view.findViewById(R.id.barProgressNotesOne)
         progressLayout=view.findViewById(R.id.lytProgressNotesOne)
         refresh=view.findViewById(R.id.lytRefreshNotesOne)
@@ -57,10 +60,17 @@ class NotesFragment : Fragment() {
         errorText=view.findViewById(R.id.txtErrorNotesOne)
         progressLayout.visibility=View.VISIBLE
         errorText.visibility=View.GONE
-        database= Firebase.database.reference
-        auth= FirebaseAuth.getInstance()
         recyclerView.layoutManager=layoutManager
-        loadContents()
+        database = Firebase.database.reference
+        val subject = arguments?.getString("subjects")
+        val unit = arguments?.getString("units")
+         myClass= arguments?.getSerializable("reference") as DatabaseReferenceClass?
+        database.child("branch")
+        println("Response: $subject $unit $myClass")
+        loadContents(subject.toString(),unit.toString())
+        println("Response: $subject $unit $myClass")
+
+
         refresh.setOnRefreshListener(object :SwipeRefreshLayout.OnRefreshListener
         {
 
@@ -72,10 +82,8 @@ class NotesFragment : Fragment() {
                 errorText.visibility=View.GONE
                 Handler().postDelayed(
                     Runnable {
-
                         refresh.isRefreshing=false
-                         loadContents()
-
+                        loadContents(subject.toString(),unit.toString())
 
                     },1000
                 )
@@ -85,63 +93,49 @@ class NotesFragment : Fragment() {
 
 
 
+
+
         return view
     }
 
 
-    fun loadContents() {
-        val current_user = auth.currentUser
-        val uid = current_user!!.uid
+    fun loadContents(subject:String,unit:String) {
         if (ConnectionManager().checkConnectivity(activity as MainActivity)) {
-            database.child("users").child(uid).child("semester")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
+            myClass?.reference?.child(subject)?.child("units")?.child(unit)
+                ?.addListenerForSingleValueEvent(object : ValueEventListener {
+
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        semester = snapshot.value.toString()
-                        val reference =
-                            database.child("branch").child("is").child(semester.toString())
-                                .child("2018").child("subjects")
-                        reference.addListenerForSingleValueEvent(
-                            object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    val response = snapshot.value as Map<*, *>?
-                                    if (response != null) {
 
-                                        for (data in response) {
-                                            itemArray.add(data.key.toString())
-                                        }
-                                    }
-                                    progressLayout.visibility = View.GONE
-                                    recyclerView.adapter =
-                                        NotesAdapter(activity as Context, itemArray, 1, reference)
-
+                        println("Response: is null")
+                        if (snapshot.value != null) {
+                            println("Response: ${snapshot}")
+                            val response = snapshot.value as HashMap<*, *>?
+                            if (response != null) {
+                                for (data in response) {
+                                    itemArray.add(data.key.toString())
                                 }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    progressBar.visibility = View.GONE
-                                    errorText.visibility = View.VISIBLE
-                                    Toast.makeText(activity,
-                                        "Sorry, error occurred",
-                                        Toast.LENGTH_SHORT).show()
-                                }
-
                             }
-                        )
+                            progressLayout.visibility = View.GONE
+                            recyclerView.adapter =
+                                NotesAdapter(activity as MainActivity, itemArray, 2, null)
+                        }
+
                     }
 
                     override fun onCancelled(error: DatabaseError) {
                         progressBar.visibility = View.GONE
                         errorText.visibility = View.VISIBLE
-                        Toast.makeText(activity, "Sorry, error occurred", Toast.LENGTH_SHORT).show()
+                        println("Response: $error")
                     }
+
                 })
-
-        } else {
-            errorText.visibility = View.VISIBLE
-            progressBar.visibility = View.GONE
-            ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),
-                activity as MainActivity)
         }
-
+        else {
+            errorText.visibility=View.VISIBLE
+            progressBar.visibility = View.GONE
+            ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),activity as MainActivity)
+        }
     }
+
 
 }

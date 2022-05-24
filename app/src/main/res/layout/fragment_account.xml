@@ -7,11 +7,20 @@
     android:background="@color/white"
     tools:context=".activity.fragment.AccountFragment">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/lytShimmerAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shimmer_base_color="#858585"
+        app:shimmer_colored="false">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -371,7 +380,11 @@
 
         </RelativeLayout>
 
+
+
     </LinearLayout>
 
+
+</com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.core.widget.NestedScrollView>

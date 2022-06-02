@@ -1,6 +1,7 @@
 package com.example.studybear.activity.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.example.studybear.R
@@ -147,16 +148,31 @@ class MainActivity : AppCompatActivity() {
 
                     R.id.circular -> {
 
+
+
                         //          replaceFragment(CircularsFragment(),"7","Circulars",null,it, R.id.circular)
                     }
                     R.id.teachers -> {
-                        //          replaceFragment(TeachersFragment(),"8","Teachers",null,it,  R.id.teachers )
+                        if (flagBottom == false) {
+                            bottomNavigationView.menu.clear()
+                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                        }
+                        replaceFragment(TeachersFragment(),"8","Teachers",null,it,  R.id.teachers )
+                        flagBottom = true
                     }
                     R.id.leaderboard -> {
                         //          replaceFragment(LeaderBoardFragment(),"9","Leaderboard",null,it, R.id.leaderboard)
                     }
                     R.id.report_bug -> {
-                        //implicit intent
+                        val to = "teamstudybear@gmail.com"
+                        val subject = "I FOUND A BUG IN STUDYBEAR ANDROID APP!"
+                        val body = "Please clearly mention page name, bug description, and other useful details here."
+                        val mailTo = "mailto:" + to +
+                                "?&subject=" + Uri.encode(subject) +
+                                "&body=" + Uri.encode(body)
+                        val emailIntent = Intent(Intent.ACTION_VIEW)
+                        emailIntent.data = Uri.parse(mailTo)
+                        startActivity(emailIntent)
                     }
                     R.id.about_us -> {
                         val intent = Intent(this, RazorPayDataActivity::class.java)
@@ -291,12 +307,33 @@ class MainActivity : AppCompatActivity() {
         val fragment2 = supportFragmentManager.findFragmentByTag("5")
         val spinner = fragment1?.activity?.findViewById<PowerSpinnerView>(R.id.spinnerSem)
         val refresh = fragment2?.activity?.findViewById<SwipeRefreshLayout>(R.id.lytRefresh)
+        val fragment3=supportFragmentManager.findFragmentByTag("NotesTwo")
+        val fragment4=supportFragmentManager.findFragmentByTag("NotesThree")
+        val progressLayout1=fragment3?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
+        val progressLayout2=fragment4?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
+
         val frag = supportFragmentManager.findFragmentById(R.id.lytFrame)
 
        when(frag)
        {
            is NotesFragmentTwo ->
            {
+
+               if(progressLayout1?.visibility==View.VISIBLE)
+               {
+                   Toast.makeText(this,"Please wait..",Toast.LENGTH_SHORT).show()
+               }
+               else
+               supportFragmentManager.popBackStackImmediate()
+           }
+
+           is NotesFragmentThree->
+           {
+               if(progressLayout2?.visibility==View.VISIBLE)
+               {
+                   Toast.makeText(this,"Please wait..",Toast.LENGTH_SHORT).show()
+               }
+               else
                supportFragmentManager.popBackStackImmediate()
            }
            else->
@@ -349,7 +386,7 @@ class MainActivity : AppCompatActivity() {
             override fun doInBackground(vararg params: Void?): Boolean {
                 println("Called")
                 try {
-                    Glide.get(activityReference.get()!!).clearDiskCache()
+//                    Glide.get(activityReference.get()!!).clearDiskCache()
                     result = true
                 } catch (e: Exception) {
                     println("Called Error: $e")

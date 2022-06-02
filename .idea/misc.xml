@@ -6,6 +6,7 @@
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable-anydpi/ic_arrow.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable-anydpi/ic_coding_event.xml" value="0.1375" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable-anydpi/ic_points.xml" value="0.1995" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable-anydpi/ic_upload.xml" value="0.1555" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/background_border.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/background_gradient.xml" value="0.1" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/drawable/card_border.xml" value="0.1" />
@@ -33,12 +34,16 @@
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_events.xml" value="0.15864978902953586" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_home.xml" value="0.186952288218111" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_news.xml" value="0.1620253164556962" />
-        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_notes.xml" value="0.1" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_notes.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_notes_three.xml" value="0.1606837606837607" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_notes_two.xml" value="0.1641025641025641" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/fragment_teachers.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/news_item.xml" value="0.1641025641025641" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/notes_item_one.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/notes_item_onne.xml" value="0.1641025641025641" />
-        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/notes_item_two.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/notes_item_three.xml" value="0.22" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/notes_item_two.xml" value="0.1" />
+        <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/layout/teachers_item.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1422541156606163" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/menu/drawer_menu.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/mssan/AndroidStudioProjects/StudyBear/app/src/main/res/menu/drawer_navigation_menu.xml" value="0.15294117647058825" />

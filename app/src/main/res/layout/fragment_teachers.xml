@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.fragment.TeachersFragment">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/lytRefreshTeachers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vwRecyclerViewTeachers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+
+            />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/lytProgressTeachers"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+        <ProgressBar
+            android:id="@+id/barProgressTeachers"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
+            android:indeterminateTint="@color/black"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/txtErrorTeachers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/we_are_sorry_please_try_again"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_17sdp"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

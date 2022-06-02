@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +16,7 @@ import com.example.studybear.R
 import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.adapter.NotesAdapter
 import com.example.studybear.activity.util.ConnectionManager
-import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -37,7 +34,9 @@ class NotesFragment : Fragment() {
     lateinit var progressBar: ProgressBar
     lateinit var errorText: TextView
     lateinit var refresh: SwipeRefreshLayout
+    lateinit var empty_box: ImageView
     val itemArray= arrayListOf<String>()
+    lateinit var fab: FloatingActionButton
 
     private lateinit var auth:FirebaseAuth
     var semester:String?=null
@@ -52,15 +51,20 @@ class NotesFragment : Fragment() {
         progressBar=view.findViewById(R.id.barProgressNotesOne)
         progressLayout=view.findViewById(R.id.lytProgressNotesOne)
         refresh=view.findViewById(R.id.lytRefreshNotesOne)
+        empty_box=view.findViewById(R.id.imgempty)
         refresh.setColorSchemeColors(ContextCompat.getColor(activity as Context,R.color.blue),
             ContextCompat.getColor(activity as Context,R.color.red));
         errorText=view.findViewById(R.id.txtErrorNotesOne)
         progressLayout.visibility=View.VISIBLE
         errorText.visibility=View.GONE
+        itemArray.clear()
+        fab=view.findViewById(R.id.fab)
         database= Firebase.database.reference
         auth= FirebaseAuth.getInstance()
         recyclerView.layoutManager=layoutManager
+        empty_box.visibility=View.GONE
         loadContents()
+        fab.visibility=View.GONE
         refresh.setOnRefreshListener(object :SwipeRefreshLayout.OnRefreshListener
         {
 
@@ -89,6 +93,7 @@ class NotesFragment : Fragment() {
     }
 
 
+
     fun loadContents() {
         val current_user = auth.currentUser
         val uid = current_user!!.uid
@@ -103,17 +108,28 @@ class NotesFragment : Fragment() {
                         reference.addListenerForSingleValueEvent(
                             object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
-                                    val response = snapshot.value as Map<*, *>?
-                                    if (response != null) {
-
-                                        for (data in response) {
-                                            itemArray.add(data.key.toString())
+                                    if (snapshot.value != "")  {
+                                        val response = snapshot.value as Map<*, *>?
+                                        if (response != null) {
+                                            for (data in response) {
+                                                itemArray.add(data.key.toString())
+                                            }
                                         }
-                                    }
-                                    progressLayout.visibility = View.GONE
-                                    recyclerView.adapter =
-                                        NotesAdapter(activity as Context, itemArray, 1, reference)
+                                        progressLayout.visibility = View.GONE
+                                        recyclerView.adapter =
+                                            NotesAdapter(activity as Context,
+                                                itemArray,
+                                                1,
+                                                semester!!,
+                                                null,null,null)
 
+                                    }
+                                    else
+                                    {
+
+                                            empty_box.visibility=View.VISIBLE
+
+                                    }
                                 }
 
                                 override fun onCancelled(error: DatabaseError) {
@@ -143,5 +159,6 @@ class NotesFragment : Fragment() {
         }
 
     }
+
 
 }

@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -20,6 +21,7 @@ import com.example.studybear.activity.adapter.NotesAdapter
 import com.example.studybear.activity.model.DatabaseReferenceClass
 import com.example.studybear.activity.util.ConnectionManager
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -39,6 +41,8 @@ class NotesFragmentTwo : Fragment() {
     lateinit var appBar: AppBarLayout
     val itemArray= arrayListOf<String>()
     var myClass:DatabaseReferenceClass?=null
+    lateinit var empty_box: ImageView
+    lateinit var fab:FloatingActionButton
 
 
     override fun onCreateView(
@@ -54,21 +58,22 @@ class NotesFragmentTwo : Fragment() {
         layoutManager= LinearLayoutManager(activity as MainActivity)
         progressBar=view.findViewById(R.id.barProgressNotesOne)
         progressLayout=view.findViewById(R.id.lytProgressNotesOne)
+        empty_box=view.findViewById(R.id.imgempty)
         refresh=view.findViewById(R.id.lytRefreshNotesOne)
         refresh.setColorSchemeColors(ContextCompat.getColor(activity as Context,R.color.blue),
             ContextCompat.getColor(activity as Context,R.color.red));
         errorText=view.findViewById(R.id.txtErrorNotesOne)
         progressLayout.visibility=View.VISIBLE
         errorText.visibility=View.GONE
+        fab=view.findViewById(R.id.fab)
         recyclerView.layoutManager=layoutManager
         database = Firebase.database.reference
         val subject = arguments?.getString("subjects")
         val unit = arguments?.getString("units")
-         myClass= arguments?.getSerializable("reference") as DatabaseReferenceClass?
-        database.child("branch")
-        println("Response: $subject $unit $myClass")
-        loadContents(subject.toString(),unit.toString())
-        println("Response: $subject $unit $myClass")
+        val semester=arguments?.getString("semester")
+        empty_box.visibility=View.GONE
+        loadContents(subject.toString(),unit.toString(),semester)
+        fab.visibility=View.GONE
 
 
         refresh.setOnRefreshListener(object :SwipeRefreshLayout.OnRefreshListener
@@ -83,7 +88,7 @@ class NotesFragmentTwo : Fragment() {
                 Handler().postDelayed(
                     Runnable {
                         refresh.isRefreshing=false
-                        loadContents(subject.toString(),unit.toString())
+                        loadContents(subject,unit,semester)
 
                     },1000
                 )
@@ -99,16 +104,22 @@ class NotesFragmentTwo : Fragment() {
     }
 
 
-    fun loadContents(subject:String,unit:String) {
+
+
+    fun loadContents(subject:String?,unit:String?,semester:String?) {
+
         if (ConnectionManager().checkConnectivity(activity as MainActivity)) {
-            myClass?.reference?.child(subject)?.child("units")?.child(unit)
-                ?.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            if(subject!=null && unit!=null && semester!=null)
+            {
+                val new_reference=database.child("branch").child("is").child(semester.toString())
+                    .child("2018").child("subjects").child(subject.toString()).child("units").child(unit.toString())
+                new_reference.addListenerForSingleValueEvent(object : ValueEventListener {
 
                     override fun onDataChange(snapshot: DataSnapshot) {
 
                         println("Response: is null")
-                        if (snapshot.value != null) {
-                            println("Response: ${snapshot}")
+                        if (snapshot.value != "")  {
                             val response = snapshot.value as HashMap<*, *>?
                             if (response != null) {
                                 for (data in response) {
@@ -117,7 +128,17 @@ class NotesFragmentTwo : Fragment() {
                             }
                             progressLayout.visibility = View.GONE
                             recyclerView.adapter =
-                                NotesAdapter(activity as MainActivity, itemArray, 2, null)
+                                NotesAdapter(activity as MainActivity,
+                                    itemArray,
+                                    2,
+                                    semester,
+                                    null,unit,subject)
+                        }
+                        else
+                        {
+
+                            empty_box.visibility=View.VISIBLE
+
                         }
 
                     }
@@ -128,7 +149,12 @@ class NotesFragmentTwo : Fragment() {
                         println("Response: $error")
                     }
 
+
                 })
+
+            }
+
+
         }
         else {
             errorText.visibility=View.VISIBLE

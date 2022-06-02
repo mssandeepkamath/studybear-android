@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -144,6 +145,15 @@ class AccountFragment : Fragment(), View.OnClickListener {
             R.id.lytReport -> {
                 navigationView.checkedItem?.isChecked = true
                 navigationView.setCheckedItem(R.id.report_bug)
+                val to = "teamstudybear@gmail.com"
+                val subject = "I FOUND A BUG IN STUDYBEAR ANDROID APP!"
+                val body = "Please clearly mention page name, bug description, and other useful details here."
+                val mailTo = "mailto:" + to +
+                        "?&subject=" + Uri.encode(subject) +
+                        "&body=" + Uri.encode(body)
+                val emailIntent = Intent(Intent.ACTION_VIEW)
+                emailIntent.data = Uri.parse(mailTo)
+                startActivity(emailIntent)
             }
             R.id.lytLogOut -> {
                 auth.signOut()

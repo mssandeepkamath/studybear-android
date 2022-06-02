@@ -22,22 +22,15 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
-import com.example.studybear.R
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import com.bumptech.glide.request.target.Target
-import com.bumptech.glide.signature.ObjectKey
+import com.example.studybear.R
 import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.util.ConnectionManager
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment(),View.OnClickListener {
@@ -211,8 +204,11 @@ return view
             }
             R.id.cardFive  ->
             {
-//                                replaceFragment(TeachersFragment(),"8","Teachers",R.id.teachers,null,true)
 
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(TeachersFragment(),"8","Teachers",R.id.teachers,null,true)
+                (activity as MainActivity).flagBottom=true
             }
             R.id.cardSix ->
             {
@@ -249,9 +245,10 @@ return view
 
             }
             R.id.cardTeachers  ->
-            {
-                //                                replaceFragment(TeachersFragment(),"8","Teachers",R.id.teachers,null,true)
-
+            {  bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(TeachersFragment(), "8", "Teachers", R.id.teachers, null, true)
+                (activity as MainActivity).flagBottom=true
             }
             R.id.txt_type_writter->
             {

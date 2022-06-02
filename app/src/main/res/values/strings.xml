@@ -16,7 +16,7 @@
     <string name="leaderboard">Leaderboard</string>
     <string name="notes">Notes</string>
     <string name="discuss">Discuss</string>
-    <string name="report_bugs">Report bug</string>
+    <string name="report_bugs">Bug bounty</string>
     <string name="about_us">About us</string>
     <string name="company_name_caps">STUDY BEAR</string>
     <string name="home">Home</string>
@@ -36,7 +36,7 @@
     <string name="here_s_what_you_have_achieved">Here\'s what you have achieved.</string>
     <string name="learn_more_about_studybear">Learn more about Studybear.</string>
     <string name="help_us_in_making_studybear_bug_free">Help us in making Studybear bug free.</string>
-    <string name="feedback_report_bug">Feedback / Report bug</string>
+    <string name="feedback_report_bug">Bug bounty/Feedback</string>
     <string name="log_out">Log out</string>
     <string name="get_back_soon">Get back soon.</string>
     <string name="explore_notes">EXPLORE NOTES</string>

@@ -7,6 +7,7 @@
     android:background="@color/white"
     tools:context=".activity.fragment.AccountFragment">
 
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/lytShimmerAccount"
         android:layout_width="match_parent"
@@ -14,377 +15,385 @@
         app:shimmer_base_color="#858585"
         app:shimmer_colored="false">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        <nl.dionsegijn.konfetti.xml.KonfettiView
+            android:id="@+id/konfettiView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_30sdp"
-            android:layout_margin="@dimen/_10sdp"
-       >
+            android:orientation="vertical"
+            >
 
-            <LinearLayout
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/background_border"
-                android:padding="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_30sdp"
+                android:layout_margin="@dimen/_10sdp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/background_border"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txtIdCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/_20sdp"
+                        android:text="STUDYBEAR"
+                        android:fontFamily="@font/baloo_bhai"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        />
+
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/imgProfile"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        app:civ_border_width="1dp"
+                        app:civ_border_color="@color/black"
+                        android:layout_gravity="center"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/_16sdp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="@font/roboto"
+                        android:singleLine="true"
+
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/card_border"
+                android:padding="@dimen/_5sdp"
+                android:foreground="?attr/selectableItemBackground"
                 >
 
                 <TextView
-                    android:id="@+id/txtIdCard"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtSemester"
+                    android:layout_width="@dimen/_150sdp"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_20sdp"
-                    android:text="STUDYBEAR"
-                    android:fontFamily="@font/baloo_bhai"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    />
-
-
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/imgProfile"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/black"
-                    android:layout_gravity="center"
-                   />
-
-                <TextView
-                    android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:fontFamily="@font/roboto"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    />
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/semester"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txtEmail"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="normal"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toEndOf="@id/txtSemester"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_semester" />
+
+                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:id="@+id/spinnerSem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtSemester"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/card_border"
                     android:fontFamily="@font/roboto"
-                    android:singleLine="true"
+                    android:gravity="start"
+                    android:padding="10dp"
+                    android:textColor="@color/text_grey"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:spinner_arrow_drawable="@drawable/ic_arrow"
+                    app:spinner_arrow_gravity="end"
+                    app:spinner_arrow_show="true"
+                    app:spinner_arrow_tint="@color/black"
+                    app:spinner_divider_color="@color/text_grey"
+                    app:spinner_divider_show="true"
+                    app:spinner_item_array="@array/semesters"
+                    app:spinner_item_height="@dimen/_50sdp"
+                    app:spinner_popup_animation="dropdown"
+                    app:spinner_popup_background="@color/white"
+                    app:spinner_popup_elevation="1dp" />
 
-                    />
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/card_border"
-            android:padding="@dimen/_5sdp"
-            android:foreground="?attr/selectableItemBackground"
-            >
-
-            <TextView
-                android:id="@+id/txtSemester"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/semester"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_toEndOf="@id/txtSemester"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_semester" />
-
-            <com.skydoves.powerspinner.PowerSpinnerView
-                android:id="@+id/spinnerSem"
+            <RelativeLayout
+                android:id="@+id/lytPoints"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtSemester"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/card_border"
-                android:fontFamily="@font/roboto"
-                android:gravity="start"
-                android:padding="10dp"
-                android:textColor="@color/text_grey"
-                android:textColorHint="@color/black"
-                android:textSize="@dimen/_12sdp"
-                app:spinner_arrow_drawable="@drawable/ic_arrow"
-                app:spinner_arrow_gravity="end"
-                app:spinner_arrow_show="true"
-                app:spinner_arrow_tint="@color/black"
-                app:spinner_divider_color="@color/text_grey"
-                app:spinner_divider_show="true"
-                app:spinner_item_array="@array/semesters"
-                app:spinner_item_height="@dimen/_50sdp"
-                app:spinner_popup_animation="dropdown"
-                app:spinner_popup_background="@color/white"
-                app:spinner_popup_elevation="1dp" />
+                android:padding="@dimen/_5sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                >
 
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/txtPoints"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/point"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
 
-        <RelativeLayout
-            android:id="@+id/lytPoints"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/card_border"
-            android:padding="@dimen/_5sdp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/txtPoints"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_points"
+                    android:layout_marginTop="@dimen/_5sdp"/>
 
-            <TextView
-                android:id="@+id/txtPoints"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/point"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
+                <TextView
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/txtPoints"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_points"
-                android:layout_marginTop="@dimen/_5sdp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtPoints"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="start"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/here_s_what_you_have_achieved"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/_12sdp" />
 
-            <TextView
 
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/lytAboutUs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtPoints"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:gravity="start"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/here_s_what_you_have_achieved"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/_12sdp" />
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/card_border"
+                android:padding="@dimen/_5sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                >
+
+                <TextView
+                    android:id="@+id/txtAboutUs"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/about_us"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/txtAboutUs"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_about_us"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAboutUs"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="start"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/learn_more_about_studybear"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/_12sdp" />
 
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/lytAboutUs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/card_border"
-            android:padding="@dimen/_5sdp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            >
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/txtAboutUs"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/about_us"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/txtAboutUs"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_about_us"
-                android:layout_marginTop="@dimen/_5sdp"/>
-
-            <TextView
-
+            <RelativeLayout
+                android:id="@+id/lytReport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtAboutUs"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:gravity="start"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/learn_more_about_studybear"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/_12sdp" />
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/card_border"
+                android:padding="@dimen/_5sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                >
+
+                <TextView
+                    android:id="@+id/txtFeedback"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/feedback_report_bug"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/txtFeedback"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_bugs"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtFeedback"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="start"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/help_us_in_making_studybear_bug_free"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/_12sdp" />
 
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/lytReport"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/card_border"
-            android:padding="@dimen/_5sdp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            >
 
-            <TextView
-                android:id="@+id/txtFeedback"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/feedback_report_bug"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/txtFeedback"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_bugs"
-                android:layout_marginTop="@dimen/_5sdp"/>
-
-            <TextView
-
+            <RelativeLayout
+                android:id="@+id/lytLogOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtFeedback"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:gravity="start"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/help_us_in_making_studybear_bug_free"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/_12sdp" />
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/card_border"
+                android:padding="@dimen/_5sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                >
+
+                <TextView
+                    android:id="@+id/txtLogOut"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/log_out"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/txtLogOut"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_logout"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtLogOut"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="start"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/get_back_soon"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/_12sdp" />
 
 
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/lytLogOut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/card_border"
-            android:padding="@dimen/_5sdp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            >
-
-            <TextView
-                android:id="@+id/txtLogOut"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/log_out"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/txtLogOut"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_logout"
-                android:layout_marginTop="@dimen/_5sdp"/>
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtLogOut"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:fontFamily="@font/roboto"
-                android:gravity="start"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/get_back_soon"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/_12sdp" />
-
-
-        </RelativeLayout>
+            </RelativeLayout>
 
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-</com.facebook.shimmer.ShimmerFrameLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
 </androidx.core.widget.NestedScrollView>

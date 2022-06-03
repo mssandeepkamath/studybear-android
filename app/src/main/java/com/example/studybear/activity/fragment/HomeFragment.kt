@@ -69,7 +69,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         R.id.imgEvents to "https://i.ibb.co/C2Qgt8Z/coding-events.gif",
         R.id.imgNews to "https://i.ibb.co/vsrt6ZH/news.gif",
         R.id.imgTeachers to "https://i.ibb.co/wcRMxWs/teachers.gif",
-        R.id.imgHeart to "https://i.ibb.co/bdfX8kH/3d-fluency-red-heart-min.png")
+        )
 
 
     override fun onCreateView(
@@ -104,7 +104,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         glideImageLoader(view)
         handler.postDelayed(Runnable {
             handler.postDelayed(runnable!!, 10)
-            if(count==13)
+            if(count==12)
             {
                 shimmer.hideShimmer()
                 count=0
@@ -125,7 +125,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
                     glideImageLoader(view)
                     handler.postDelayed(Runnable {
                         handler.postDelayed(runnable!!, 10)
-                        if(count==13)
+                        if(count==12)
                         {
                             shimmer.hideShimmer()
                             count=0
@@ -218,7 +218,10 @@ return view
             }
             R.id.gifRewardBanner ->
             {
-                //                                replaceFragment(LeaderBoardFragment(),"8","Leaderboard",R.id.leaderboard,null,true)
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(LeaderBoardFragment(),"9","Leaderboard",R.id.leaderboard,null,true)
+                (activity as MainActivity).flagBottom=true
             }
             R.id.cardNotes ->
             {

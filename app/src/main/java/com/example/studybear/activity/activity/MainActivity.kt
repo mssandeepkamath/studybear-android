@@ -85,8 +85,8 @@ class MainActivity : AppCompatActivity() {
 
             Handler().postDelayed(
                 {
-                    timerFlag=true
-                },2000
+                    timerFlag = true
+                }, 2000
             )
 
 
@@ -147,26 +147,47 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     R.id.circular -> {
-
-
-
-                        //          replaceFragment(CircularsFragment(),"7","Circulars",null,it, R.id.circular)
+                        if (flagBottom == false) {
+                            bottomNavigationView.menu.clear()
+                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                        }
+                        replaceFragment(CircularFragment(),
+                            "7",
+                            "Circulars",
+                            null,
+                            it,
+                            R.id.circular)
+                        flagBottom = true
                     }
                     R.id.teachers -> {
                         if (flagBottom == false) {
                             bottomNavigationView.menu.clear()
                             bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
                         }
-                        replaceFragment(TeachersFragment(),"8","Teachers",null,it,  R.id.teachers )
+                        replaceFragment(TeachersFragment(),
+                            "8",
+                            "Teachers",
+                            null,
+                            it,
+                            R.id.teachers)
                         flagBottom = true
                     }
                     R.id.leaderboard -> {
-                        //          replaceFragment(LeaderBoardFragment(),"9","Leaderboard",null,it, R.id.leaderboard)
+                        bottomNavigationView.menu.clear()
+                        bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                        replaceFragment(LeaderBoardFragment(),
+                            "9",
+                            "Leaderboard",
+                            null,
+                            it,
+                            R.id.leaderboard)
+                        flagBottom = true
                     }
                     R.id.report_bug -> {
                         val to = "teamstudybear@gmail.com"
                         val subject = "I FOUND A BUG IN STUDYBEAR ANDROID APP!"
-                        val body = "Please clearly mention page name, bug description, and other useful details here."
+                        val body =
+                            "Please clearly mention page name, bug description, and other useful details here."
                         val mailTo = "mailto:" + to +
                                 "?&subject=" + Uri.encode(subject) +
                                 "&body=" + Uri.encode(body)
@@ -175,10 +196,17 @@ class MainActivity : AppCompatActivity() {
                         startActivity(emailIntent)
                     }
                     R.id.about_us -> {
-                        val intent = Intent(this, RazorPayDataActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        //          replaceFragment(AboutUsFragment(),"10","About us",null,it,R.id.about_us )
+                        if (flagBottom == false) {
+                            bottomNavigationView.menu.clear()
+                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                        }
+                        replaceFragment(AboutUsFragment(),
+                            "10",
+                            "About us",
+                            null,
+                            it,
+                            R.id.about_us)
+                        flagBottom = true
                     }
                     R.id.account -> {
                         replaceFragment(AccountFragment(),
@@ -307,68 +335,59 @@ class MainActivity : AppCompatActivity() {
         val fragment2 = supportFragmentManager.findFragmentByTag("5")
         val spinner = fragment1?.activity?.findViewById<PowerSpinnerView>(R.id.spinnerSem)
         val refresh = fragment2?.activity?.findViewById<SwipeRefreshLayout>(R.id.lytRefresh)
-        val fragment3=supportFragmentManager.findFragmentByTag("NotesTwo")
-        val fragment4=supportFragmentManager.findFragmentByTag("NotesThree")
-        val progressLayout1=fragment3?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
-        val progressLayout2=fragment4?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
-
+        val fragment3 = supportFragmentManager.findFragmentByTag("NotesTwo")
+        val fragment4 = supportFragmentManager.findFragmentByTag("NotesThree")
+        val progressLayout1 =
+            fragment3?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
+        val progressLayout2 =
+            fragment4?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
         val frag = supportFragmentManager.findFragmentById(R.id.lytFrame)
 
-       when(frag)
-       {
-           is NotesFragmentTwo ->
-           {
+        when (frag) {
+            is NotesFragmentTwo -> {
 
-               if(progressLayout1?.visibility==View.VISIBLE)
-               {
-                   Toast.makeText(this,"Please wait..",Toast.LENGTH_SHORT).show()
-               }
-               else
-               supportFragmentManager.popBackStackImmediate()
-           }
+                if (progressLayout1?.visibility == View.VISIBLE) {
+                    Toast.makeText(this, "Please wait..", Toast.LENGTH_SHORT).show()
+                } else
+                    supportFragmentManager.popBackStackImmediate()
+            }
 
-           is NotesFragmentThree->
-           {
-               if(progressLayout2?.visibility==View.VISIBLE)
-               {
-                   Toast.makeText(this,"Please wait..",Toast.LENGTH_SHORT).show()
-               }
-               else
-               supportFragmentManager.popBackStackImmediate()
-           }
-           else->
-           {
-               if (flagBottom) {
-                   bottomNavigationView.menu.clear()
-                   bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
-                   flagBottom = false
-               }
-               bottomNavigationView.selectedItemId = R.id.home
-               if (spinner?.isShowing == true) {
-                   spinner.dismiss()
-               }
-               else {
-                   when (frag) {
-                       !is HomeFragment -> {
-                           homeFragment()
-                       }
-                       else -> {
-                           Glide.get(this).clearMemory()
-                           ClearGlideCacheAsyncTask(this).execute()
-                           if (timerFlag) {
-                               ActivityCompat.finishAffinity(this)
-                           }
-                           else
-                           {
-                               Toast.makeText(this@MainActivity,"Please wait..",Toast.LENGTH_SHORT).show()
-                           }
-                       }
-                   }
-               }
-           }
-           }
-       }
-
+            is NotesFragmentThree -> {
+                if (progressLayout2?.visibility == View.VISIBLE) {
+                    Toast.makeText(this, "Please wait..", Toast.LENGTH_SHORT).show()
+                } else
+                    supportFragmentManager.popBackStackImmediate()
+            }
+            else -> {
+                if (flagBottom) {
+                    bottomNavigationView.menu.clear()
+                    bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
+                    flagBottom = false
+                }
+                bottomNavigationView.selectedItemId = R.id.home
+                if (spinner?.isShowing == true) {
+                    spinner.dismiss()
+                } else {
+                    when (frag) {
+                        !is HomeFragment -> {
+                            homeFragment()
+                        }
+                        else -> {
+                            Glide.get(this).clearMemory()
+                            ClearGlideCacheAsyncTask(this).execute()
+                            if (timerFlag) {
+                                ActivityCompat.finishAffinity(this)
+                            } else {
+                                Toast.makeText(this@MainActivity,
+                                    "Please wait..",
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
     companion object {

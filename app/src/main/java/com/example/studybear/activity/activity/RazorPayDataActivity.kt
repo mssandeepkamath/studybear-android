@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -20,7 +19,6 @@ import com.example.studybear.activity.util.ConnectionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.razorpay.Checkout
@@ -85,24 +83,6 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
 
         })
 
-
-
-//        RazorpayClient razorpay = new RazorpayClient("[YOUR_KEY_ID]", "[YOUR_KEY_SECRET]");
-//
-//        JSONObject orderRequest = new JSONObject();
-//        orderRequest.put("amount", 50000); // amount in the smallest currency unit
-//        orderRequest.put("currency", "INR");
-//        orderRequest.put("receipt", "order_rcptid_11");
-//
-//        Order order = razorpay.Orders.create(orderRequest);
-//    } catch (RazorpayException e) {
-//        // Handle Exception
-//        System.out.println(e.getMessage());
-//    }
-
-
-
-
         buttonPay.setOnClickListener {
             if ((editPhone.text.toString()
                     .trim().length == 10) && (semester in 1..8)
@@ -165,7 +145,7 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
         val activity: Activity = this
         try {
             val options = JSONObject()
-            options.put("name", "Studybear Pvt.Ltd")
+            options.put("name", "Studybear")
             options.put("description", "Studybear access plan")
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
             options.put("theme.color", "#3399cc")

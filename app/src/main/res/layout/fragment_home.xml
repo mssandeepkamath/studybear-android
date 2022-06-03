@@ -788,59 +788,6 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-
-
-
-
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/_5sdp"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto"
-                android:gravity="start"
-                android:text="@string/crafted_with"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imgHeart"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto"
-                android:gravity="start"
-                android:text="@string/by_kamath_and_hegde"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
-
-
-
-
-        </LinearLayout>
-
-
     </LinearLayout>
 
 

@@ -70,7 +70,7 @@ class EventsAdapter(val context: Context, val itemArray: ArrayList<EventsDataCla
     override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
         val platform = itemArray[position].platform
         holder.platform.text = platform
-        glideUrlToImage(urlHashMap[platform]!!, holder.imageViewPlatform)
+        glideUrlToImage(urlHashMap[platform], holder.imageViewPlatform)
         holder.name.text = itemArray[position].name
         holder.start.text =convertUTCtoLocalTime(itemArray[position].start)
         holder.end.text = convertUTCtoLocalTime(itemArray[position].end)
@@ -95,7 +95,7 @@ class EventsAdapter(val context: Context, val itemArray: ArrayList<EventsDataCla
         return itemArray.size
     }
 
-    fun glideUrlToImage(url: String, image: ImageView) {
+    fun glideUrlToImage(url: String?, image: ImageView) {
         Glide.with(context).load(url)
             .placeholder(R.drawable.placeholder).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.no_placeholder_new)
             .into(image)

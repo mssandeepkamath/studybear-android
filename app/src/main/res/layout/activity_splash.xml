@@ -30,5 +30,17 @@
         android:src="@drawable/company_logo" />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/android_web"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+       android:layout_alignParentBottom="true"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>

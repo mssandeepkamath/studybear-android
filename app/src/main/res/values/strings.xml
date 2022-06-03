@@ -74,6 +74,8 @@
     <string name="choose_a_unit">Choose a unit</string>
     <string name="proceed">Proceed</string>
     <string name="choose_a_topic">Choose a Topic</string>
+    <string name="android_web">Android | Web</string>
+    <string name="team_members">Team members</string>
 
 
 </resources>

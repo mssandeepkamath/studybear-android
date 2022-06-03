@@ -5,7 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +36,15 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerView
+import com.thecode.aestheticdialogs.*
 import kotlinx.coroutines.currentCoroutineContext
-
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.Position
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import nl.dionsegijn.konfetti.xml.KonfettiView
+import java.lang.ref.WeakReference
+import java.nio.file.WatchEvent
+import java.util.concurrent.TimeUnit
 
 class AccountFragment : Fragment(), View.OnClickListener {
 
@@ -50,7 +60,11 @@ class AccountFragment : Fragment(), View.OnClickListener {
     lateinit var navigationView: NavigationView
     private lateinit var database:DatabaseReference
     lateinit var shimmer:ShimmerFrameLayout
-
+    private var user_points=0
+     private var total_uploads=0
+     private var total_views=0
+     lateinit var viewKonfetti:KonfettiView
+     var flag=false
 
 
     @SuppressLint("CheckResult")
@@ -76,6 +90,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
         val current_user = auth.currentUser
         name.text = current_user?.displayName
         email.text = current_user?.email
+        viewKonfetti=view.findViewById(R.id.konfettiView)
         shimmer.startShimmer()
        val ref= database.child("users").child(current_user!!.uid).child("semester")
            ref.addListenerForSingleValueEvent(object:ValueEventListener
@@ -83,14 +98,17 @@ class AccountFragment : Fragment(), View.OnClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val response=snapshot.value.toString().toInt()
                 spinner.selectItemByIndex(response-1)
+                calculatePoints()
                 shimmer.hideShimmer()
             }
 
             override fun onCancelled(error: DatabaseError) {
-              Toast.makeText(activity ,"Sorry, Something went wrong..",Toast.LENGTH_SHORT).show()
+              Toast.makeText(activity ,"Sorry, Database error occurred!",Toast.LENGTH_SHORT).show()
             }
 
         })
+
+
 
 
 
@@ -129,14 +147,65 @@ class AccountFragment : Fragment(), View.OnClickListener {
         reportBug.setOnClickListener(this)
         points.setOnClickListener(this) // TODO
 
+
+
+
+
         return view
+    }
+
+
+
+    override fun onDestroyView() {
+        if(spinner.isShowing)
+        {
+            spinner.dismiss()
+        }
+            super.onDestroyView()
     }
 
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.lytPoints -> {
-             //yet to implement
+
+                if(flag==false)
+                {
+                    flag=true
+                    val party= Party(
+                        speed = 0f,
+                        maxSpeed = 30f,
+                        damping = 0.9f,
+                        spread = 360,
+                        colors = listOf(0xfce18a, 0xff726d, 0xf4306d, 0xb48def),
+                        emitter = Emitter(duration = 1000, TimeUnit.MILLISECONDS).max(500),
+                        position = Position.Relative(0.5, 0.3)
+                    )
+                    viewKonfetti.start(party)
+                    calculatePoints()
+                    Handler().postDelayed(
+                        Runnable {
+                            AestheticDialog.Builder(activity as MainActivity, DialogStyle.FLASH, DialogType.SUCCESS)
+                                .setTitle("Monthly Score!")
+                                .setMessage("Total points: $user_points\nUploads :$total_uploads\nViews: $total_views")
+                                .setCancelable(false)
+                                .setDarkMode(false)
+                                .setGravity(Gravity.CENTER)
+                                .setAnimation(DialogAnimation.SHRINK)
+                                .setOnClickListener(object : OnDialogClickListener {
+                                    override fun onClick(dialog: AestheticDialog.Builder) {
+                                        dialog.dismiss()
+                                        flag=false
+                                    }
+                                })
+                                .show()
+                        },1000
+                    )
+
+                }
+
+
+
             }
             R.id.lytAboutUs -> {
                 navigationView.checkedItem?.isChecked = true
@@ -164,5 +233,38 @@ class AccountFragment : Fragment(), View.OnClickListener {
         }
     }
 
+     fun calculatePoints()
+     {
+         val current_user=auth.currentUser
+         database.child("users").child(current_user!!.uid).addListenerForSingleValueEvent(
+             object :ValueEventListener
+             {
+                 override fun onDataChange(snapshot: DataSnapshot) {
+                     val res=snapshot.value as HashMap<*,*>?
 
-}
+                     user_points= ((res?.get("extrapoints")?.toString()?.toLong()
+                         ?: 0) * 10 + (res?.get("totaluploads")?.toString()?.toLong()
+                         ?: 0) * 10+ (res?.get("totalviews")?.toString()?.toLong()
+                         ?: 0) *5).toInt()
+                     total_uploads= res?.get("totaluploads")?.toString()?.toInt() ?: 0
+                     total_views= res?.get("totalviews")?.toString()?.toInt() ?: 0
+                     shimmer.hideShimmer()
+
+                 }
+
+                 override fun onCancelled(error: DatabaseError) {
+                     Toast.makeText(activity,"Sorry, Database error occurred!",Toast.LENGTH_SHORT).show()
+
+                 }
+
+             }
+         )
+     }
+
+
+
+    }
+
+
+
+

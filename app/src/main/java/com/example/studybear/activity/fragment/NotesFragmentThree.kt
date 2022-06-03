@@ -256,6 +256,8 @@ class NotesFragmentThree : Fragment() {
                     "Uploaded Successfully",
                     Toast.LENGTH_SHORT)
                     .show()
+                    itemArray.clear()
+                    recyclerView.adapter?.notifyDataSetChanged()
                 loadContents(topic.toString(), subject, unit, semester)
 
 

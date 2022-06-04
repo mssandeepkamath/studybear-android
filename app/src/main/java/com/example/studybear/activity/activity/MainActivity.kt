@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -338,9 +335,9 @@ class MainActivity : AppCompatActivity() {
         val fragment3 = supportFragmentManager.findFragmentByTag("NotesTwo")
         val fragment4 = supportFragmentManager.findFragmentByTag("NotesThree")
         val progressLayout1 =
-            fragment3?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
+            fragment3?.activity?.findViewById<ProgressBar>(R.id.barProgressNotesOne)
         val progressLayout2 =
-            fragment4?.activity?.findViewById<RelativeLayout>(R.id.lytProgressNotesOne)
+            fragment4?.activity?.findViewById<ProgressBar>(R.id.barProgressNotesOne)
         val frag = supportFragmentManager.findFragmentById(R.id.lytFrame)
 
         when (frag) {

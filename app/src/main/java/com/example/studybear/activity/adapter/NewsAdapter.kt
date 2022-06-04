@@ -1,5 +1,7 @@
 package com.example.studybear.activity.adapter
 
+import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -14,12 +16,20 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import com.example.studybear.R
+import com.example.studybear.activity.activity.PdfActivity
 import com.example.studybear.activity.model.NewsDataClass
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import java.security.Signature
 
 
 class NewsAdapter(val context: Context, val itemArrayList: ArrayList<NewsDataClass>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolderNews>() {
+    lateinit var auth:FirebaseAuth
+    lateinit var dialog: ProgressDialog
     class ViewHolderNews(view: View) : RecyclerView.ViewHolder(view) {
         val title = view.findViewById<TextView>(R.id.txtNewsTitle)
         val description = view.findViewById<TextView>(R.id.txtNewsDescription)
@@ -33,7 +43,8 @@ class NewsAdapter(val context: Context, val itemArrayList: ArrayList<NewsDataCla
         return ViewHolderNews(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolderNews, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderNews,position:Int) {
+
         holder.title.text = itemArrayList[position].title
         holder.description.text = itemArrayList[position].description
         Glide.with(context).load(itemArrayList[position].urlImage)

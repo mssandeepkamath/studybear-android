@@ -1,7 +1,9 @@
 package com.example.studybear.activity.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -27,8 +29,13 @@ import com.example.studybear.R
 import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.util.ConnectionManager
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -102,6 +109,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         shimmer.startShimmer()
         myTextView.typeWrite(this,"QUESTION OF THE DAY",50L)
         glideImageLoader(view)
+
         handler.postDelayed(Runnable {
             handler.postDelayed(runnable!!, 10)
             if(count==12)
@@ -255,7 +263,37 @@ return view
             }
             R.id.txt_type_writter->
             {
-                Toast.makeText(activity,"Coming soon!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Loading..",Toast.LENGTH_SHORT).show()
+                    val database=Firebase.database.reference
+                val auth=FirebaseAuth.getInstance()
+                val ref = database.child("users").child(auth.currentUser?.uid.toString())
+                    .child("extrapoints")
+                ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var response = snapshot.value.toString().toInt()
+                        response += 1
+                        ref.setValue(response, object : DatabaseReference.CompletionListener {
+                            override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
+                                if (error != null) {
+                                    println("Error in writting")
+                                }
+                                else
+                                {
+                                    val intent= Intent(Intent.ACTION_VIEW)
+                                    intent.data= Uri.parse("https://www.dailycodingproblem.com/")
+                                    (activity as MainActivity).startActivity(intent)
+                                }
+                            }
+                        })
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        println("Error in reading")
+                    }
+
+                })
+
+
             }
 
         }

@@ -20,10 +20,18 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.studybear.R
 import com.example.studybear.activity.activity.MainActivity
+import com.example.studybear.activity.activity.PdfActivity
 import com.example.studybear.activity.adapter.NewsAdapter
 import com.example.studybear.activity.model.NewsDataClass
 import com.example.studybear.activity.util.ConnectionManager
 import com.example.studybear.activity.util.MySingleton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -37,6 +45,10 @@ class NewsFragment : Fragment() {
     lateinit var progressBar: ProgressBar
     lateinit var errorText:TextView
     lateinit var refresh:SwipeRefreshLayout
+    lateinit var handler:Handler
+    var runnable: Runnable? = null
+   lateinit var database:DatabaseReference
+   lateinit var auth:FirebaseAuth
 
 
 
@@ -48,38 +60,66 @@ class NewsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
         recyclerView = view.findViewById(R.id.vwRecyclerView)
         layoutManager = LinearLayoutManager(activity as MainActivity)
-        progressBar=view.findViewById(R.id.barProgress)
-        progressLayout=view.findViewById(R.id.lytProgress)
-        refresh=view.findViewById(R.id.lytRefresh)
-        refresh.setColorSchemeColors(ContextCompat.getColor(activity as Context,R.color.blue),ContextCompat.getColor(activity as Context,R.color.red));
-        errorText=view.findViewById(R.id.txtError)
-        progressLayout.visibility=View.VISIBLE
-        errorText.visibility=View.GONE
+        progressBar = view.findViewById(R.id.barProgress)
+        progressLayout = view.findViewById(R.id.lytProgress)
+        refresh = view.findViewById(R.id.lytRefresh)
+        refresh.setColorSchemeColors(ContextCompat.getColor(activity as Context, R.color.blue),
+            ContextCompat.getColor(activity as Context, R.color.red));
+        errorText = view.findViewById(R.id.txtError)
+        progressLayout.visibility = View.VISIBLE
+        errorText.visibility = View.GONE
+        auth= FirebaseAuth.getInstance()
+        database= Firebase.database.reference
         itemArray = ArrayList()
         volleyGetRequest()
-      refresh.setOnRefreshListener(object :SwipeRefreshLayout.OnRefreshListener
-      {
+        refresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
 
-          override fun onRefresh() {
-              itemArray.clear()
-              recyclerView.adapter?.notifyDataSetChanged()
-              progressLayout.visibility=View.VISIBLE
-              progressBar.visibility=View.VISIBLE
-              errorText.visibility=View.GONE
-              Handler().postDelayed(
-                 Runnable {
+            override fun onRefresh() {
+                itemArray.clear()
+                recyclerView.adapter?.notifyDataSetChanged()
+                progressLayout.visibility = View.VISIBLE
+                progressBar.visibility = View.VISIBLE
+                errorText.visibility = View.GONE
+                Handler().postDelayed(
+                    Runnable {
 
-                     refresh.isRefreshing=false
-                     volleyGetRequest()
-
-
-                  },1000
-              )
-          }
-      })
+                        refresh.isRefreshing = false
+                        volleyGetRequest()
 
 
-        return view
+                    }, 1000
+                )
+            }
+        })
+
+       handler = Handler()
+        handler.postDelayed(Runnable {
+        val ref = database.child("users").child(auth.currentUser?.uid.toString())
+            .child("extrapoints")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var response = snapshot.value.toString().toInt()
+                response += 5
+                ref.setValue(response, object : DatabaseReference.CompletionListener {
+                    override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
+                        if (error != null) {
+                            println("Error in writting")
+                        }
+                    }
+                })
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println("Error in reading")
+            }
+
+        })
+
+    }, 120000)
+
+
+
+    return view
 
     }
 

@@ -1,8 +1,10 @@
 package com.example.studybear.activity.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import com.example.studybear.activity.activity.MainActivity
 import com.example.studybear.activity.adapter.NotesAdapter
 import com.example.studybear.activity.util.ConnectionManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -89,6 +92,8 @@ class NotesFragment : Fragment() {
 
 
 
+
+
         return view
     }
 
@@ -102,46 +107,61 @@ class NotesFragment : Fragment() {
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         semester = snapshot.value.toString()
-                        val reference =
-                            database.child("branch").child("is").child(semester.toString())
-                                .child("2018").child("subjects")
-                        reference.addListenerForSingleValueEvent(
-                            object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != "")  {
-                                        val response = snapshot.value as Map<*, *>?
-                                        if (response != null) {
-                                            for (data in response) {
-                                                itemArray.add(data.key.toString())
-                                            }
-                                        }
-                                        progressLayout.visibility = View.GONE
-                                        recyclerView.adapter =
-                                            NotesAdapter(activity as Context,
-                                                itemArray,
-                                                1,
-                                                semester!!,
-                                                null,null,null)
 
-                                    }
-                                    else
-                                    {
+                        if(semester=="4")
+                        {
+                            val reference =
+                                database.child("branch").child("is").child(semester.toString())
+                                    .child("2018").child("subjects")
+                            reference.addListenerForSingleValueEvent(
+                                object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if (snapshot.value != "")  {
+                                            val response = snapshot.value as Map<*, *>?
+                                            if (response != null) {
+                                                for (data in response) {
+                                                    itemArray.add(data.key.toString())
+                                                }
+                                            }
+                                            progressLayout.visibility = View.GONE
+                                            recyclerView.adapter =
+                                                NotesAdapter(activity as Context,
+                                                    itemArray,
+                                                    1,
+                                                    semester!!,
+                                                    null,null,null)
+
+                                        }
+                                        else
+                                        {
 
                                             empty_box.visibility=View.VISIBLE
+                                            progressBar.visibility=View.GONE
 
+                                        }
                                     }
-                                }
 
-                                override fun onCancelled(error: DatabaseError) {
-                                    progressBar.visibility = View.GONE
-                                    errorText.visibility = View.VISIBLE
-                                    Toast.makeText(activity,
-                                        "Sorry, error occurred",
-                                        Toast.LENGTH_SHORT).show()
-                                }
+                                    override fun onCancelled(error: DatabaseError) {
+                                        progressBar.visibility = View.GONE
+                                        errorText.visibility = View.VISIBLE
+                                        Toast.makeText(activity,
+                                            "Sorry, error occurred",
+                                            Toast.LENGTH_SHORT).show()
+                                    }
 
-                            }
-                        )
+                                }
+                            )
+                        }
+                        else
+                        {
+                            empty_box.visibility=View.VISIBLE
+                            val snack = Snackbar.make((activity as MainActivity).findViewById(R.id.lytCoordinator),"Coming Soon!, Please change your semester in accounts",50000)
+                            snack.setAction("Okay", View.OnClickListener {
+                                snack.dismiss()
+                            })
+                            snack.show()
+                        }
+
                     }
 
                     override fun onCancelled(error: DatabaseError) {

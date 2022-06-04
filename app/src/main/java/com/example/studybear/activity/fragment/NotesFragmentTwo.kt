@@ -138,6 +138,7 @@ class NotesFragmentTwo : Fragment() {
                         {
 
                             empty_box.visibility=View.VISIBLE
+                            progressBar.visibility = View.GONE
 
                         }
 

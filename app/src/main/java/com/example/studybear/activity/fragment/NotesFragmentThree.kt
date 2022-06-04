@@ -62,6 +62,7 @@ class NotesFragmentThree : Fragment() {
     var unit: String? = null
     var semester: String? = null
     lateinit var auth: FirebaseAuth
+    var uid:String?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,6 +90,7 @@ class NotesFragmentThree : Fragment() {
         database = Firebase.database.reference
         storageReference = FirebaseStorage.getInstance().reference
         auth = FirebaseAuth.getInstance()
+        uid=auth.currentUser?.uid
         topic = arguments?.getString("topic")
         subject = arguments?.getString("subjects")
         unit = arguments?.getString("units")
@@ -177,7 +179,7 @@ class NotesFragmentThree : Fragment() {
                                                 }
                                                 itemArray.add(NotesDataClass(myUser.name,
                                                     reputation,
-                                                    data.value.toString()))
+                                                    data.value.toString(),data.key.toString()))
                                             }
                                         }
                                         println("Response is4: ${itemArray}")
@@ -190,6 +192,7 @@ class NotesFragmentThree : Fragment() {
                                                 null, itemArray, null, null)
                                     } else {
                                         empty_box.visibility = View.VISIBLE
+                                        progressBar.visibility = View.GONE
                                     }
 
                                 }
@@ -238,7 +241,6 @@ class NotesFragmentThree : Fragment() {
                     }
 
                 }).addOnCompleteListener {
-                dialog.dismiss()
                 database.child("branch").child("is").child(semester.toString())
                     .child("2018").child("subjects").child(subject.toString()).child("units")
                     .child(unit.toString()).child(topic.toString())
@@ -252,14 +254,38 @@ class NotesFragmentThree : Fragment() {
                             }
                         }
                     })
-                Toast.makeText(activity as MainActivity,
-                    "Uploaded Successfully",
-                    Toast.LENGTH_SHORT)
-                    .show()
-                    itemArray.clear()
-                    recyclerView.adapter?.notifyDataSetChanged()
-                loadContents(topic.toString(), subject, unit, semester)
 
+                    val ref = database.child("users").child(auth.currentUser?.uid.toString())
+                        .child("totaluploads")
+                    ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            var response = snapshot.value.toString().toInt()
+                            response += 1
+                            ref.setValue(response, object : DatabaseReference.CompletionListener {
+                                override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
+                                    if (error != null) {
+                                        println("Error in writting")
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(activity as MainActivity,
+                                            "Uploaded Successfully",
+                                            Toast.LENGTH_SHORT)
+                                            .show()
+                                        dialog.dismiss()
+                                        itemArray.clear()
+                                        recyclerView.adapter?.notifyDataSetChanged()
+                                        loadContents(topic.toString(), subject, unit, semester)
+                                    }
+                                }
+                            })
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            println("Error in reading")
+                        }
+
+                    })
 
             }
 

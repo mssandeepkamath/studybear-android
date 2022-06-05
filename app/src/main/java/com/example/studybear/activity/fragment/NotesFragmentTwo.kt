@@ -126,6 +126,7 @@ class NotesFragmentTwo : Fragment() {
                                     itemArray.add(data.key.toString())
                                 }
                             }
+                            progressBar.visibility=View.GONE
                             progressLayout.visibility = View.GONE
                             recyclerView.adapter =
                                 NotesAdapter(activity as MainActivity,

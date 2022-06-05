@@ -184,6 +184,7 @@ class NotesFragmentThree : Fragment() {
                                         }
                                         println("Response is4: ${itemArray}")
                                         empty_box.visibility = View.GONE
+                                        progressBar.visibility=View.GONE
                                         progressLayout.visibility = View.GONE
                                         recyclerView.adapter =
                                             NotesAdapter(activity as MainActivity,

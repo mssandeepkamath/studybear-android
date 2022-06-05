@@ -123,6 +123,7 @@ class NotesFragment : Fragment() {
                                                     itemArray.add(data.key.toString())
                                                 }
                                             }
+                                            progressBar.visibility=View.GONE
                                             progressLayout.visibility = View.GONE
                                             recyclerView.adapter =
                                                 NotesAdapter(activity as Context,
@@ -155,6 +156,7 @@ class NotesFragment : Fragment() {
                         else
                         {
                             empty_box.visibility=View.VISIBLE
+                            progressBar.visibility = View.GONE
                             val snack = Snackbar.make((activity as MainActivity).findViewById(R.id.lytCoordinator),"Coming Soon!, Please change your semester in accounts",50000)
                             snack.setAction("Okay", View.OnClickListener {
                                 snack.dismiss()

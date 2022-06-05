@@ -88,7 +88,12 @@ import java.net.URL
              override fun onPostExecute(inputStream: InputStream?) {
                  println("The response $inputStream")
                  pdfView.fromStream(inputStream).load()
-                 dialog.dismiss()
+                 Handler().postDelayed(
+                     {
+                         dialog.dismiss()
+                     },5000
+                 )
+
              }
 
              override fun doInBackground(vararg params: String?): InputStream? {

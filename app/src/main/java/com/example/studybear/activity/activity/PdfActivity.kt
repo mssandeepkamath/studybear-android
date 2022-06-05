@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.studybear.R
 import com.github.barteksc.pdfviewer.PDFView
+import com.github.barteksc.pdfviewer.scroll.ScrollHandle
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -87,11 +88,11 @@ import java.net.URL
 
              override fun onPostExecute(inputStream: InputStream?) {
                  println("The response $inputStream")
-                 pdfView.fromStream(inputStream).load()
+                 pdfView.fromStream(inputStream).enableAnnotationRendering(true).autoSpacing(true).load()
                  Handler().postDelayed(
                      {
                          dialog.dismiss()
-                     },5000
+                     },10000
                  )
 
              }

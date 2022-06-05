@@ -35,7 +35,7 @@ class LeaderBoardFragment : Fragment() {
             damping = 0.9f,
             spread = 360,
             colors = listOf(0xfce18a, 0xff726d, 0xf4306d, 0xb48def),
-            emitter = Emitter(duration = 5000, TimeUnit.MILLISECONDS).max(1000),
+            emitter = Emitter(duration = 20000, TimeUnit.MILLISECONDS).max(1000),
             position = Position.Relative(0.5, 0.0)
         )
         viewKonfetti.start(party)
@@ -47,7 +47,7 @@ class LeaderBoardFragment : Fragment() {
                 super.onPageFinished(view, url)
             }
         })
-        val url = "https://workat.tech/"
+        val url = "https://keepthescore.co/board/lczvzcblmle/"
         simpleWebView.getSettings().javaScriptEnabled = true
         simpleWebView.loadUrl(url)
 

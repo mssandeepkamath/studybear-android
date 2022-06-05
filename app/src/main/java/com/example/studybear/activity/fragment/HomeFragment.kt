@@ -190,7 +190,7 @@ return view
             R.id.cardTwo  ->
             {
 
-                replaceFragment(DiscussFragment(),"3","Discuss",R.id.discuss,R.id.bottom_discuss,true)
+                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/s2JT2Bnp")))
 
             }
             R.id.cardThree ->
@@ -237,7 +237,7 @@ return view
             }
             R.id.cardDiscuss  ->
             {
-                replaceFragment(DiscussFragment(),"3","Discuss",R.id.discuss,R.id.bottom_discuss,true)
+                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/s2JT2Bnp")))
             }
             R.id.cardEvents ->
             {

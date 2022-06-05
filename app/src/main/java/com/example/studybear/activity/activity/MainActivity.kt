@@ -114,12 +114,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
                     R.id.discuss -> {
-                        replaceFragment(DiscussFragment(),
-                            "3",
-                            "Discuss",
-                            R.id.bottom_discuss,
-                            it,
-                            R.id.discuss)
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/s2JT2Bnp")))
                     }
                     R.id.coding_events -> {
                         if (flagBottom == false) {
@@ -234,7 +229,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
                     R.id.bottom_discuss -> {
-                        replaceFragmentBottom(DiscussFragment(), "3", "Discuss", R.id.discuss, true)
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/s2JT2Bnp")))
                     }
                     R.id.bottom_account -> {
                         replaceFragmentBottom(AccountFragment(), "4", "Account", R.id.account, true)

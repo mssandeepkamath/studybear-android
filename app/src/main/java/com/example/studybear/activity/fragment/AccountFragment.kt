@@ -26,6 +26,7 @@ import com.example.studybear.activity.util.ConnectionManager
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -64,6 +65,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
      private var total_uploads=0
      private var total_views=0
      lateinit var viewKonfetti:KonfettiView
+    lateinit var bottomNavigationView: BottomNavigationView
      var flag=false
 
 
@@ -84,6 +86,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
         reportBug = view.findViewById(R.id.lytReport)
         logOut = view.findViewById(R.id.lytLogOut)
         shimmer=view.findViewById(R.id.lytShimmerAccount)
+        bottomNavigationView=(activity as MainActivity).findViewById(R.id.vwBottomNavigation)
         spinner = view.findViewById(R.id.spinnerSem)
         spinner.lifecycleOwner= MainActivity()//prevent memory leakage
         navigationView=(activity as MainActivity).findViewById(R.id.vwNavigation)
@@ -210,6 +213,10 @@ class AccountFragment : Fragment(), View.OnClickListener {
             R.id.lytAboutUs -> {
                 navigationView.checkedItem?.isChecked = true
                 navigationView.setCheckedItem(R.id.about_us)
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                replaceFragment(AboutUsFragment(),"10","About us",R.id.about_us,null,true)
+                (activity as MainActivity).flagBottom=true
             }
             R.id.lytReport -> {
                 navigationView.checkedItem?.isChecked = true
@@ -260,6 +267,21 @@ class AccountFragment : Fragment(), View.OnClickListener {
              }
          )
      }
+
+    fun replaceFragment(fragment: Fragment, tag: String, title: String, id1: Int,id2:Int?,flag:Boolean) {
+        if ((activity as MainActivity).flagBottom) {
+            bottomNavigationView.menu.clear()
+            bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
+            (activity as MainActivity).flagBottom=false
+        }
+        (activity as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag).commit()
+        navigationView.setCheckedItem(id1)
+        (activity as MainActivity).supportActionBar?.title=title
+        navigationView.checkedItem?.isChecked = true
+        if(id2!=null)
+            bottomNavigationView.menu.findItem(id2).setChecked(flag)
+
+    }
 
 
 

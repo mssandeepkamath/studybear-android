@@ -190,7 +190,7 @@ return view
             R.id.cardTwo  ->
             {
 
-                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/s2JT2Bnp")))
+                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/rTEGcTe4")))
 
             }
             R.id.cardThree ->
@@ -237,7 +237,7 @@ return view
             }
             R.id.cardDiscuss  ->
             {
-                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/s2JT2Bnp")))
+                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/rTEGcTe4")))
             }
             R.id.cardEvents ->
             {

@@ -88,7 +88,7 @@ import java.net.URL
 
              override fun onPostExecute(inputStream: InputStream?) {
                  println("The response $inputStream")
-                 pdfView.fromStream(inputStream).enableAnnotationRendering(true).autoSpacing(true).load()
+                 pdfView.fromStream(inputStream).load()
                  Handler().postDelayed(
                      {
                          dialog.dismiss()

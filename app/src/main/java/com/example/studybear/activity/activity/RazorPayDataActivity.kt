@@ -66,7 +66,7 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
         textName.text = name
         textEmail.text = email
         val arraySemester = resources.getStringArray(R.array.semesters)
-        spinnerSemester.lifecycleOwner = MainActivity()//prevent memory leakage
+        spinnerSemester.lifecycleOwner = MainActivity()
         spinnerSemester.setOnSpinnerItemSelectedListener(object :
             OnSpinnerItemSelectedListener<Any?> {
             override fun onItemSelected(
@@ -75,8 +75,6 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
                 newIndex: Int,
                 newItem: Any?,
             ) {
-                //TODO
-                //update the semester in the data base
                 semester = newIndex+1
                 flag = true
             }
@@ -133,14 +131,11 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
 
     }
 
-// key_id
-    //C55VyOvueLqmnfepkQKSAESt  secret
-
 
     private fun startPayment(email: String, phoneNumber: String) {
 
         val checkout = Checkout()
-        checkout.setKeyID("rzp_test_fCzx5egRVmVFFA")
+        checkout.setKeyID("rzp_live_9JdTljlGTGUHDM")
         checkout.setImage(R.drawable.company_logo)
         val activity: Activity = this
         try {
@@ -150,7 +145,7 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
             options.put("theme.color", "#3399cc")
             options.put("currency", "INR")
-            options.put("amount", "10000") //pass amount in currency subunits
+            options.put("amount", "100") //pass amount in currency subunits
             options.put("prefill.email", email)
             options.put("prefill.contact", phoneNumber)
             val retryObj = JSONObject()
@@ -164,6 +159,7 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
         }
     }
 
+
     override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
         val uid = auth.currentUser!!.uid
         reference?.child("paidbit")?.setValue(true)
@@ -175,6 +171,7 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
         startActivity(intent)
         finish()
     }
+
 
     override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
         Toast.makeText(this, "Payment unsuccessful", Toast.LENGTH_SHORT).show()

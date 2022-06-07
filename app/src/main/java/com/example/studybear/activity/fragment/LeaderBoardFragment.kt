@@ -1,6 +1,5 @@
 package com.example.studybear.activity.fragment
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,14 +46,10 @@ class LeaderBoardFragment : Fragment() {
                 super.onPageFinished(view, url)
             }
         })
-        val url = "https://keepthescore.co/board/lczvzcblmle/"
-        simpleWebView.getSettings().javaScriptEnabled = true
+        val url = "https://studybear-79c4e.web.app/leaderboard"
+        simpleWebView.settings.javaScriptEnabled = true
         simpleWebView.loadUrl(url)
-
         return view
     }
-
-
-
 
 }

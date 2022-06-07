@@ -1,7 +1,10 @@
 package com.example.studybear.activity.fragment
 
+import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.app.Application
 import android.app.ProgressDialog
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -37,6 +40,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
+import java.io.InputStream
 
 
 class NotesFragmentThree : Fragment() {
@@ -233,64 +237,76 @@ class NotesFragmentThree : Fragment() {
             dialog.setMessage("Uploading..please wait")
             dialog.show()
             uri = data?.data!!
-            val timestamp = "" + System.currentTimeMillis()
-            val filepath = storageReference.child("$timestamp.pdf")
-            filepath.putFile(uri)
-                .continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
-                    override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
-                        return filepath.downloadUrl
-                    }
+                val timestamp = "" + System.currentTimeMillis()
+                val filepath = storageReference.child("$timestamp.pdf")
+                filepath.putFile(uri)
+                    .continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+                        override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
+                            return filepath.downloadUrl
+                        }
 
-                }).addOnCompleteListener {
-                database.child("branch").child("is").child(semester.toString())
-                    .child("2018").child("subjects").child(subject.toString()).child("units")
-                    .child(unit.toString()).child(topic.toString())
-                    .child(auth.currentUser?.uid.toString())
-                    .setValue(it.result.toString(), object : DatabaseReference.CompletionListener {
-                        override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
-                            if (error != null) {
-                                Toast.makeText(activity as MainActivity,
-                                    "Upload failed, Please try again",
-                                    Toast.LENGTH_SHORT).show()
+                    }).addOnCompleteListener {
+                        database.child("branch").child("is").child(semester.toString())
+                            .child("2018").child("subjects").child(subject.toString())
+                            .child("units")
+                            .child(unit.toString()).child(topic.toString())
+                            .child(auth.currentUser?.uid.toString())
+                            .setValue(it.result.toString(),
+                                object : DatabaseReference.CompletionListener {
+                                    override fun onComplete(
+                                        error: DatabaseError?,
+                                        ref: DatabaseReference
+                                    ) {
+                                        if (error != null) {
+                                            Toast.makeText(activity as MainActivity,
+                                                "Upload failed, Please try again",
+                                                Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                })
+
+                        val ref = database.child("users").child(auth.currentUser?.uid.toString())
+                            .child("totaluploads")
+                        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                var response = snapshot.value.toString().toInt()
+                                response += 1
+                                ref.setValue(response,
+                                    object : DatabaseReference.CompletionListener {
+                                        override fun onComplete(
+                                            error: DatabaseError?,
+                                            ref: DatabaseReference
+                                        ) {
+                                            if (error != null) {
+                                                println("Error in writting")
+                                            } else {
+                                                Toast.makeText(activity as MainActivity,
+                                                    "Uploaded Successfully",
+                                                    Toast.LENGTH_SHORT)
+                                                    .show()
+                                                dialog.dismiss()
+                                                itemArray.clear()
+                                                recyclerView.adapter?.notifyDataSetChanged()
+                                                loadContents(topic.toString(),
+                                                    subject,
+                                                    unit,
+                                                    semester)
+                                            }
+                                        }
+                                    })
                             }
-                        }
-                    })
 
-                    val ref = database.child("users").child(auth.currentUser?.uid.toString())
-                        .child("totaluploads")
-                    ref.addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            var response = snapshot.value.toString().toInt()
-                            response += 1
-                            ref.setValue(response, object : DatabaseReference.CompletionListener {
-                                override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
-                                    if (error != null) {
-                                        println("Error in writting")
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(activity as MainActivity,
-                                            "Uploaded Successfully",
-                                            Toast.LENGTH_SHORT)
-                                            .show()
-                                        dialog.dismiss()
-                                        itemArray.clear()
-                                        recyclerView.adapter?.notifyDataSetChanged()
-                                        loadContents(topic.toString(), subject, unit, semester)
-                                    }
-                                }
-                            })
-                        }
+                            override fun onCancelled(error: DatabaseError) {
+                                println("Error in reading")
+                            }
 
-                        override fun onCancelled(error: DatabaseError) {
-                            println("Error in reading")
-                        }
+                        })
 
-                    })
+                    }
 
             }
 
-        }
+
     }
 
 

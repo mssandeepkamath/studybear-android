@@ -209,9 +209,20 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_100sdp"
-            android:src="@drawable/razorpay"
+            android:src="@drawable/company_logo"
             android:layout_gravity="center"
             android:scaleType="centerInside"
+            android:layout_marginTop="@dimen/_40sdp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/baloo_bhai"
+            android:text="@string/studybear"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_17sdp"
+            android:textStyle="bold"
             />
 
     </LinearLayout>

@@ -148,12 +148,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
         logOut.setOnClickListener(this)
         aboutUs.setOnClickListener(this)
         reportBug.setOnClickListener(this)
-        points.setOnClickListener(this) // TODO
-
-
-
-
-
+        points.setOnClickListener(this)
         return view
     }
 
@@ -250,9 +245,9 @@ class AccountFragment : Fragment(), View.OnClickListener {
                      val res=snapshot.value as HashMap<*,*>?
 
                      user_points= ((res?.get("extrapoints")?.toString()?.toLong()
-                         ?: 0) * 10 + (res?.get("totaluploads")?.toString()?.toLong()
-                         ?: 0) * 10+ (res?.get("totalviews")?.toString()?.toLong()
-                         ?: 0) *5).toInt()
+                         ?: 0) * 1  + (res?.get("totaluploads")?.toString()?.toLong()
+                         ?: 0) * 20+ (res?.get("totalviews")?.toString()?.toLong()
+                         ?: 0) * 10).toInt()
                      total_uploads= res?.get("totaluploads")?.toString()?.toInt() ?: 0
                      total_views= res?.get("totalviews")?.toString()?.toInt() ?: 0
                      shimmer.hideShimmer()

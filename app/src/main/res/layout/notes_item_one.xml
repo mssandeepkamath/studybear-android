@@ -78,7 +78,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/_12sdp"
                 android:fontFamily="@font/roboto"
-                android:backgroundTint="@color/light_blue"
+                android:backgroundTint="#009EFF"
                 />
 
         </LinearLayout>

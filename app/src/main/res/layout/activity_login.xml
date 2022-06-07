@@ -59,9 +59,9 @@ scrollView
              android:layout_width="@dimen/_75sdp"
              android:layout_height="@dimen/_75sdp"
              android:layout_gravity="center"
-             android:layout_margin="@dimen/_25sdp"
+             android:layout_marginTop="@dimen/_50sdp"
+             android:layout_marginBottom="@dimen/_75sdp"
              android:indeterminateTint="@color/black"
-
              />
 
             <androidx.cardview.widget.CardView
@@ -117,51 +117,6 @@ scrollView
                 android:textColor="@color/red"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
-
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:id="@+id/imgFirebase"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:layout_toEndOf="@id/imgGoogle"
-                    android:contentDescription="@string/firebase_logo"
-                    android:src="@drawable/firebase_logo"
-                     />
-
-
-                <ImageView
-                    android:id="@+id/imgGoogle"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:contentDescription="@string/google_logo"
-                    android:src="@drawable/google_logo"
-                     />
-
-
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/txt_PrivacyPolicy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/privacy_policy"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                />
 
 
         </LinearLayout>

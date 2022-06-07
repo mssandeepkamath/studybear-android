@@ -40,7 +40,6 @@ class NotesFragment : Fragment() {
     lateinit var empty_box: ImageView
     val itemArray= arrayListOf<String>()
     lateinit var fab: FloatingActionButton
-
     private lateinit var auth:FirebaseAuth
     var semester:String?=null
     override fun onCreateView(
@@ -107,7 +106,6 @@ class NotesFragment : Fragment() {
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         semester = snapshot.value.toString()
-
                         if(semester=="4")
                         {
                             val reference =

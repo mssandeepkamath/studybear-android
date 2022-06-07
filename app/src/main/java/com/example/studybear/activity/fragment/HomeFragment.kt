@@ -70,7 +70,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         R.id.imgFour to "https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png",
         R.id.imgFive to "https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png",
         R.id.imgSix to "https://i.ibb.co/CVXb3fh/business-3d-341-min.png",
-        R.id.gifRewardBanner to "https://i.ibb.co/z8zBv99/banner-studybear-Portrait-5.gif",
+        R.id.gifRewardBanner to "https://i.ibb.co/vh1Qc7M/ezgif-com-gif-maker-17.gif",
         R.id.imgNotes to "https://i.ibb.co/8xRLRcr/notes.gif",
         R.id.imgDiscuss to "https://i.ibb.co/VYb00n7/discuss.gif",
         R.id.imgEvents to "https://i.ibb.co/C2Qgt8Z/coding-events.gif",
@@ -124,12 +124,9 @@ class HomeFragment : Fragment(),View.OnClickListener {
 
 
 
-
-
         refresh.setOnRefreshListener(object:SwipeRefreshLayout.OnRefreshListener
             {
                 override fun onRefresh() {
-
                     glideImageLoader(view)
                     handler.postDelayed(Runnable {
                         handler.postDelayed(runnable!!, 10)
@@ -139,12 +136,12 @@ class HomeFragment : Fragment(),View.OnClickListener {
                             count=0
                             refresh.isRefreshing=false
                             handler.removeCallbacks(runnable!!)
-
                         }
                     }.also { runnable = it }, 10)
-
                 }
             })
+
+
 
         cardOne.setOnClickListener(this)
         cardTwo.setOnClickListener(this)
@@ -152,7 +149,6 @@ class HomeFragment : Fragment(),View.OnClickListener {
         cardFour.setOnClickListener(this)
         cardFive.setOnClickListener(this)
         cardSix.setOnClickListener(this)
-        rewardBanner.setOnClickListener(this)
         cardNotes.setOnClickListener(this)
         cardDiscuss.setOnClickListener(this)
         cardEvents.setOnClickListener(this)
@@ -161,7 +157,17 @@ class HomeFragment : Fragment(),View.OnClickListener {
         myTextView.setOnClickListener(this)
 
 
-return view
+     rewardBanner.setOnLongClickListener {
+         bottomNavigationView.menu.clear()
+         bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+         replaceFragment(LeaderBoardFragment(),"9","Leaderboard",R.id.leaderboard,null,true)
+         (activity as MainActivity).flagBottom=true
+         true
+     }
+
+
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -190,7 +196,7 @@ return view
             R.id.cardTwo  ->
             {
 
-                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/rTEGcTe4")))
+                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/mhrprvmFEt")))
 
             }
             R.id.cardThree ->
@@ -224,20 +230,14 @@ return view
                 drawerLayout.openDrawer(GravityCompat.START)
                 navigationView.checkedItem?.setChecked(false)
             }
-            R.id.gifRewardBanner ->
-            {
-                bottomNavigationView.menu.clear()
-                bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
-                replaceFragment(LeaderBoardFragment(),"9","Leaderboard",R.id.leaderboard,null,true)
-                (activity as MainActivity).flagBottom=true
-            }
+
             R.id.cardNotes ->
             {
                 replaceFragment(NotesFragment(),"2","Notes",R.id.notes,R.id.bottom_notes,true)
             }
             R.id.cardDiscuss  ->
             {
-                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/rTEGcTe4")))
+                (activity as MainActivity).startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/mhrprvmFEt")))
             }
             R.id.cardEvents ->
             {

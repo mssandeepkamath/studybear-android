@@ -23,7 +23,6 @@
     <string name="account">Account</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rate_our_app">Rate us</string>
     <string name="events">Events</string>
@@ -76,6 +75,7 @@
     <string name="choose_a_topic">Choose a Topic</string>
     <string name="android_web">Android | Web</string>
     <string name="team_members">Team members</string>
+    <string name="studybear">Studybear</string>
 
 
 </resources>

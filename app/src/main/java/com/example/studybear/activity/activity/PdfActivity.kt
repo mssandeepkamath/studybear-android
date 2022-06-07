@@ -80,7 +80,7 @@ import java.net.URL
 
             })
 
-        }, 300000)
+        }, 120000)
     }
 
 
@@ -94,7 +94,6 @@ import java.net.URL
                          dialog.dismiss()
                      },10000
                  )
-
              }
 
              override fun doInBackground(vararg params: String?): InputStream? {
@@ -114,8 +113,6 @@ import java.net.URL
                  return inputStream
              }
          }
-
-
 
 
 }

@@ -94,7 +94,8 @@ class EventsFragment : Fragment() {
         })
 
         handler = Handler()
-        handler.postDelayed(Runnable {
+        runnable= Runnable {
+
             val ref = database.child("users").child(auth.currentUser?.uid.toString())
                 .child("extrapoints")
             ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -115,10 +116,15 @@ class EventsFragment : Fragment() {
                 }
 
             })
-
-        }, 120000)
+        }
+        handler.postDelayed(runnable!!, 5000)
 
         return view
+    }
+
+    override fun onDestroyView() {
+        handler.removeCallbacks(runnable!!)
+        super.onDestroyView()
     }
 
     fun volleyJsonObjectRequest() {

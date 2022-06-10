@@ -158,10 +158,9 @@ class HomeFragment : Fragment(),View.OnClickListener {
 
 
      rewardBanner.setOnLongClickListener {
-         bottomNavigationView.menu.clear()
-         bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
-         replaceFragment(LeaderBoardFragment(),"9","Leaderboard",R.id.leaderboard,null,true)
-         (activity as MainActivity).flagBottom=true
+         val intent=Intent(Intent.ACTION_VIEW)
+         intent.data= Uri.parse("https://studybear-79c4e.web.app/leaderboard")
+         (activity as MainActivity).startActivity(intent)
          true
      }
 

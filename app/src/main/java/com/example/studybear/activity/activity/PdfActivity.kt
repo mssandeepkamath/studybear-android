@@ -6,6 +6,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -57,7 +58,7 @@ import java.net.URL
         auth= FirebaseAuth.getInstance()
         RetrivePdfStream().execute(urls)
          handler= Handler()
-        handler.postDelayed(Runnable {
+        runnable= Runnable {
             val ref= database.child("users").child(uid.toString()).child("totalviews")
             ref.addListenerForSingleValueEvent(object: ValueEventListener
             {
@@ -67,10 +68,10 @@ import java.net.URL
                     ref.setValue(response,object :DatabaseReference.CompletionListener
                     {
                         override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
-                           if(error!=null)
-                           {
-                               println("Error in writting")
-                           }
+                            if(error!=null)
+                            {
+                                println("Error in writting")
+                            }
                         }
                     })
                 }
@@ -79,9 +80,14 @@ import java.net.URL
                 }
 
             })
-
-        }, 120000)
+        }
+        handler.postDelayed(runnable!!, 120000)
     }
+
+     override fun onDestroy() {
+         handler.removeCallbacks(runnable!!)
+         super.onDestroy()
+     }
 
 
       class RetrivePdfStream : AsyncTask<String?, Void?, InputStream?>() {

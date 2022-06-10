@@ -93,33 +93,41 @@ class NewsFragment : Fragment() {
         })
 
        handler = Handler()
-        handler.postDelayed(Runnable {
-        val ref = database.child("users").child(auth.currentUser?.uid.toString())
-            .child("extrapoints")
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var response = snapshot.value.toString().toInt()
-                response += 5
-                ref.setValue(response, object : DatabaseReference.CompletionListener {
-                    override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
-                        if (error != null) {
-                            println("Error in writting")
+        runnable= Runnable {
+
+            val ref = database.child("users").child(auth.currentUser?.uid.toString())
+                .child("extrapoints")
+            ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var response = snapshot.value.toString().toInt()
+                    response += 5
+                    ref.setValue(response, object : DatabaseReference.CompletionListener {
+                        override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
+                            if (error != null) {
+                                println("Error in writting")
+                            }
                         }
-                    }
-                })
-            }
+                    })
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-                println("Error in reading")
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    println("Error in reading")
+                }
 
-        })
+            })
 
-    }, 120000)
+        }
+        handler.postDelayed(runnable!!, 120000)
 
 
 
     return view
+
+    }
+
+    override fun onDestroyView() {
+      handler.removeCallbacks(runnable!!)
+        super.onDestroyView()
 
     }
 

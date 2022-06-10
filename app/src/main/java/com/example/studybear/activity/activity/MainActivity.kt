@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -85,8 +86,6 @@ class MainActivity : AppCompatActivity() {
                     timerFlag = true
                 }, 2000
             )
-
-
             setUpToolbar()
             val actionBarDrawerToggle = ActionBarDrawerToggle(this@MainActivity,
                 drawerLayout,
@@ -115,6 +114,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     R.id.discuss -> {
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/mhrprvmFEt")))
+                        drawerLayout.closeDrawers()
                     }
                     R.id.coding_events -> {
                         if (flagBottom == false) {
@@ -165,15 +165,10 @@ class MainActivity : AppCompatActivity() {
                         flagBottom = true
                     }
                     R.id.leaderboard -> {
-                        bottomNavigationView.menu.clear()
-                        bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
-                        replaceFragment(LeaderBoardFragment(),
-                            "9",
-                            "Leaderboard",
-                            null,
-                            it,
-                            R.id.leaderboard)
-                        flagBottom = true
+                        val intent=Intent(Intent.ACTION_VIEW)
+                        intent.data=Uri.parse("https://studybear-79c4e.web.app/leaderboard")
+                        drawerLayout.closeDrawers()
+                        startActivity(intent)
                     }
                     R.id.report_bug -> {
                         val to = "teamstudybear@gmail.com"
@@ -207,6 +202,33 @@ class MainActivity : AppCompatActivity() {
                             R.id.bottom_account,
                             it,
                             R.id.account)
+                    }
+                    R.id.privacy_policy -> {
+                        val intent=Intent(Intent.ACTION_VIEW)
+                        intent.data=Uri.parse("https://www.privacypolicygenerator.info/live.php?token=J29fb134XZHJRHx4NyX27uXp1V30owjA")
+                        drawerLayout.closeDrawers()
+                        startActivity(intent)
+                    }
+                    R.id.terms_and_conditions -> {
+                        val intent=Intent(Intent.ACTION_VIEW)
+                        intent.data=Uri.parse("https://www.termsandconditionsgenerator.com/live.php?token=kukgE15ppiyPnwhH49XflZ1w3XY8MPWA")
+                        drawerLayout.closeDrawers()
+                        startActivity(intent)
+                    }
+                    R.id.credits -> {
+
+                        if (flagBottom == false) {
+                            bottomNavigationView.menu.clear()
+                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+                        }
+                        replaceFragment(CreditFragment(),
+                            "15",
+                            "Credits",
+                            null,
+                            it,
+                            R.id.credits)
+                        flagBottom = true
+
                     }
                     R.id.rate_us -> {
                         //implicit intent
@@ -301,7 +323,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = title
         if (id != null)
             bottomNavigationView.selectedItemId = id
-
         drawerLayout.closeDrawers()
     }
 

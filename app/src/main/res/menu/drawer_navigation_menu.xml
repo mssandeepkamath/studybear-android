@@ -58,6 +58,19 @@
             android:id="@+id/about_us"
             android:icon="@drawable/ic_about_us"
             android:title="@string/about_us" />
+        <item
+            android:id="@+id/privacy_policy"
+            android:icon="@drawable/ic_privacy"
+            android:title="@string/privacypolicy" />
+        <item
+            android:id="@+id/terms_and_conditions"
+            android:icon="@drawable/ic_privacy"
+            android:title="@string/terms_and_conditions" />
+        <item
+            android:id="@+id/credits"
+            android:icon="@drawable/ic_credits"
+            android:title="@string/credits" />
+
     </group>
 
 

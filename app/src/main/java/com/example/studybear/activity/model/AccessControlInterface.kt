@@ -34,13 +34,10 @@ interface AccessControlInterface {
                         {
                            message(context,message)
                             intentProvider(context, MainActivity::class.java)
-
                         }
-                        else
-                        {
+                        else {
                             intentProvider(context, RazorPayDataActivity::class.java)
                         }
-
                     }
                 }
 

@@ -76,6 +76,9 @@
     <string name="android_web">Android | Web</string>
     <string name="team_members">Team members</string>
     <string name="studybear">Studybear</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="privacypolicy">Privacy policy</string>
+    <string name="credits">Credits</string>
 
 
 </resources>

@@ -60,7 +60,7 @@ scrollView
              android:layout_height="@dimen/_75sdp"
              android:layout_gravity="center"
              android:layout_marginTop="@dimen/_50sdp"
-             android:layout_marginBottom="@dimen/_75sdp"
+             android:layout_marginBottom="@dimen/_50sdp"
              android:indeterminateTint="@color/black"
              />
 
@@ -69,7 +69,7 @@ scrollView
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
-                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
                 app:cardElevation="@dimen/_5sdp"
                 android:layout_gravity="center"
                 android:clickable="true"
@@ -117,6 +117,26 @@ scrollView
                 android:textColor="@color/red"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/privileged_access"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/privileged_access"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp"
+                android:background="@drawable/card_border"
+                android:padding="@dimen/_4sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:textStyle="bold" />
+
+
+
 
 
         </LinearLayout>

@@ -197,7 +197,7 @@
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/note_we_do_not_sell_your_data"
-                    android:textColor="@color/text_grey_new"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -212,18 +212,30 @@
             android:src="@drawable/company_logo"
             android:layout_gravity="center"
             android:scaleType="centerInside"
-            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/baloo_bhai"
-            android:text="@string/studybear"
+            android:text="Studybear access plan at just,"
             android:textColor="@color/black"
-            android:textSize="@dimen/_17sdp"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="normal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/baloo_bhai"
+            android:text="₹30 / month"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_25sdp"
             android:textStyle="bold"
             />
+
 
     </LinearLayout>
 

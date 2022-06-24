@@ -1,23 +1,24 @@
 {
   "project_info": {
     "project_number": "911830907608",
+    "firebase_url": "https://studybear-79c4e-default-rtdb.firebaseio.com",
     "project_id": "studybear-79c4e",
     "storage_bucket": "studybear-79c4e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:911830907608:android:6cbf87a3304d3e960c35ad",
+        "mobilesdk_app_id": "1:911830907608:android:9e9cae90d9ef7f5c0c35ad",
         "android_client_info": {
-          "package_name": "com.example.studybear"
+          "package_name": "com.sandeep.studybear"
         }
       },
       "oauth_client": [
         {
-          "client_id": "911830907608-90il8s550qthdo0tljs2icsoat6mtmls.apps.googleusercontent.com",
+          "client_id": "911830907608-jn6cfuq96ijpnq311ake3uc63gf70dej.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.studybear",
+            "package_name": "com.sandeep.studybear",
             "certificate_hash": "8d1e7f65e88c416912d21617b5dd50b2db428a79"
           }
         },

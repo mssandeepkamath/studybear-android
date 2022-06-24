@@ -70,6 +70,10 @@
             android:id="@+id/credits"
             android:icon="@drawable/ic_credits"
             android:title="@string/credits" />
+        <item
+            android:id="@+id/refund"
+            android:icon="@drawable/ic_privacy"
+            android:title="@string/refund_policy" />
 
     </group>
 

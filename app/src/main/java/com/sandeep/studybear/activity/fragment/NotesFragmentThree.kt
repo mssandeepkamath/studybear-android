@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.android.material.appbar.AppBarLayout
@@ -70,6 +72,9 @@ class NotesFragmentThree : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_notes, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adView7)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         appBar = (activity as MainActivity).findViewById(R.id.lytAppBar)
         appBar.setExpanded(true)
         itemArray.clear()

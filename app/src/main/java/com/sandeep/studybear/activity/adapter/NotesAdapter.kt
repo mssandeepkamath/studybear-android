@@ -80,7 +80,14 @@ class NotesAdapter(
         if (id == 1) {
             val new_holder = holder as ViewHolderOne
             new_holder.titleText.text = itemArray?.get(position).toString()
-            new_holder.spinner.setItems(R.array.Units)
+            if(itemArray?.get(position).toString()=="SEE,CIE Past Papers" || itemArray?.get(position).toString()=="Lab programs" )
+            {
+                new_holder.spinner.setItems(R.array.All)
+            }
+            else
+            {
+                new_holder.spinner.setItems(R.array.Units)
+            }
             new_holder.spinner.lifecycleOwner = MainActivity()
             var unit: String? = null
             new_holder.spinner.setOnSpinnerItemSelectedListener(object :

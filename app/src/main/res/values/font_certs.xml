@@ -16,6 +16,10 @@
         <item>Eight semester</item>
     </array>
 
+    <array name="All">
+        <item>All</item>
+    </array>
+
     <array name="Units">
         <item>Unit 1</item>
         <item>Unit 2</item>

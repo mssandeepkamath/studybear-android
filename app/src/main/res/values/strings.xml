@@ -81,6 +81,8 @@
     <string name="credits">Credits</string>
     <string name="refund_policy">Refund policy</string>
     <string name="privileged_access">Email access</string>
+    <string name="about_us_description">At Studybear, we aspire to change the path one takes to be an engineer. We aim to provide a platform to upload and read notes... We also provide students with daily tech news, circulars and also help them in connecting with teachers. Students who upload their notes would be given Goodies and vouchers as a token of Gratitude. We aim in making a enginnering\'s student life easy.</string>
+    <string name="important_message">Students are requested to login using RVCE account in * GOOGLE SIGN IN * only!</string>
 
 
 </resources>

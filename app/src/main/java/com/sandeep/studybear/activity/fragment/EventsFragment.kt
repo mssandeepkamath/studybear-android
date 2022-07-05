@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -33,10 +35,7 @@ import com.sandeep.studybear.activity.util.MySingleton
 import org.json.JSONException
 
 
-
 class EventsFragment : Fragment() {
-
-
     lateinit var recyclerView: RecyclerView
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var itemArray: ArrayList<EventsDataClass>
@@ -55,6 +54,9 @@ class EventsFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_events, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adView5)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         recyclerView = view.findViewById(R.id.vwRecyclerEvents)
         progressLayout = view.findViewById(R.id.lytProgressEvents)
         progressBar = view.findViewById(R.id.barProgressEvents)
@@ -86,9 +88,7 @@ class EventsFragment : Fragment() {
                            refresh.isRefreshing=false
                              volleyJsonObjectRequest()
                     }, 1000)
-
             }
-
         })
 
         handler = Handler()
@@ -166,10 +166,9 @@ class EventsFragment : Fragment() {
         }
     }
 
-
     fun ToastMessage(message: String) {
         Toast.makeText(activity as MainActivity, message, Toast.LENGTH_SHORT).show()
     }
 
-
 }
+

@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -46,6 +48,9 @@ class NotesFragment : Fragment() {
     ): View? {
 
         val view= inflater.inflate(R.layout.fragment_notes, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adView7)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         recyclerView=view.findViewById(R.id.vwRecyclerNotesOne)
         layoutManager=LinearLayoutManager(activity as MainActivity)
         progressBar=view.findViewById(R.id.barProgressNotesOne)

@@ -1,10 +1,12 @@
 package com.sandeep.studybear.activity.activity
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
@@ -19,6 +21,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -31,7 +38,7 @@ import com.sandeep.studybear.activity.fragment.*
 import com.skydoves.powerspinner.PowerSpinnerView
 import java.lang.ref.WeakReference
 
-class MainActivity : AppCompatActivity() {
+ class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var coordinatorLayout: CoordinatorLayout
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
@@ -44,6 +51,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     var flagBottom: Boolean = false
     var timerFlag = false
+     var mInterstitialAd: InterstitialAd? = null
+     var adRequest:AdRequest?=null
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +85,16 @@ class MainActivity : AppCompatActivity() {
         } else {
 
             setContentView(R.layout.activity_main)
+            MobileAds.initialize(this)
+            adRequest = AdRequest.Builder().build()
+            InterstitialAd.load(this,"ca-app-pub-5634416739025689/8455796595", adRequest!!, object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd = null
+                }
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                }
+            })
             drawerLayout = findViewById(R.id.lytDrawer)
             coordinatorLayout = findViewById(R.id.lytCoordinator)
             toolbar = findViewById(R.id.wdgToolbar)
@@ -104,7 +125,11 @@ class MainActivity : AppCompatActivity() {
                 prev = it
 
                 when (it.itemId) {
+
                     R.id.notes -> {
+                        if (mInterstitialAd != null) {
+                            mInterstitialAd?.show(this)
+                        }
                         replaceFragment(NotesFragment(),
                             "2",
                             "Notes",
@@ -166,10 +191,18 @@ class MainActivity : AppCompatActivity() {
                         flagBottom = true
                     }
                     R.id.leaderboard -> {
-                        val intent=Intent(Intent.ACTION_VIEW)
-                        intent.data=Uri.parse("https://studybear-79c4e.web.app/leaderboard")
-                        drawerLayout.closeDrawers()
-                        startActivity(intent)
+
+                        if (mInterstitialAd != null) {
+                            mInterstitialAd?.show(this)
+                        }
+                        Handler().postDelayed(
+                            {
+                                val intent=Intent(Intent.ACTION_VIEW)
+                                intent.data=Uri.parse("https://studybear-79c4e.web.app/leaderboard")
+                                drawerLayout.closeDrawers()
+                                startActivity(intent)
+                            },5000
+                        )
                     }
                     R.id.report_bug -> {
                         val to = "teamstudybear@gmail.com"
@@ -252,11 +285,14 @@ class MainActivity : AppCompatActivity() {
                 appBar.setExpanded(true)
                 when (it.itemId) {
                     R.id.home -> {
+
                         replaceFragmentBottom(HomeFragment(), "1", "Home", null, false)
                         navigationView.checkedItem?.isChecked = false
 
                     }
                     R.id.bottom_notes -> {
+
+
                         replaceFragmentBottom(NotesFragment(), "2", "Notes", R.id.notes, true)
 
                     }
@@ -312,6 +348,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun homeFragment() {
+
         replaceFragmentBottom(HomeFragment(), "1", "Home", null, false)
     }
 
@@ -323,6 +360,7 @@ class MainActivity : AppCompatActivity() {
         it: MenuItem?,
         idClicked: Int,
     ) {
+
         if (flagBottom and (it != navigationView.menu.findItem(idClicked))) {
             bottomNavigationView.menu.clear()
             bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
@@ -350,6 +388,8 @@ class MainActivity : AppCompatActivity() {
             navigationView.setCheckedItem(id)
         navigationView.checkedItem?.isChecked = flag
     }
+
+
 
 
     override fun onBackPressed() {
@@ -438,6 +478,9 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+
 
 
 }

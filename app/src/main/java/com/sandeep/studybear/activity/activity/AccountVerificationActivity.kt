@@ -104,6 +104,7 @@ class AccountVerificationActivity : AppCompatActivity(), AccessControlInterface 
                 }
                 else if(email_id.toString().trim().toLowerCase() == "teststudybear@gmail.com")
                 {
+                    message(this@AccountVerificationActivity,"Welcome to Studybear")
                     intentProvider(this@AccountVerificationActivity,
                         MainActivity::class.java)
                 }

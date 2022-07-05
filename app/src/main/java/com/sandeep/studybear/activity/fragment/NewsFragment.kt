@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.toolbox.JsonObjectRequest
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -55,6 +57,9 @@ class NewsFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_news, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adView4)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         recyclerView = view.findViewById(R.id.vwRecyclerView)
         layoutManager = LinearLayoutManager(activity as MainActivity)
         progressBar = view.findViewById(R.id.barProgress)

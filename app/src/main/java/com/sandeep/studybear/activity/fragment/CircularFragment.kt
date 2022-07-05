@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -44,6 +46,9 @@ class CircularFragment : Fragment() {
     ): View? {
 
         val view= inflater.inflate(R.layout.fragment_circular, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adView3)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         itemArray.clear()
         recyclerView = view.findViewById(R.id.vwRecyclerCircular)
         layoutManager = LinearLayoutManager(activity as MainActivity)

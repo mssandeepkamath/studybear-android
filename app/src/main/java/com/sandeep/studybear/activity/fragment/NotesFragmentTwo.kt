@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
@@ -44,13 +46,14 @@ class NotesFragmentTwo : Fragment() {
     lateinit var empty_box: ImageView
     lateinit var fab:FloatingActionButton
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_notes, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adView7)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         appBar = (activity as MainActivity).findViewById(R.id.lytAppBar)
         appBar.setExpanded(true)
         itemArray.clear()
@@ -75,10 +78,8 @@ class NotesFragmentTwo : Fragment() {
         loadContents(subject.toString(),unit.toString(),semester)
         fab.visibility=View.GONE
 
-
         refresh.setOnRefreshListener(object :SwipeRefreshLayout.OnRefreshListener
         {
-
             override fun onRefresh() {
                 itemArray.clear()
                 recyclerView.adapter?.notifyDataSetChanged()
@@ -95,16 +96,8 @@ class NotesFragmentTwo : Fragment() {
             }
         })
 
-
-
-
-
-
         return view
     }
-
-
-
 
     fun loadContents(subject:String?,unit:String?,semester:String?) {
 
@@ -115,9 +108,7 @@ class NotesFragmentTwo : Fragment() {
                 val new_reference=database.child("branch").child("is").child(semester.toString())
                     .child("2018").child("subjects").child(subject.toString()).child("units").child(unit.toString())
                 new_reference.addListenerForSingleValueEvent(object : ValueEventListener {
-
                     override fun onDataChange(snapshot: DataSnapshot) {
-
                         println("Response: is null")
                         if (snapshot.value != "")  {
                             val response = snapshot.value as HashMap<*, *>?
@@ -142,21 +133,14 @@ class NotesFragmentTwo : Fragment() {
                             progressBar.visibility = View.GONE
 
                         }
-
                     }
-
                     override fun onCancelled(error: DatabaseError) {
                         progressBar.visibility = View.GONE
                         errorText.visibility = View.VISIBLE
                         println("Response: $error")
                     }
-
-
                 })
-
             }
-
-
         }
         else {
             errorText.visibility=View.VISIBLE
@@ -164,6 +148,4 @@ class NotesFragmentTwo : Fragment() {
             ConnectionManager().createDialog((activity as MainActivity).findViewById(R.id.lytCoordinator),activity as MainActivity)
         }
     }
-
-
 }

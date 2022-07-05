@@ -9,6 +9,10 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.github.barteksc.pdfviewer.PDFView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -33,6 +37,7 @@ import com.sandeep.studybear.R
          var runnable: Runnable? = null
          lateinit var database:DatabaseReference
          lateinit var auth:FirebaseAuth
+         var mInterstitialAd: InterstitialAd? = null
      }
 
 
@@ -43,6 +48,16 @@ import com.sandeep.studybear.R
             WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf)
+
+        var adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this,"ca-app-pub-5634416739025689/4190352175", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+            }
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+            }
+        })
 
         pdfView =findViewById(R.id.vwPdf)
         dialog = ProgressDialog(this@PdfActivity)
@@ -116,6 +131,16 @@ import com.sandeep.studybear.R
                  return inputStream
              }
          }
+
+     override fun onBackPressed() {
+
+         if (mInterstitialAd != null) {
+             mInterstitialAd?.setImmersiveMode(true)
+             mInterstitialAd?.show(this)
+
+         }
+         super.onBackPressed()
+     }
 
 
 }

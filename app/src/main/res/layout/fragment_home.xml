@@ -31,36 +31,29 @@
                 android:orientation="vertical">
 
 
+                <TextView
+                    android:id="@+id/txt_type_writter"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/text_border"
+                    android:clickable="true"
+                    android:elevation="@dimen/_1sdp"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
 
-            <TextView
-                android:id="@+id/txt_type_writter"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:background="@drawable/text_border"
-                android:clickable="true"
-                android:elevation="@dimen/_1sdp"
-                android:focusable="true"
-                android:fontFamily="@font/roboto"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
+                    />
 
-                />
-
-
-
-
-
-
-
-            <LinearLayout
+                <LinearLayout
                 android:id="@+id/lytLinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -356,6 +349,17 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:contentDescription="@string/report_bugs"
                     android:scaleType="fitXY" />
+
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adViewHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    ads:adSize="LARGE_BANNER"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    ads:adUnitId="ca-app-pub-5634416739025689/8636562326">
+                </com.google.android.gms.ads.AdView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -773,7 +777,10 @@
 
 
 
+
+
             </LinearLayout>
+
 
 
     </LinearLayout>

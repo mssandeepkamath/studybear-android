@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.fragment.CircularFragment">
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_10sdp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-5634416739025689/2033293829" />
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/lytRefreshCircular"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/adView3"
         android:layout_centerInParent="true">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vwRecyclerCircular"

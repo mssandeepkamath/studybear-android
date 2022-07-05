@@ -188,7 +188,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="50dp"
             android:fontFamily="sans-serif-light"
-            android:text="Students are requested to login using RVCE account in Google sign in!"
+            android:text="@string/important_message"
             android:textColor="@color/red"
             android:textSize="@dimen/_14sdp"
             android:textAlignment="center"

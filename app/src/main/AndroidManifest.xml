@@ -57,6 +57,9 @@
         <meta-data
             android:name="com.google.gms.wallet.api.enabled"
             android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5634416739025689~4062074256"/>
     </application>
 
 </manifest>

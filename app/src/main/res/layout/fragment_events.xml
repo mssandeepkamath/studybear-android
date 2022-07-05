@@ -6,11 +6,24 @@
     android:background="@color/white"
     tools:context=".activity.fragment.EventsFragment">
 
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_10sdp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-5634416739025689/9222083351" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/lytRefreshEvents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_below="@id/adView5">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vwRecyclerEvents"

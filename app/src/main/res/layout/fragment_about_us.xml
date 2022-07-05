@@ -19,8 +19,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/_10sdp"
         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/bg"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="What we do?"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-light"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/about_us_description"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:textStyle="normal"
+                android:textAlignment="textStart"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                />
+
+        </LinearLayout>
 
 
 
@@ -31,8 +64,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/card_border"
             android:fontFamily="@font/roboto"
-            android:padding="@dimen/_8sdp"
+            android:padding="@dimen/_5sdp"
             android:text="@string/team_members"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"

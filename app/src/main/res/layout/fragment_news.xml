@@ -7,6 +7,17 @@
     android:orientation="vertical"
     tools:context=".activity.fragment.NewsFragment">
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_10sdp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-5634416739025689/1611186649" />
+
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -14,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:layout_below="@id/adView4"
         >
 
         <androidx.recyclerview.widget.RecyclerView

@@ -27,6 +27,12 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -84,6 +90,9 @@ class HomeFragment : Fragment(),View.OnClickListener {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adViewHomeFragment)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         myTextView = view.findViewById(R.id.txt_type_writter)
         shimmer = view.findViewById(R.id.lytShimmer)
         refresh=view.findViewById(R.id.parentViewHome)
@@ -167,6 +176,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
 
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -8,6 +8,9 @@
     tools:context=".activity.fragment.AboutUsFragment">
 
 
+
+
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/lytShimmerAboutUs"
         android:layout_width="match_parent"
@@ -20,12 +23,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewAboutUs1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:adSize="BANNER"
+            android:background="@color/black"
+            app:adUnitId="ca-app-pub-5634416739025689/3572309036" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/bg"
+            android:background="@color/black"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -34,7 +51,7 @@
                 android:text="What we do?"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:textSize="@dimen/_20sdp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:fontFamily="sans-serif-light"
                 android:textStyle="bold"
                 />
@@ -45,11 +62,12 @@
                 android:padding="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/about_us_description"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:fontFamily="@font/roboto"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_14sdp"
+                android:justificationMode="inter_word"
                 android:layout_marginBottom="@dimen/_10sdp"
                 />
 
@@ -311,6 +329,21 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewAboutUs2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:adSize="MEDIUM_RECTANGLE"
+            android:background="@color/black"
+            app:adUnitId="ca-app-pub-5634416739025689/4952569817" />
 
 
 

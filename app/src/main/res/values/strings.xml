@@ -7,7 +7,7 @@
     <string name="firebase_logo">Firebase Logo</string>
     <string name="google_logo">Google Logo</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="company_name">Study Bear</string>
+    <string name="company_name">Studybear</string>
     <string name="demo_name">Good XYZ</string>
     <string name="coding_events">Coding events</string>
     <string name="news">News</string>
@@ -80,9 +80,10 @@
     <string name="privacypolicy">Privacy policy</string>
     <string name="credits">Credits</string>
     <string name="refund_policy">Refund policy</string>
-    <string name="privileged_access">Email access</string>
+    <string name="privileged_access"><u>Email access</u></string>
     <string name="about_us_description">At Studybear, we aspire to change the path one takes to be an engineer. We aim to provide a platform to upload and read notes... We also provide students with daily tech news, circulars and also help them in connecting with teachers. Students who upload their notes would be given Goodies and vouchers as a token of Gratitude. We aim in making a enginnering\'s student life easy.</string>
     <string name="important_message">Students are requested to login using RVCE account in * GOOGLE SIGN IN * only!</string>
+    <string name="contact_us_website">Contact us</string>
 
 
 </resources>

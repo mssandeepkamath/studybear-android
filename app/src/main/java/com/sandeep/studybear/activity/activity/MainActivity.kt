@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -51,8 +52,6 @@ import java.lang.ref.WeakReference
     private lateinit var googleSignInClient: GoogleSignInClient
     var flagBottom: Boolean = false
     var timerFlag = false
-     var mInterstitialAd: InterstitialAd? = null
-     var adRequest:AdRequest?=null
 
 
 
@@ -86,15 +85,6 @@ import java.lang.ref.WeakReference
 
             setContentView(R.layout.activity_main)
             MobileAds.initialize(this)
-            adRequest = AdRequest.Builder().build()
-            InterstitialAd.load(this,"ca-app-pub-5634416739025689/8455796595", adRequest!!, object : InterstitialAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    mInterstitialAd = null
-                }
-                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    mInterstitialAd = interstitialAd
-                }
-            })
             drawerLayout = findViewById(R.id.lytDrawer)
             coordinatorLayout = findViewById(R.id.lytCoordinator)
             toolbar = findViewById(R.id.wdgToolbar)
@@ -127,9 +117,7 @@ import java.lang.ref.WeakReference
                 when (it.itemId) {
 
                     R.id.notes -> {
-                        if (mInterstitialAd != null) {
-                            mInterstitialAd?.show(this)
-                        }
+
                         replaceFragment(NotesFragment(),
                             "2",
                             "Notes",
@@ -191,18 +179,10 @@ import java.lang.ref.WeakReference
                         flagBottom = true
                     }
                     R.id.leaderboard -> {
-
-                        if (mInterstitialAd != null) {
-                            mInterstitialAd?.show(this)
-                        }
-                        Handler().postDelayed(
-                            {
                                 val intent=Intent(Intent.ACTION_VIEW)
-                                intent.data=Uri.parse("https://studybear-79c4e.web.app/leaderboard")
+                                intent.data=Uri.parse("https://studybear.tech/leaderboard")
                                 drawerLayout.closeDrawers()
                                 startActivity(intent)
-                            },5000
-                        )
                     }
                     R.id.report_bug -> {
                         val to = "teamstudybear@gmail.com"
@@ -272,7 +252,13 @@ import java.lang.ref.WeakReference
                     }
                     R.id.refund -> {
                         val intent=Intent(Intent.ACTION_VIEW)
-                        intent.data=Uri.parse("https://studybear-79c4e.web.app/refund")
+                        intent.data=Uri.parse("https://studybear.tech/refund")
+                        drawerLayout.closeDrawers()
+                        startActivity(intent)
+                    }
+                    R.id.contact-> {
+                        val intent=Intent(Intent.ACTION_VIEW)
+                        intent.data=Uri.parse("https://studybear-79c4e.web.app/contact")
                         drawerLayout.closeDrawers()
                         startActivity(intent)
                     }
@@ -318,6 +304,11 @@ import java.lang.ref.WeakReference
             imageHome.setOnClickListener {
                 replaceFragment(HomeFragment(), "1", "Home", R.id.home, null, R.id.img_home)
             }
+
+            val banner=headerLayout.findViewById<AdView>(R.id.adViewHeader)
+            val adRequest = AdRequest.Builder().build()
+            banner.loadAd(adRequest)
+
 
 
         }

@@ -41,7 +41,7 @@ scrollView
                 android:fontFamily="@font/baloo_bhai"
                 android:text="@string/sign_in"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_40sdp"
+                android:textSize="@dimen/_35sdp"
                 android:textStyle="bold" />
 
             <TextView
@@ -66,10 +66,10 @@ scrollView
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
-                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
                 app:cardElevation="@dimen/_5sdp"
                 android:layout_gravity="center"
                 android:clickable="true"
@@ -80,7 +80,7 @@ scrollView
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/black"
+                    android:background="@color/browser_actions_bg_grey"
                     android:padding="@dimen/_5sdp">
 
                     <ImageView
@@ -99,7 +99,7 @@ scrollView
                         android:text="@string/sign_in_with_google"
                         android:textAlignment="center"
                         android:textSize="@dimen/_17sdp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
                         android:textStyle="bold"/>
 
@@ -112,7 +112,7 @@ scrollView
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:fontFamily="@font/roboto"
+                android:fontFamily="sans-serif-light"
                 android:text="@string/email_note"
                 android:textColor="@color/red"
                 android:textSize="@dimen/_12sdp"
@@ -124,16 +124,17 @@ scrollView
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/privileged_access"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
-                android:background="@drawable/card_border"
-                android:padding="@dimen/_4sdp"
                 android:clickable="true"
                 android:focusable="true"
+                android:fontFamily="@font/roboto"
                 android:foreground="?attr/selectableItemBackground"
-                android:textStyle="bold" />
+                android:minHeight="48dp"
+                android:padding="@dimen/_4sdp"
+                android:text="@string/privileged_access"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                />
 
 
 

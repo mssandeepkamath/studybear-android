@@ -11,7 +11,10 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -28,6 +31,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.sandeep.studybear.R
+import com.sandeep.studybear.activity.activity.LoginActivity
+import com.sandeep.studybear.activity.activity.MainActivity
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerView
 import com.thecode.aestheticdialogs.*
@@ -36,9 +42,6 @@ import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.xml.KonfettiView
 import java.util.concurrent.TimeUnit
-import com.sandeep.studybear.activity.activity.LoginActivity
-import com.sandeep.studybear.activity.activity.MainActivity
-import com.sandeep.studybear.R
 
 class AccountFragment : Fragment(), View.OnClickListener {
 
@@ -52,14 +55,14 @@ class AccountFragment : Fragment(), View.OnClickListener {
     lateinit var logOut: RelativeLayout
     lateinit var spinner: PowerSpinnerView
     lateinit var navigationView: NavigationView
-    private lateinit var database:DatabaseReference
-    lateinit var shimmer:ShimmerFrameLayout
-    private var user_points=0
-     private var total_uploads=0
-     private var total_views=0
-     lateinit var viewKonfetti:KonfettiView
+    private lateinit var database: DatabaseReference
+    lateinit var shimmer: ShimmerFrameLayout
+    private var user_points = 0
+    private var total_uploads = 0
+    private var total_views = 0
+    lateinit var viewKonfetti: KonfettiView
     lateinit var bottomNavigationView: BottomNavigationView
-     var flag=false
+    var flag = false
 
 
     @SuppressLint("CheckResult")
@@ -70,7 +73,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
         val view = inflater.inflate(R.layout.fragment_account, container, false)
         auth = FirebaseAuth.getInstance()
-        database= Firebase.database.reference
+        database = Firebase.database.reference
         imageView = view.findViewById(R.id.imgProfile)
         name = view.findViewById(R.id.txtName)
         email = view.findViewById(R.id.txtEmail)
@@ -78,28 +81,28 @@ class AccountFragment : Fragment(), View.OnClickListener {
         aboutUs = view.findViewById(R.id.lytAboutUs)
         reportBug = view.findViewById(R.id.lytReport)
         logOut = view.findViewById(R.id.lytLogOut)
-        shimmer=view.findViewById(R.id.lytShimmerAccount)
-        bottomNavigationView=(activity as MainActivity).findViewById(R.id.vwBottomNavigation)
+        shimmer = view.findViewById(R.id.lytShimmerAccount)
+        bottomNavigationView = (activity as MainActivity).findViewById(R.id.vwBottomNavigation)
         spinner = view.findViewById(R.id.spinnerSem)
-        spinner.lifecycleOwner= MainActivity()//prevent memory leakage
-        navigationView=(activity as MainActivity).findViewById(R.id.vwNavigation)
+        spinner.lifecycleOwner = MainActivity()//prevent memory leakage
+        navigationView = (activity as MainActivity).findViewById(R.id.vwNavigation)
         val current_user = auth.currentUser
         name.text = current_user?.displayName
         email.text = current_user?.email
-        viewKonfetti=view.findViewById(R.id.konfettiView)
+        viewKonfetti = view.findViewById(R.id.konfettiView)
         shimmer.startShimmer()
-       val ref= database.child("users").child(current_user!!.uid).child("semester")
-           ref.addListenerForSingleValueEvent(object:ValueEventListener
-        {
+        val ref = database.child("users").child(current_user!!.uid).child("semester")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val response=snapshot.value.toString().toInt()
-                spinner.selectItemByIndex(response-1)
+                val response = snapshot.value.toString().toInt()
+                spinner.selectItemByIndex(response - 1)
                 calculatePoints()
                 shimmer.hideShimmer()
             }
 
             override fun onCancelled(error: DatabaseError) {
-              Toast.makeText(activity ,"Sorry, Database error occurred!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Sorry, Database error occurred!", Toast.LENGTH_SHORT)
+                    .show()
             }
 
         })
@@ -108,7 +111,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
 
 
-        Glide.with(activity as Context).load(current_user?.photoUrl)
+        Glide.with(activity as Context).load(current_user.photoUrl)
             .placeholder(R.drawable.placeholder).listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -131,13 +134,17 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
             }).into(imageView)
 
-    spinner.setOnSpinnerItemSelectedListener(object :OnSpinnerItemSelectedListener<Any?>
-    {
-        override fun onItemSelected(oldIndex: Int, oldItem: Any?, newIndex: Int, newItem: Any?) {
-            ref.setValue((newIndex+1))
-        }
+        spinner.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<Any?> {
+            override fun onItemSelected(
+                oldIndex: Int,
+                oldItem: Any?,
+                newIndex: Int,
+                newItem: Any?,
+            ) {
+                ref.setValue((newIndex + 1))
+            }
 
-    })
+        })
         logOut.setOnClickListener(this)
         aboutUs.setOnClickListener(this)
         reportBug.setOnClickListener(this)
@@ -146,13 +153,11 @@ class AccountFragment : Fragment(), View.OnClickListener {
     }
 
 
-
     override fun onDestroyView() {
-        if(spinner.isShowing)
-        {
+        if (spinner.isShowing) {
             spinner.dismiss()
         }
-            super.onDestroyView()
+        super.onDestroyView()
     }
 
 
@@ -160,10 +165,9 @@ class AccountFragment : Fragment(), View.OnClickListener {
         when (v?.id) {
             R.id.lytPoints -> {
 
-                if(flag==false)
-                {
-                    flag=true
-                    val party= Party(
+                if (flag == false) {
+                    flag = true
+                    val party = Party(
                         speed = 0f,
                         maxSpeed = 30f,
                         damping = 0.9f,
@@ -176,7 +180,9 @@ class AccountFragment : Fragment(), View.OnClickListener {
                     calculatePoints()
                     Handler().postDelayed(
                         Runnable {
-                            AestheticDialog.Builder(activity as MainActivity, DialogStyle.FLASH, DialogType.SUCCESS)
+                            AestheticDialog.Builder(activity as MainActivity,
+                                DialogStyle.FLASH,
+                                DialogType.SUCCESS)
                                 .setTitle("Monthly Score!")
                                 .setMessage("Total points: $user_points\nUploads :$total_uploads\nViews: $total_views")
                                 .setCancelable(false)
@@ -186,15 +192,14 @@ class AccountFragment : Fragment(), View.OnClickListener {
                                 .setOnClickListener(object : OnDialogClickListener {
                                     override fun onClick(dialog: AestheticDialog.Builder) {
                                         dialog.dismiss()
-                                        flag=false
+                                        flag = false
                                     }
                                 })
                                 .show()
-                        },1000
+                        }, 1000
                     )
 
                 }
-
 
 
             }
@@ -203,15 +208,16 @@ class AccountFragment : Fragment(), View.OnClickListener {
                 navigationView.setCheckedItem(R.id.about_us)
                 bottomNavigationView.menu.clear()
                 bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
-                replaceFragment(AboutUsFragment(),"10","About us",R.id.about_us,null,true)
-                (activity as MainActivity).flagBottom=true
+                replaceFragment(AboutUsFragment(), "10", "About us", R.id.about_us, null, true)
+                (activity as MainActivity).flagBottom = true
             }
             R.id.lytReport -> {
                 navigationView.checkedItem?.isChecked = true
                 navigationView.setCheckedItem(R.id.report_bug)
                 val to = "teamstudybear@gmail.com"
                 val subject = "I FOUND A BUG IN STUDYBEAR ANDROID APP!"
-                val body = "Please clearly mention page name, bug description, and other useful details here."
+                val body =
+                    "Please clearly mention page name, bug description, and other useful details here."
                 val mailTo = "mailto:" + to +
                         "?&subject=" + Uri.encode(subject) +
                         "&body=" + Uri.encode(body)
@@ -228,50 +234,56 @@ class AccountFragment : Fragment(), View.OnClickListener {
         }
     }
 
-     fun calculatePoints()
-     {
-         val current_user=auth.currentUser
-         database.child("users").child(current_user!!.uid).addListenerForSingleValueEvent(
-             object :ValueEventListener
-             {
-                 override fun onDataChange(snapshot: DataSnapshot) {
-                     val res=snapshot.value as HashMap<*,*>?
+    fun calculatePoints() {
+        val current_user = auth.currentUser
+        database.child("users").child(current_user!!.uid).addListenerForSingleValueEvent(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val res = snapshot.value as HashMap<*, *>?
 
-                     user_points= ((res?.get("extrapoints")?.toString()?.toLong()
-                         ?: 0) * 1  + (res?.get("totaluploads")?.toString()?.toLong()
-                         ?: 0) * 20+ (res?.get("totalviews")?.toString()?.toLong()
-                         ?: 0) * 10).toInt()
-                     total_uploads= res?.get("totaluploads")?.toString()?.toInt() ?: 0
-                     total_views= res?.get("totalviews")?.toString()?.toInt() ?: 0
-                     shimmer.hideShimmer()
+                    user_points = ((res?.get("extrapoints")?.toString()?.toLong()
+                        ?: 0) * 1 + (res?.get("totaluploads")?.toString()?.toLong()
+                        ?: 0) * 20 + (res?.get("totalviews")?.toString()?.toLong()
+                        ?: 0) * 10).toInt()
+                    total_uploads = res?.get("totaluploads")?.toString()?.toInt() ?: 0
+                    total_views = res?.get("totalviews")?.toString()?.toInt() ?: 0
+                    shimmer.hideShimmer()
 
-                 }
+                }
 
-                 override fun onCancelled(error: DatabaseError) {
-                     Toast.makeText(activity,"Sorry, Database error occurred!",Toast.LENGTH_SHORT).show()
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(activity, "Sorry, Database error occurred!", Toast.LENGTH_SHORT)
+                        .show()
 
-                 }
-             }
-         )
-     }
+                }
+            }
+        )
+    }
 
-    fun replaceFragment(fragment: Fragment, tag: String, title: String, id1: Int,id2:Int?,flag:Boolean) {
+    fun replaceFragment(
+        fragment: Fragment,
+        tag: String,
+        title: String,
+        id1: Int,
+        id2: Int?,
+        flag: Boolean,
+    ) {
         if ((activity as MainActivity).flagBottom) {
             bottomNavigationView.menu.clear()
             bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu)
-            (activity as MainActivity).flagBottom=false
+            (activity as MainActivity).flagBottom = false
         }
-        (activity as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.lytFrame, fragment, tag).commit()
+        (activity as MainActivity).supportFragmentManager.beginTransaction()
+            .replace(R.id.lytFrame, fragment, tag).commit()
         navigationView.setCheckedItem(id1)
-        (activity as MainActivity).supportActionBar?.title=title
+        (activity as MainActivity).supportActionBar?.title = title
         navigationView.checkedItem?.isChecked = true
-        if(id2!=null)
+        if (id2 != null)
             bottomNavigationView.menu.findItem(id2).setChecked(flag)
     }
 
 
-
-    }
+}
 
 
 

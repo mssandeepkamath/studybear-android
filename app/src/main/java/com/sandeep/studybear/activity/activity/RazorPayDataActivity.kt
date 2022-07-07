@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -50,6 +52,9 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
             WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_razor_pay_data)
+        val mAdView1 = findViewById<AdView>(R.id.adViewPayment)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         Checkout.preload(getApplicationContext());
         textName = findViewById(R.id.txtRazorName)
         textEmail = findViewById(R.id.txtRazorEmail)

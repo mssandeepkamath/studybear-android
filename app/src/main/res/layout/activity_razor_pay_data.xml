@@ -184,9 +184,9 @@
                     android:layout_marginTop="@dimen/_25sdp"
                     android:textStyle="bold"
                     android:background="@drawable/card_border"
-                    android:backgroundTint="#009EFF"
+                    android:backgroundTint="#0192EC"
                     android:textSize="@dimen/_14sdp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     />
 
                 <TextView
@@ -208,7 +208,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/_50sdp"
             android:src="@drawable/company_logo"
             android:layout_gravity="center"
             android:scaleType="centerInside"
@@ -235,6 +235,17 @@
             android:textSize="@dimen/_25sdp"
             android:textStyle="bold"
             />
+
+
+        <com.google.android.gms.ads.AdView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/adViewPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:adSize="LARGE_BANNER"
+            app:adUnitId="ca-app-pub-5634416739025689/3831059836"
+            android:layout_gravity="center"/>
+
 
 
     </LinearLayout>

@@ -20,6 +20,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.sandeep.studybear.R
 import com.sandeep.studybear.activity.activity.MainActivity
 import com.sandeep.studybear.activity.util.ConnectionManager
@@ -47,6 +49,11 @@ class AboutUsFragment : Fragment(),View.OnClickListener {
     ): View? {
 
         val view= inflater.inflate(R.layout.fragment_about_us, container, false)
+        val mAdView1 = view.findViewById<AdView>(R.id.adViewAboutUs1)
+        val mAdView2 = view.findViewById<AdView>(R.id.adViewAboutUs2)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
+        mAdView2.loadAd(adRequest)
         shimmer = view.findViewById(R.id.lytShimmerAboutUs)
         shimmer.startShimmer()
         glideImageLoader(view)

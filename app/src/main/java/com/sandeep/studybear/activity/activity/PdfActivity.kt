@@ -37,7 +37,6 @@ import com.sandeep.studybear.R
          var runnable: Runnable? = null
          lateinit var database:DatabaseReference
          lateinit var auth:FirebaseAuth
-         var mInterstitialAd: InterstitialAd? = null
      }
 
 
@@ -49,15 +48,6 @@ import com.sandeep.studybear.R
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf)
 
-        var adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this,"ca-app-pub-5634416739025689/4190352175", adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                mInterstitialAd = null
-            }
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                mInterstitialAd = interstitialAd
-            }
-        })
 
         pdfView =findViewById(R.id.vwPdf)
         dialog = ProgressDialog(this@PdfActivity)
@@ -132,15 +122,7 @@ import com.sandeep.studybear.R
              }
          }
 
-     override fun onBackPressed() {
 
-         if (mInterstitialAd != null) {
-             mInterstitialAd?.setImmersiveMode(true)
-             mInterstitialAd?.show(this)
-
-         }
-         super.onBackPressed()
-     }
 
 
 }

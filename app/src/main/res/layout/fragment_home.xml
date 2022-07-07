@@ -350,35 +350,40 @@
                     android:contentDescription="@string/report_bugs"
                     android:scaleType="fitXY" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:background="@drawable/card_border"
+                        android:fontFamily="@font/roboto"
+                        android:padding="@dimen/_8sdp"
+                        android:text="@string/experience_our_features"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
                 <com.google.android.gms.ads.AdView
                     xmlns:ads="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/adViewHomeFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    ads:adSize="LARGE_BANNER"
-                    android:layout_marginTop="@dimen/_25sdp"
+                    ads:adSize="MEDIUM_RECTANGLE"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:layout_gravity="center"
                     ads:adUnitId="ca-app-pub-5634416739025689/8636562326">
                 </com.google.android.gms.ads.AdView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:background="@drawable/card_border"
-                    android:fontFamily="@font/roboto"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/experience_our_features"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold" />
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardNotes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"

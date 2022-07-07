@@ -54,10 +54,17 @@
             android:id="@+id/report_bug"
             android:icon="@drawable/ic_bugs"
             android:title="@string/report_bugs" />
+
         <item
             android:id="@+id/about_us"
             android:icon="@drawable/ic_about_us"
             android:title="@string/about_us" />
+
+        <item
+            android:id="@+id/contact"
+            android:icon="@drawable/ic_contact"
+            android:title="@string/contact_us_website" />
+
         <item
             android:id="@+id/privacy_policy"
             android:icon="@drawable/ic_privacy"

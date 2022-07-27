@@ -51,7 +51,8 @@ import com.sandeep.studybear.R
 
         pdfView =findViewById(R.id.vwPdf)
         dialog = ProgressDialog(this@PdfActivity)
-        dialog.setMessage("Fetching...")
+        dialog.setMessage("Fetching...\nPlease wait if pdf remains blank")
+        dialog.setCancelable(false)
         dialog.show()
         urls = intent.getStringExtra("url").toString()
         uid = intent.getStringExtra("uid").toString()
@@ -95,7 +96,6 @@ import com.sandeep.studybear.R
       class RetrivePdfStream : AsyncTask<String?, Void?, InputStream?>() {
 
              override fun onPostExecute(inputStream: InputStream?) {
-                 println("The response $inputStream")
                  pdfView.fromStream(inputStream).load()
                  Handler().postDelayed(
                      {

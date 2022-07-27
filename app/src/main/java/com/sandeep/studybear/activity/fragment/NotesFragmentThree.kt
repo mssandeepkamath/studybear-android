@@ -73,6 +73,7 @@ class NotesFragmentThree : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_notes, container, false)
         val mAdView1 = view.findViewById<AdView>(R.id.adView7)
+
         val adRequest = AdRequest.Builder().build()
         mAdView1.loadAd(adRequest)
         appBar = (activity as MainActivity).findViewById(R.id.lytAppBar)
@@ -96,11 +97,21 @@ class NotesFragmentThree : Fragment() {
         storageReference = FirebaseStorage.getInstance().reference
         auth = FirebaseAuth.getInstance()
         uid=auth.currentUser?.uid
+        val email=auth.currentUser?.email
         topic = arguments?.getString("topic")
         subject = arguments?.getString("subjects")
         unit = arguments?.getString("units")
         semester = arguments?.getString("semester")
-        println("Response is4: ${topic},$subject,$unit,$semester")
+        print("Email:$email")
+        if((email!="mssandeepk.is20@rvce.edu.in" && email!="teststudybear@gmail.com" && email!="rakshithdhegde.is20@rvce.edu.in") && topic == "STUDYBEAR NOTES" )
+        {
+            fab.visibility=View.GONE
+        }
+        else
+        {
+            fab.visibility=View.VISIBLE
+        }
+
         loadContents(topic.toString(), subject, unit, semester)
 
         refresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
@@ -164,7 +175,7 @@ class NotesFragmentThree : Fragment() {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if (snapshot.value != "") {
                                         val res = snapshot.value as HashMap<*, *>?
-                                        println("Response is3: $res")
+
                                         if (res != null) {
                                             for (data in res) {
                                                 val myUser: UserDataClass =
@@ -237,6 +248,7 @@ class NotesFragmentThree : Fragment() {
             val dialog = ProgressDialog(activity as MainActivity)
             dialog.setMessage("Uploading..please wait")
             dialog.show()
+            dialog.setCancelable(false)
             uri = data?.data!!
                 val timestamp = "" + System.currentTimeMillis()
                 val filepath = storageReference.child("$timestamp.pdf")
@@ -306,8 +318,6 @@ class NotesFragmentThree : Fragment() {
                     }
 
             }
-
-
     }
 
 

@@ -44,8 +44,6 @@ class AccountVerificationActivity : AppCompatActivity(), AccessControlInterface 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_verification)
         myTextView = findViewById(R.id.txt_type_writter_two)
@@ -91,7 +89,7 @@ class AccountVerificationActivity : AppCompatActivity(), AccessControlInterface 
 
         val current_user = auth.currentUser
         val email_id = current_user?.email
-        println("Email is : ${email_id.toString().trim().toLowerCase() == "teststudybear@gmail.com"}")
+//        println("Email is : ${email_id.toString().trim().toLowerCase() == "teststudybear@gmail.com"}")
         Handler().postDelayed(
             {
                 if(current_user==null)
@@ -102,30 +100,34 @@ class AccountVerificationActivity : AppCompatActivity(), AccessControlInterface 
                     intentProvider(this@AccountVerificationActivity,
                         LoginActivity::class.java)
                 }
-                else if(email_id.toString().trim().toLowerCase() == "teststudybear@gmail.com")
-                {
-                    message(this@AccountVerificationActivity,"Welcome to Studybear")
-                    intentProvider(this@AccountVerificationActivity,
-                        MainActivity::class.java)
-                }
-                else if(email_id!!.contains("@rvce.edu.in",true))
+//                else if(email_id.toString().trim().toLowerCase() == "teststudybear@gmail.com")
+//                {
+//                    message(this@AccountVerificationActivity,"Welcome to Studybear")
+//                    intentProvider(this@AccountVerificationActivity,
+//                        MainActivity::class.java)
+//                }
+                else
                 {
                     accessCheck(this,"Welcome to Studybear",database,current_user)
                 }
-                else
-                {
-                    message(this@AccountVerificationActivity,"Please use RVCE email id")
-                    googleSignInClient.signOut()
-                    current_user.delete()
-                    Handler().postDelayed(
-                        Runnable {
-
-                            intentProvider(this@AccountVerificationActivity,
-                              LoginActivity::class.java)
-
-                        },1000
-                    )
-                }
+//                else if(email_id!!.contains("@rvce.edu.in",true))
+//                {
+//                    accessCheck(this,"Welcome to Studybear",database,current_user)
+//                }
+//                else
+//                {
+//                    message(this@AccountVerificationActivity,"Please use RVCE email id")
+//                    googleSignInClient.signOut()
+//                    current_user.delete()
+//                    Handler().postDelayed(
+//                        Runnable {
+//
+//                            intentProvider(this@AccountVerificationActivity,
+//                              LoginActivity::class.java)
+//
+//                        },1000
+//                    )
+//                }
             }, 4000
         )
 

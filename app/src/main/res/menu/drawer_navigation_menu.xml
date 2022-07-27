@@ -20,18 +20,18 @@
             android:id="@+id/news"
             android:icon="@drawable/ic_news"
             android:title="@string/news" />
+<!--        <item-->
+<!--            android:id="@+id/circular"-->
+<!--            android:icon="@drawable/ic_circular"-->
+<!--            android:title="@string/circular" />-->
         <item
-            android:id="@+id/circular"
-            android:icon="@drawable/ic_circular"
-            android:title="@string/circular" />
-        <item
-            android:id="@+id/teachers"
-            android:icon="@drawable/ic_teacher"
-            android:title="@string/teacher" />
-        <item
-            android:id="@+id/leaderboard"
-            android:icon="@drawable/ic_leader_board"
-            android:title="@string/leaderboard" />
+            android:id="@+id/memes"
+            android:icon="@drawable/ic_meme"
+            android:title="Memes" />
+<!--        <item-->
+<!--            android:id="@+id/leaderboard"-->
+<!--            android:icon="@drawable/ic_leader_board"-->
+<!--            android:title="@string/leaderboard" />-->
         <item
             android:id="@+id/account"
             android:icon="@drawable/ic_account"

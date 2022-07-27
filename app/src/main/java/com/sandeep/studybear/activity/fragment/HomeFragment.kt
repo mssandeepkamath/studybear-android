@@ -73,14 +73,14 @@ class HomeFragment : Fragment(),View.OnClickListener {
         R.id.imgTwo to "https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png",
         R.id.imgThree to "https://i.ibb.co/DKSbNk8/business-3d-min.png",
         R.id.imgFour to "https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png",
-        R.id.imgFive to "https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png",
+        R.id.imgFive to "https://i.ibb.co/rd3fMDh/meme-2.png",
         R.id.imgSix to "https://i.ibb.co/CVXb3fh/business-3d-341-min.png",
-        R.id.gifRewardBanner to "https://i.ibb.co/vh1Qc7M/ezgif-com-gif-maker-17.gif",
+        R.id.gifRewardBanner to "https://i.ibb.co/PYJ8bCH/banner-gif-new.gif",
         R.id.imgNotes to "https://i.ibb.co/8xRLRcr/notes.gif",
         R.id.imgDiscuss to "https://i.ibb.co/VYb00n7/discuss.gif",
         R.id.imgEvents to "https://i.ibb.co/C2Qgt8Z/coding-events.gif",
         R.id.imgNews to "https://i.ibb.co/vsrt6ZH/news.gif",
-        R.id.imgTeachers to "https://i.ibb.co/wcRMxWs/teachers.gif",
+        R.id.imgTeachers to "https://i.ibb.co/pXMZzJ0/memee.png",
         )
 
 
@@ -165,12 +165,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         myTextView.setOnClickListener(this)
 
 
-     rewardBanner.setOnLongClickListener {
-         val intent=Intent(Intent.ACTION_VIEW)
-         intent.data= Uri.parse("https://studybear-79c4e.web.app/leaderboard")
-         (activity as MainActivity).startActivity(intent)
-         true
-     }
+
 
 
 
@@ -226,10 +221,9 @@ class HomeFragment : Fragment(),View.OnClickListener {
             }
             R.id.cardFive  ->
             {
-
                 bottomNavigationView.menu.clear()
                 bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
-                replaceFragment(TeachersFragment(),"8","Teachers",R.id.teachers,null,true)
+                replaceFragment(MemeFragment(), "8", "Memes", R.id.memes, null, true)
                 (activity as MainActivity).flagBottom=true
             }
             R.id.cardSix ->
@@ -266,7 +260,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
             R.id.cardTeachers  ->
             {  bottomNavigationView.menu.clear()
                 bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
-                replaceFragment(TeachersFragment(), "8", "Teachers", R.id.teachers, null, true)
+                replaceFragment(MemeFragment(), "8", "Memes", R.id.memes, null, true)
                 (activity as MainActivity).flagBottom=true
             }
             R.id.txt_type_writter->

@@ -22,6 +22,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -62,6 +65,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
     private var total_views = 0
     lateinit var viewKonfetti: KonfettiView
     lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var googleSignInClient: GoogleSignInClient
     var flag = false
 
 
@@ -90,6 +94,11 @@ class AccountFragment : Fragment(), View.OnClickListener {
         name.text = current_user?.displayName
         email.text = current_user?.email
         viewKonfetti = view.findViewById(R.id.konfettiView)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(activity as Context, gso)
         shimmer.startShimmer()
         val ref = database.child("users").child(current_user!!.uid).child("semester")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -227,6 +236,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
             }
             R.id.lytLogOut -> {
                 auth.signOut()
+                googleSignInClient.signOut()
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
                 (activity as MainActivity).finish()

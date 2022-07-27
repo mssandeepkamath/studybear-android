@@ -2,6 +2,7 @@ package com.sandeep.studybear.activity.activity
 
 import android.content.Intent
 import android.graphics.PorterDuff
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -48,7 +49,8 @@ class LoginActivity : AppCompatActivity() {
         progressBarVisibility(R.color.white)
 
         access.setOnClickListener {
-            val intent=Intent(this@LoginActivity,EmailLoginActivity::class.java)
+            val intent=Intent(Intent.ACTION_VIEW)
+            intent.data=Uri.parse("https://www.privacypolicygenerator.info/live.php?token=J29fb134XZHJRHx4NyX27uXp1V30owjA")
             startActivity(intent)
         }
 

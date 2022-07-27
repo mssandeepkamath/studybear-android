@@ -158,7 +158,7 @@ class NotesFragment : Fragment() {
                         {
                             empty_box.visibility=View.VISIBLE
                             progressBar.visibility = View.GONE
-                            val snack = Snackbar.make((activity as MainActivity).findViewById(R.id.lytCoordinator),"Coming Soon!, Please change your semester in accounts",50000)
+                            val snack = Snackbar.make((activity as MainActivity).findViewById(R.id.lytCoordinator),"Please change your semester in account, if empty!",3000)
                             snack.setAction("Okay", View.OnClickListener {
                                 snack.dismiss()
                             })

@@ -3,7 +3,7 @@
     <string name="company_logo">company_logo</string>
     <string name="sign_in">Sign In</string>
     <string name="welcome_to_study_bear">Welcome to Study Bear</string>
-    <string name="email_note">Please use RVCE Google email-id only</string>
+    <string name="email_note">Please use legit Google Email_Id</string>
     <string name="firebase_logo">Firebase Logo</string>
     <string name="google_logo">Google Logo</string>
     <string name="privacy_policy">Privacy policy</string>
@@ -12,11 +12,11 @@
     <string name="coding_events">Coding events</string>
     <string name="news">News</string>
     <string name="circular">Circulars</string>
-    <string name="teacher">Teachers</string>
+    <string name="memes">Have some fun along with studies, presenting memes from Redit! </string>
     <string name="leaderboard">Leaderboard</string>
     <string name="notes">Notes</string>
     <string name="discuss">Discuss</string>
-    <string name="report_bugs">Bug bounty</string>
+    <string name="report_bugs">Feedback</string>
     <string name="about_us">About us</string>
     <string name="company_name_caps">STUDY BEAR</string>
     <string name="home">Home</string>
@@ -35,7 +35,7 @@
     <string name="here_s_what_you_have_achieved">Here\'s what you have achieved.</string>
     <string name="learn_more_about_studybear">Learn more about Studybear.</string>
     <string name="help_us_in_making_studybear_bug_free">Help us in making Studybear bug free.</string>
-    <string name="feedback_report_bug">Bug bounty/Feedback</string>
+    <string name="feedback_report_bug">Feedback</string>
     <string name="log_out">Log out</string>
     <string name="get_back_soon">Get back soon.</string>
     <string name="explore_notes">EXPLORE NOTES</string>
@@ -67,7 +67,7 @@
     <string name="phone_number">Phone number</string>
     <string name="phone_number_razor">Phone number</string>
     <string name="choose_your_semester">Choose your Semester</string>
-    <string name="procced_to_payment">Proceed to payment</string>
+    <string name="procced_to_payment">Proceed to Studybear</string>
     <string name="note_we_do_not_sell_your_data">Note: Studybear do not sell your data</string>
     <string name="_10_digit_phone_number">10 digit phone number</string>
     <string name="choose_a_unit">Choose a unit</string>
@@ -80,10 +80,13 @@
     <string name="privacypolicy">Privacy policy</string>
     <string name="credits">Credits</string>
     <string name="refund_policy">Refund policy</string>
-    <string name="privileged_access"><u>Email access</u></string>
+    <string name="privileged_access"><u>Privacy policy</u></string>
     <string name="about_us_description">At Studybear, we aspire to change the path one takes to be an engineer. We aim to provide a platform to upload and read notes... We also provide students with daily tech news, circulars and also help them in connecting with teachers. Students who upload their notes would be given Goodies and vouchers as a token of Gratitude. We aim in making a enginnering\'s student life easy.</string>
     <string name="important_message">Students are requested to login using RVCE account in * GOOGLE SIGN IN * only!</string>
     <string name="contact_us_website">Contact us</string>
+    <string name="meme">Bored?, taste some memes</string>
+    <string name="memes_name">Memes</string>
+    <string name="explore_memes">EXPLORE MEMES</string>
 
 
 </resources>

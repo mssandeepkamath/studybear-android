@@ -59,8 +59,6 @@ import java.lang.ref.WeakReference
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -70,11 +68,11 @@ import java.lang.ref.WeakReference
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         val current_user = auth.currentUser
         val email_id = current_user?.email
-        val flag = if (email_id == null) true
-        else if(email_id.toString().trim().toLowerCase() == "teststudybear@gmail.com") false
-        else !email_id.contains("@rvce.edu.in", true)
+        val flag = if(email_id == null) true
+        else false
 
-        if (flag) {
+
+        if (false) {
             Toast.makeText(this, "Please use RVCE email id", Toast.LENGTH_LONG).show()
             googleSignInClient.signOut()
             current_user!!.delete()
@@ -152,38 +150,41 @@ import java.lang.ref.WeakReference
                         flagBottom = true
                     }
 
-                    R.id.circular -> {
+//                    R.id.circular -> {
+//                        if (flagBottom == false) {
+//                            bottomNavigationView.menu.clear()
+//                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
+//                        }
+//                        replaceFragment(CircularFragment(),
+//                            "7",
+//                            "Circulars",
+//                            null,
+//                            it,
+//                            R.id.circular)
+//                        flagBottom = true
+//                    }
+                    R.id.memes -> {
                         if (flagBottom == false) {
                             bottomNavigationView.menu.clear()
                             bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
                         }
-                        replaceFragment(CircularFragment(),
-                            "7",
-                            "Circulars",
-                            null,
-                            it,
-                            R.id.circular)
-                        flagBottom = true
-                    }
-                    R.id.teachers -> {
-                        if (flagBottom == false) {
-                            bottomNavigationView.menu.clear()
-                            bottomNavigationView.inflateMenu(R.menu.new_bottom_navigation_menu)
-                        }
-                        replaceFragment(TeachersFragment(),
+                        replaceFragment(MemeFragment(),
                             "8",
-                            "Teachers",
+                            "Memes",
                             null,
                             it,
-                            R.id.teachers)
+                            R.id.memes)
                         flagBottom = true
+
                     }
-                    R.id.leaderboard -> {
-                                val intent=Intent(Intent.ACTION_VIEW)
-                                intent.data=Uri.parse("https://studybear.tech/leaderboard")
-                                drawerLayout.closeDrawers()
-                                startActivity(intent)
-                    }
+
+//                    R.id.leaderboard -> {
+//                                val intent=Intent(Intent.ACTION_VIEW)
+//                                intent.data=Uri.parse("https://studybear.tech/leaderboard")
+//                                drawerLayout.closeDrawers()
+//                                startActivity(intent)
+//                    }
+
                     R.id.report_bug -> {
                         val to = "teamstudybear@gmail.com"
                         val subject = "I FOUND A BUG IN STUDYBEAR ANDROID APP!"

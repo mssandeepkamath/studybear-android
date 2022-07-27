@@ -32,7 +32,7 @@ import com.skydoves.powerspinner.PowerSpinnerView
 import org.json.JSONObject
 
 
-class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener {
+class RazorPayDataActivity : AppCompatActivity() {
 
     lateinit var textName: TextView
     lateinit var textEmail: TextView
@@ -95,8 +95,8 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
 
                     val phonenumber = editPhone.text.toString()
                     user =
-                        com.sandeep.studybear.activity.model.UserDataClass(name, email, phonenumber,
-                            photourl.toString(), false, semester, 0, 0, 0, null, null, null)
+                    UserDataClass(name, email, phonenumber,
+                            photourl.toString(), true, semester, 0, 0, 0, "1", "1", "1")
                     database.child("users").child(current_user.uid)
                         .setValue(user, object : DatabaseReference.CompletionListener {
                             override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
@@ -106,13 +106,17 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
                                         "Sorry,Something went wrong..",
                                         Toast.LENGTH_SHORT).show()
                                 }
+                                else{
+                                    val intent=Intent(this@RazorPayDataActivity,AccountVerificationActivity()::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }
                             }
                         })
-                    startPayment(email!!, phonenumber)
+
                 } else {
                     ConnectionManager().createDialog(findViewById(R.id.parentRazor), this)
                 }
-
             } else {
                 val message = if (flag == false) {
                     "Choose a semester"
@@ -123,8 +127,6 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
 
             }
         }
-
-
     }
 
     override fun onBackPressed() {
@@ -134,56 +136,52 @@ class RazorPayDataActivity : AppCompatActivity(), PaymentResultWithDataListener 
         } else {
             super.onBackPressed()
         }
-
     }
 
+//    private fun startPayment(email: String, phoneNumber: String) {
+//
+//        val checkout = Checkout()
+//        checkout.setKeyID("rzp_live_9JdTljlGTGUHDM")
+//        checkout.setImage(R.drawable.company_logo)
+//        val activity: Activity = this
+//        try {
+//            val options = JSONObject()
+//            options.put("name", "Studybear")
+//            options.put("description", "Studybear access plan")
+//            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
+//            options.put("theme.color", "#3399cc")
+//            options.put("currency", "INR")
+//            options.put("amount", "3000") //pass amount in currency subunits
+//            options.put("prefill.email", email)
+//            options.put("prefill.contact", phoneNumber)
+//            val retryObj = JSONObject()
+//            retryObj.put("enabled", true)
+//            retryObj.put("max_count", 4)
+//            options.put("retry", retryObj)
+//            checkout.open(activity, options)
+//        } catch (e: Exception) {
+//            Toast.makeText(this, "Sorry, Something went wrong..", Toast.LENGTH_SHORT).show()
+//            Log.e("Error", "Error in starting Razorpay Checkout", e);
+//        }
+//    }
 
-    private fun startPayment(email: String, phoneNumber: String) {
-
-        val checkout = Checkout()
-        checkout.setKeyID("rzp_live_9JdTljlGTGUHDM")
-        checkout.setImage(R.drawable.company_logo)
-        val activity: Activity = this
-        try {
-            val options = JSONObject()
-            options.put("name", "Studybear")
-            options.put("description", "Studybear access plan")
-            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
-            options.put("theme.color", "#3399cc")
-            options.put("currency", "INR")
-            options.put("amount", "3000") //pass amount in currency subunits
-            options.put("prefill.email", email)
-            options.put("prefill.contact", phoneNumber)
-            val retryObj = JSONObject()
-            retryObj.put("enabled", true)
-            retryObj.put("max_count", 4)
-            options.put("retry", retryObj)
-            checkout.open(activity, options)
-        } catch (e: Exception) {
-            Toast.makeText(this, "Sorry, Something went wrong..", Toast.LENGTH_SHORT).show()
-            Log.e("Error", "Error in starting Razorpay Checkout", e);
-        }
-    }
-
-
-    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
-        val uid = auth.currentUser!!.uid
-        reference?.child("paidbit")?.setValue(true)
-        reference?.child("razorpayorderid")?.setValue(p1?.orderId)
-        reference?.child("razorpaysignature")?.setValue(p1?.signature)
-        reference?.child("razorpaypaymentid")?.setValue(p1?.paymentId)
-        Toast.makeText(this@RazorPayDataActivity, "Payment successful", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this@RazorPayDataActivity, com.sandeep.studybear.activity.activity.AccountVerificationActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-
-    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
-        Toast.makeText(this, "Payment unsuccessful", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this@RazorPayDataActivity, com.sandeep.studybear.activity.activity.AccountVerificationActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
+//    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
+//        val uid = auth.currentUser!!.uid
+//        reference?.child("paidbit")?.setValue(true)
+//        reference?.child("razorpayorderid")?.setValue(p1?.orderId)
+//        reference?.child("razorpaysignature")?.setValue(p1?.signature)
+//        reference?.child("razorpaypaymentid")?.setValue(p1?.paymentId)
+//        Toast.makeText(this@RazorPayDataActivity, "Payment successful", Toast.LENGTH_SHORT).show()
+//        val intent = Intent(this@RazorPayDataActivity, com.sandeep.studybear.activity.activity.AccountVerificationActivity::class.java)
+//        startActivity(intent)
+//        finish()
+//    }
+//
+//    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
+//        Toast.makeText(this, "Payment unsuccessful", Toast.LENGTH_SHORT).show()
+//        val intent = Intent(this@RazorPayDataActivity, com.sandeep.studybear.activity.activity.AccountVerificationActivity::class.java)
+//        startActivity(intent)
+//        finish()
+//    }
 
 }

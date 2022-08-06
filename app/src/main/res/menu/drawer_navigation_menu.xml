@@ -37,6 +37,12 @@
             android:icon="@drawable/ic_account"
             android:title="@string/account" />
 
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_about_us"
+            android:title="@string/about_us" />
+
+
 
     </group>
 
@@ -55,10 +61,6 @@
             android:icon="@drawable/ic_bugs"
             android:title="@string/report_bugs" />
 
-        <item
-            android:id="@+id/about_us"
-            android:icon="@drawable/ic_about_us"
-            android:title="@string/about_us" />
 
         <item
             android:id="@+id/contact"
@@ -77,10 +79,7 @@
             android:id="@+id/credits"
             android:icon="@drawable/ic_credits"
             android:title="@string/credits" />
-        <item
-            android:id="@+id/refund"
-            android:icon="@drawable/ic_privacy"
-            android:title="@string/refund_policy" />
+
 
     </group>
 

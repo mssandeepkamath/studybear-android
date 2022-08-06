@@ -10,16 +10,14 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_500sdp"
+        android:layout_height="@dimen/_400sdp"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
-        tools:srcCompat="@tools:sample/avatars"
-       />
-
+        tools:srcCompat="@tools:sample/avatars" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,12 +27,12 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
             android:layout_centerInParent="true"
             android:indeterminate="true"
             app:indicatorColor="@color/red"
-            app:indicatorSize="@dimen/_100sdp"
+            app:indicatorSize="@dimen/_75sdp"
             app:trackColor="@color/blue"
             app:trackThickness="@dimen/_6sdp" />
 
@@ -47,40 +45,37 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/_65sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:orientation="horizontal"
         android:weightSum="1">
 
 
-        <Button
+        <ImageView
             android:id="@+id/share"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_1sdp"
             android:layout_weight="0.5"
-            android:backgroundTint="@color/red"
             android:padding="@dimen/_5sdp"
-            android:text="share"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
+            android:src="@drawable/sharing"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:textStyle="bold" />
 
 
-        <Button
+        <ImageView
             android:id="@+id/next"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginStart="@dimen/_1sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_1sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:layout_weight="0.5"
-            android:backgroundTint="@color/blue"
-            android:padding="@dimen/_5sdp"
-            android:text="next"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            android:textStyle="bold" />
-
-
+            android:src="@drawable/right_arrow" />
     </LinearLayout>
 
 

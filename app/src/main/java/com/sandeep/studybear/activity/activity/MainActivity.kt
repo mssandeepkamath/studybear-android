@@ -251,12 +251,7 @@ import java.lang.ref.WeakReference
                         drawerLayout.closeDrawers()
                         startActivity(intent)
                     }
-                    R.id.refund -> {
-                        val intent=Intent(Intent.ACTION_VIEW)
-                        intent.data=Uri.parse("https://studybear.tech/refund")
-                        drawerLayout.closeDrawers()
-                        startActivity(intent)
-                    }
+
                     R.id.contact-> {
                         val intent=Intent(Intent.ACTION_VIEW)
                         intent.data=Uri.parse("https://studybear-79c4e.web.app/contact")

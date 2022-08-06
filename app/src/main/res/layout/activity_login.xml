@@ -132,8 +132,8 @@ scrollView
                 android:padding="@dimen/_4sdp"
                 android:text="@string/privileged_access"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="normal"
                 />
 
 

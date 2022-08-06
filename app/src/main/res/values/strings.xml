@@ -3,7 +3,7 @@
     <string name="company_logo">company_logo</string>
     <string name="sign_in">Sign In</string>
     <string name="welcome_to_study_bear">Welcome to Study Bear</string>
-    <string name="email_note">Please use legit Google Email_Id</string>
+    <string name="email_note">Please avoid fake Email id\'s</string>
     <string name="firebase_logo">Firebase Logo</string>
     <string name="google_logo">Google Logo</string>
     <string name="privacy_policy">Privacy policy</string>
@@ -81,7 +81,7 @@
     <string name="credits">Credits</string>
     <string name="refund_policy">Refund policy</string>
     <string name="privileged_access"><u>Privacy policy</u></string>
-    <string name="about_us_description">At Studybear, we aspire to change the path one takes to be an engineer. We aim to provide a platform to upload and read notes... We also provide students with daily tech news, circulars and also help them in connecting with teachers. Students who upload their notes would be given Goodies and vouchers as a token of Gratitude. We aim in making a enginnering\'s student life easy.</string>
+    <string name="about_us_description">Our goal at Studybear is to alter the route that one takes to become an engineer(IT). We want to offer a place where people may upload and read notes. We also give students access to daily tech news, coding event announcements, memes, and more! . By expanding the Studybear family, we hope to make life easier for students pursuing engineering(CSE/ISE/IT/AI/DS).\n\nWe would like to express our gratitude to Dr. B M Sagar (Professor and HOD of ISE, R V College of Engineering) for his constant support and direction.</string>
     <string name="important_message">Students are requested to login using RVCE account in * GOOGLE SIGN IN * only!</string>
     <string name="contact_us_website">Contact us</string>
     <string name="meme">Bored?, taste some memes</string>

@@ -48,6 +48,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment(),View.OnClickListener {
 
     lateinit var myTextView: TextView
+    lateinit var auth:FirebaseAuth
     lateinit var shimmer: ShimmerFrameLayout
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var drawerLayout: DrawerLayout
@@ -75,7 +76,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         R.id.imgFour to "https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png",
         R.id.imgFive to "https://i.ibb.co/rd3fMDh/meme-2.png",
         R.id.imgSix to "https://i.ibb.co/CVXb3fh/business-3d-341-min.png",
-        R.id.gifRewardBanner to "https://i.ibb.co/PYJ8bCH/banner-gif-new.gif",
+        R.id.gifRewardBanner to "https://i.ibb.co/nqJGQmY/Copy-of-banner-studybear-Portrait-1.gif",
         R.id.imgNotes to "https://i.ibb.co/8xRLRcr/notes.gif",
         R.id.imgDiscuss to "https://i.ibb.co/VYb00n7/discuss.gif",
         R.id.imgEvents to "https://i.ibb.co/C2Qgt8Z/coding-events.gif",
@@ -94,6 +95,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         val adRequest = AdRequest.Builder().build()
         mAdView1.loadAd(adRequest)
         myTextView = view.findViewById(R.id.txt_type_writter)
+        auth=FirebaseAuth.getInstance()
         shimmer = view.findViewById(R.id.lytShimmer)
         refresh=view.findViewById(R.id.parentViewHome)
         refresh.setColorScheme(R.color.black);
@@ -112,10 +114,11 @@ class HomeFragment : Fragment(),View.OnClickListener {
         cardNews=view.findViewById(R.id.cardNews)
         cardTeachers=view.findViewById(R.id.cardTeachers)
         rewardBanner=view.findViewById(R.id.gifRewardBanner)
+
         var handler: Handler = Handler()
         var runnable: Runnable? = null
         shimmer.startShimmer()
-        myTextView.typeWrite(this,"QUESTION OF THE DAY",50L)
+        myTextView.typeWrite(this,"Welcome, ${auth.currentUser?.displayName}",50L)
         glideImageLoader(view)
 
         handler.postDelayed(Runnable {
@@ -162,7 +165,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         cardEvents.setOnClickListener(this)
         cardNews.setOnClickListener(this)
         cardTeachers  .setOnClickListener(this)
-        myTextView.setOnClickListener(this)
+//        myTextView.setOnClickListener(this)
 
 
 
@@ -263,41 +266,6 @@ class HomeFragment : Fragment(),View.OnClickListener {
                 replaceFragment(MemeFragment(), "8", "Memes", R.id.memes, null, true)
                 (activity as MainActivity).flagBottom=true
             }
-            R.id.txt_type_writter->
-            {
-                Toast.makeText(activity,"Loading..",Toast.LENGTH_SHORT).show()
-                    val database=Firebase.database.reference
-                val auth=FirebaseAuth.getInstance()
-                val ref = database.child("users").child(auth.currentUser?.uid.toString())
-                    .child("extrapoints")
-                ref.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        var response = snapshot.value.toString().toInt()
-                        response += 1
-                        ref.setValue(response, object : DatabaseReference.CompletionListener {
-                            override fun onComplete(error: DatabaseError?, ref: DatabaseReference) {
-                                if (error != null) {
-                                    println("Error in writting")
-                                }
-                                else
-                                {
-                                    val intent= Intent(Intent.ACTION_VIEW)
-                                    intent.data= Uri.parse("https://practice.geeksforgeeks.org/problem-of-the-day")
-                                    (activity as MainActivity).startActivity(intent)
-                                }
-                            }
-                        })
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        println("Error in reading")
-                    }
-
-                })
-
-
-            }
-
         }
     }
 

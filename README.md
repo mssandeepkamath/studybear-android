@@ -5,15 +5,14 @@
 https://play.google.com/store/apps/details?id=com.sandeep.studybear
 
 ## Previews:
-
-![1](https://user-images.githubusercontent.com/90695071/183243329-f9a369b9-7a97-4bb0-af69-81ac2dbac7e6.png)
-![2](https://user-images.githubusercontent.com/90695071/183243340-e213e777-e2cd-4138-8a22-4de1d3cb4b0d.png)
-![3](https://user-images.githubusercontent.com/90695071/183243342-baaddec8-8712-4a1d-ad1d-8c1868d7506f.png)
-![4](https://user-images.githubusercontent.com/90695071/183243343-d039754f-40e7-4acd-b7ee-3fd4626b6f7d.png)
-![5](https://user-images.githubusercontent.com/90695071/183243344-21b24b1a-f982-4ffc-b3c8-1965daf3832b.png)
-![6](https://user-images.githubusercontent.com/90695071/183243345-50649c43-b4dd-4c25-9c3d-02f6b5e99d9f.png)
-![7](https://user-images.githubusercontent.com/90695071/183243348-9cf610b9-28f9-47b5-9e1d-2260d7b06762.png)
-![8](https://user-images.githubusercontent.com/90695071/183243353-a98bc741-f76f-4824-a453-d27312a34fae.png)
+![1](https://user-images.githubusercontent.com/90695071/183243564-d4b32928-a8c4-462b-b37f-05cd7b3f7cf0.jpg)
+![2](https://user-images.githubusercontent.com/90695071/183243561-e7eebdf3-8ef1-4044-978b-4ce29d1109bf.jpg)
+![3](https://user-images.githubusercontent.com/90695071/183243556-19e13207-dbe1-4e50-8f5b-2ed085fbb339.jpg)
+![4](https://user-images.githubusercontent.com/90695071/183243577-6fd14e3e-7b4d-4586-bc7b-276bc13838e0.jpg)
+![5](https://user-images.githubusercontent.com/90695071/183243580-a880cf1e-3243-4940-a2f8-ad2dd2b4332d.jpg)
+![6](https://user-images.githubusercontent.com/90695071/183243585-9faa3cb3-e5e2-4d8f-9a75-8727b040417b.jpg)
+![7](https://user-images.githubusercontent.com/90695071/183243592-056ac804-dbb0-4eca-90a2-4ad8a5b0f833.jpg)
+![8](https://user-images.githubusercontent.com/90695071/183243595-44db0fe9-1ddc-4f96-bae4-9919e7c32b3f.jpg)
 
 ## Details:
 

@@ -36,7 +36,7 @@ class RazorPayDataActivity : AppCompatActivity() {
 
     lateinit var textName: TextView
     lateinit var textEmail: TextView
-    lateinit var editPhone: EditText
+//    lateinit var editPhone: EditText
     lateinit var spinnerSemester: PowerSpinnerView
     lateinit var buttonPay: Button
     private lateinit var auth: FirebaseAuth
@@ -58,7 +58,7 @@ class RazorPayDataActivity : AppCompatActivity() {
         Checkout.preload(getApplicationContext());
         textName = findViewById(R.id.txtRazorName)
         textEmail = findViewById(R.id.txtRazorEmail)
-        editPhone = findViewById(R.id.edtRazorPhone)
+//        editPhone = findViewById(R.id.edtRazorPhone)
         spinnerSemester = findViewById(R.id.spinnerRazor)
         buttonPay = findViewById(R.id.btnRazorPay)
         auth = FirebaseAuth.getInstance()
@@ -88,14 +88,13 @@ class RazorPayDataActivity : AppCompatActivity() {
         })
 
         buttonPay.setOnClickListener {
-            if ((editPhone.text.toString()
-                    .trim().length == 10) && (semester in 1..8)
-            ) {
+            if(semester in 1..8)//phone number length should be 10 if there
+            {
                 if (ConnectionManager().checkConnectivity(this) == true) {
 
-                    val phonenumber = editPhone.text.toString()
+//                    val phonenumber = editPhone.text.toString()
                     user =
-                    UserDataClass(name, email, phonenumber,
+                    UserDataClass(name, email, "1234567890",
                             photourl.toString(), true, semester, 0, 0, 0, "1", "1", "1")
                     database.child("users").child(current_user.uid)
                         .setValue(user, object : DatabaseReference.CompletionListener {
@@ -121,7 +120,7 @@ class RazorPayDataActivity : AppCompatActivity() {
                 val message = if (flag == false) {
                     "Choose a semester"
                 } else {
-                    "Enter 10 digit phone number"
+                    "Something went wrong"
                 }
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 

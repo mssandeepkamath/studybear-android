@@ -1,8 +1,11 @@
 package com.sandeep.studybear.activity.fragment
 
+import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -34,6 +37,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.sandeep.studybear.R
 import com.sandeep.studybear.activity.activity.MainActivity
+import com.sandeep.studybear.activity.activity.PdfActivity
 import com.sandeep.studybear.activity.adapter.NotesAdapter
 import com.sandeep.studybear.activity.model.DatabaseReferenceClass
 import com.sandeep.studybear.activity.model.NotesDataClass
@@ -65,6 +69,7 @@ class NotesFragmentThree : Fragment() {
     var semester: String? = null
     lateinit var auth: FirebaseAuth
     var uid:String?=null
+    lateinit var builder: AlertDialog.Builder
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -133,10 +138,55 @@ class NotesFragmentThree : Fragment() {
         })
 
         fab.setOnClickListener {
-            val galleryIntent = Intent()
-            galleryIntent.action = Intent.ACTION_GET_CONTENT
-            galleryIntent.type = "application/pdf"
-            startActivityForResult(galleryIntent, 1)
+
+
+            builder = AlertDialog.Builder(context)
+            builder.setTitle("Storage Request!")
+            builder.setIcon(com.sandeep.studybear.R.drawable.company_logo)
+            builder.setMessage("Please compress pdf's before uploading... ")
+            builder.setPositiveButton("Already compressed!",
+                DialogInterface.OnClickListener { dialog, id ->
+                    val galleryIntent = Intent()
+                    galleryIntent.action = Intent.ACTION_GET_CONTENT
+                    galleryIntent.type = "application/pdf"
+                    startActivityForResult(galleryIntent, 1)
+                })
+
+            builder.setNeutralButton("Take me to compressor!",
+                DialogInterface.OnClickListener { dialog, id ->
+                    val intent=Intent(Intent.ACTION_VIEW)
+                   intent.data=Uri.parse("https://www.ilovepdf.com/compress_pdf")
+                    (context)?.startActivity(intent)
+                })
+
+            builder.setNegativeButton("Cancel",
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+            builder.create().show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
 

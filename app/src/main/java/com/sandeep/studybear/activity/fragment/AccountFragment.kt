@@ -192,7 +192,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
                             AestheticDialog.Builder(activity as MainActivity,
                                 DialogStyle.FLASH,
                                 DialogType.SUCCESS)
-                                .setTitle("Monthly Score!")
+                                .setTitle("Your Earnings")
                                 .setMessage("Total points: $user_points\nUploads :$total_uploads\nViews: $total_views")
                                 .setCancelable(false)
                                 .setDarkMode(false)

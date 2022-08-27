@@ -1,6 +1,8 @@
 package com.sandeep.studybear.activity.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.sandeep.studybear.R
 import com.sandeep.studybear.activity.activity.MainActivity
 import com.sandeep.studybear.activity.activity.PdfActivity
 import com.sandeep.studybear.activity.fragment.NotesFragmentThree
@@ -20,6 +21,13 @@ import com.sandeep.studybear.activity.fragment.NotesFragmentTwo
 import com.sandeep.studybear.activity.model.NotesDataClass
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerView
+import android.content.DialogInterface
+import android.net.Uri
+import com.sandeep.studybear.R
+import java.nio.file.attribute.AclEntry
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class NotesAdapter(
     var context: Context,
@@ -32,16 +40,18 @@ class NotesAdapter(
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    lateinit var builder: AlertDialog.Builder
+
 
     class ViewHolderOne(view: View) : RecyclerView.ViewHolder(view) {
-        val titleText = view.findViewById<TextView>(R.id.txtNotesTitleOne)
-        val spinner = view.findViewById<PowerSpinnerView>(R.id.spinnerUnits)
-        val button = view.findViewById<Button>(R.id.btnNotesOne)
+        val titleText = view.findViewById<TextView>(com.sandeep.studybear.R.id.txtNotesTitleOne)
+        val spinner = view.findViewById<PowerSpinnerView>(com.sandeep.studybear.R.id.spinnerUnits)
+        val button = view.findViewById<Button>(com.sandeep.studybear.R.id.btnNotesOne)
     }
 
     class ViewHolderTwo(view: View) : RecyclerView.ViewHolder(view) {
-        val titleText = view.findViewById<TextView>(R.id.txtNotesTitleTwo)
-        val card=view.findViewById<CardView>(R.id.cardTopics)
+        val titleText = view.findViewById<TextView>(com.sandeep.studybear.R.id.txtNotesTitleTwo)
+        val card=view.findViewById<CardView>(com.sandeep.studybear.R.id.cardTopics)
     }
 
     class ViewHolderThree(view: View) : RecyclerView.ViewHolder(view) {
@@ -145,10 +155,35 @@ class NotesAdapter(
 
             new_holder.cardPdf.setOnClickListener {
 
-                val intent=Intent(context as MainActivity, PdfActivity::class.java)
-                intent.putExtra("url", itemArrayThree?.get(position)?.url.toString())
-                intent.putExtra("uid", itemArrayThree?.get(position)?.uid.toString())
-                (context).startActivity(intent)
+
+               builder = AlertDialog.Builder(context)
+                builder.setTitle("Hey wait!")
+                builder.setIcon(com.sandeep.studybear.R.drawable.company_logo)
+                builder.setMessage("Choose a option.. ")
+                builder.setPositiveButton("Download",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        val intent= Intent(Intent.ACTION_VIEW)
+                        intent.data= Uri.parse(itemArrayThree?.get(position)?.url)
+                        (context as Activity).startActivity(intent)
+                    })
+
+                builder.setNeutralButton("View",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        val intent=Intent(context as MainActivity, PdfActivity::class.java)
+                        intent.putExtra("url", itemArrayThree?.get(position)?.url.toString())
+                        intent.putExtra("uid", itemArrayThree?.get(position)?.uid.toString())
+                        (context).startActivity(intent)
+                    })
+
+                builder.setNegativeButton("Cancel",
+                    DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+                builder.create().show()
+
+
+//                val intent=Intent(context as MainActivity, PdfActivity::class.java)
+//                intent.putExtra("url", itemArrayThree?.get(position)?.url.toString())
+//                intent.putExtra("uid", itemArrayThree?.get(position)?.uid.toString())
+//                (context).startActivity(intent)
 
             }
 

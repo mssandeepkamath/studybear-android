@@ -40,8 +40,8 @@ class MemeFragment : Fragment(){
         val view=inflater.inflate(R.layout.fragment_meme, container, false)
         val progress=view.findViewById<ProgressBar>(R.id.progress)
         val iv=view.findViewById<ImageView>(R.id.imageView)
-        val next=view.findViewById<Button>(R.id.next)
-        val share=view.findViewById<Button>(R.id.share)
+        val next=view.findViewById<ImageView>(R.id.next)
+        val share=view.findViewById<ImageView>(R.id.share)
         loadMeme(view,progress,iv)
 
         next.setOnClickListener {

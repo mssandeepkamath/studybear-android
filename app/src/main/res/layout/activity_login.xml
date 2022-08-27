@@ -113,7 +113,7 @@ scrollView
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/email_note"
+                android:text=" "
                 android:textColor="@color/red"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
@@ -132,8 +132,8 @@ scrollView
                 android:padding="@dimen/_4sdp"
                 android:text="@string/privileged_access"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="normal"
                 />
 
 

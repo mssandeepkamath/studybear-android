@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:text="@string/about_us_description"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto"
@@ -88,14 +88,18 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_gravity="center_horizontal"/>
+
+
+
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_30sdp"
             app:cardElevation="@dimen/_1sdp"
@@ -143,7 +147,7 @@
                     android:fontFamily="@font/roboto"
                     android:padding="@dimen/_4sdp"
                     android:textColor="@color/black"
-                    android:text="Web developer"
+                    android:text="Web"
                     android:textSize="@dimen/_12sdp"
                     android:letterSpacing="0.01"
                     android:textStyle="normal"
@@ -208,18 +212,18 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_30sdp"
             app:cardElevation="@dimen/_1sdp"
             android:clickable="true"
             android:focusable="true">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -238,7 +242,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/_10sdp"
                         android:scaleType="fitCenter"
-                      />
+                        />
 
                 </LinearLayout>
 
@@ -262,7 +266,7 @@
                     android:fontFamily="@font/roboto"
                     android:padding="@dimen/_4sdp"
                     android:textColor="@color/black"
-                    android:text="Android developer"
+                    android:text="Android"
                     android:textSize="@dimen/_12sdp"
                     android:letterSpacing="0.01"
                     android:textStyle="normal"
@@ -328,7 +332,9 @@
 
             </LinearLayout>
 
+
         </androidx.cardview.widget.CardView>
+
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adViewAboutUs2"

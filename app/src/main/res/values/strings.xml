@@ -87,6 +87,8 @@
     <string name="meme">Bored?, taste some memes</string>
     <string name="memes_name">Memes</string>
     <string name="explore_memes">EXPLORE MEMES</string>
+    <string name="channel_name">Test</string>
+    <string name="channel_description">Test Notification</string>
 
 
 </resources>

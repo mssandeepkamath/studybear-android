@@ -1,6 +1,5 @@
 package com.sandeep.studybear.activity.activity
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.AsyncTask
@@ -9,8 +8,10 @@ import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
-import android.widget.*
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -23,10 +24,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -34,12 +32,15 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.onesignal.OneSignal
 import com.sandeep.studybear.R
 import com.sandeep.studybear.activity.fragment.*
 import com.skydoves.powerspinner.PowerSpinnerView
 import java.lang.ref.WeakReference
 
- class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var coordinatorLayout: CoordinatorLayout
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
@@ -52,11 +53,36 @@ import java.lang.ref.WeakReference
     private lateinit var googleSignInClient: GoogleSignInClient
     var flagBottom: Boolean = false
     var timerFlag = false
+    private val ONESIGNAL_APP_ID = "6960997e-7277-4ee7-b740-ea0b32f17708"
+
+
 
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        FirebaseDynamicLinks.getInstance()
+            .getDynamicLink(intent)
+            .addOnSuccessListener(this
+            ) { pendingDynamicLinkData ->
+                // Get deep link from result (may be null if no link is found)
+                var deepLink: Uri? = null
+                if (pendingDynamicLinkData != null) {
+                    deepLink = pendingDynamicLinkData.link
+                }
+
+                // Handle the deep link. For example, open the linked content,
+                // or apply promotional credit to the user's account.
+                // ...
+
+                // ...
+            }
+            .addOnFailureListener(this
+            ) { e -> Log.w("Error", "getDynamicLink:onFailure", e) }
+
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
+        OneSignal.initWithContext(this)
+        OneSignal.setAppId(ONESIGNAL_APP_ID)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         super.onCreate(savedInstanceState)
@@ -82,6 +108,9 @@ import java.lang.ref.WeakReference
         } else {
 
             setContentView(R.layout.activity_main)
+
+
+
             MobileAds.initialize(this)
             drawerLayout = findViewById(R.id.lytDrawer)
             coordinatorLayout = findViewById(R.id.lytCoordinator)
@@ -438,6 +467,8 @@ import java.lang.ref.WeakReference
             }
         }
     }
+
+
 
 
     companion object {

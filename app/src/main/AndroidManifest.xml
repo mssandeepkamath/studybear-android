@@ -45,8 +45,21 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.activity.MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="true"
+            android:screenOrientation="portrait" >
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"
+                    android:host="studybear.tech"
+                     />
+            </intent-filter>
+
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

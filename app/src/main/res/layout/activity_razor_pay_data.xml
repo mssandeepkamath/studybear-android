@@ -108,41 +108,41 @@
                 </RelativeLayout>
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_margin="@dimen/_10sdp">
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_50sdp"-->
+<!--                    android:layout_margin="@dimen/_10sdp">-->
 
-                    <EditText
-                        android:id="@+id/edtRazorPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:background="@drawable/card_border"
-                        android:fontFamily="@font/roboto"
-                        android:gravity="center"
-                        android:hint="@string/_10_digit_phone_number"
-                        android:inputType="phone"
-                        android:padding="10dp"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlCompat" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/edtRazorPhone"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:background="@drawable/card_border"-->
+<!--                        android:fontFamily="@font/roboto"-->
+<!--                        android:gravity="center"-->
+<!--                        android:hint="@string/_10_digit_phone_number"-->
+<!--                        android:inputType="phone"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:textAlignment="textStart"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/_14sdp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        tools:ignore="RtlCompat" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="2dp"
-                        android:background="#ffffff"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/phone_number_razor"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="normal" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_5sdp"-->
+<!--                        android:layout_marginTop="2dp"-->
+<!--                        android:background="#ffffff"-->
+<!--                        android:fontFamily="sans-serif-light"-->
+<!--                        android:text="@string/phone_number_razor"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/_13sdp"-->
+<!--                        android:textStyle="normal" />-->
 
-                </RelativeLayout>
+<!--                </RelativeLayout>-->
 
 
                 <com.skydoves.powerspinner.PowerSpinnerView

@@ -1,5 +1,7 @@
 # Studybear
 
+**Academic Productivity Platform for IT related Engineering Students.**
+
 ## Play store link:
 
 https://play.google.com/store/apps/details?id=com.sandeep.studybear

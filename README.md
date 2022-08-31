@@ -24,7 +24,7 @@ https://play.google.com/store/apps/details?id=com.sandeep.studybear
 
 * Bored?, Consider watching some memes!
 
-## About STudybear:
+## About Studybear:
 
 Our goal at Studybear is to alter the route that one takes to become an engineer(IT). We want to offer a place where people may upload and read notes. We also give students access to daily tech news, coding event announcements, memes, and more! . By expanding the Studybear family, we hope to make life easier for students pursuing engineering(CSE/ISE/IT/AI/DS).
 

@@ -10,14 +10,19 @@ https://play.google.com/store/apps/details?id=com.sandeep.studybear
 
 ![Untitled design (2)](https://user-images.githubusercontent.com/90695071/187688775-0c83d2fe-c8cc-4167-848b-4265ce371130.png)
 
-## Details:
+## Features:
 
-One stop solution for all the Computer/Information Science- notes, Question papers, Lab programs and more. 
-Help our Engineering community by uploading notes!
-Got Doubts??, Connect to your Peers also have lots of fun in our server.
-Get updated about all the latest Technology and crypto.
-Get updated about all the upcoming Coding Events and more, also don't forget to add it to your calendar.
-Bored?, Consider watching some memes!
+* One stop solution for all the Computer/Information Science- notes, Question papers, Lab programs and more. 
+
+* Help our Engineering community by uploading notes!
+
+* Got Doubts??, Connect to your Peers also have lots of fun in our server.
+
+* Get updated about all the latest Technology and crypto.
+
+* Get updated about all the upcoming Coding Events and more, also don't forget to add it to your calendar.
+
+* Bored?, Consider watching some memes!
 
 Experience Studybear now!!!
 

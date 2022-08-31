@@ -34,9 +34,14 @@ Our website,
 https://studybear.tech
 
 We thank below mentioned platform for providing us with illustrations/Images and more,
+
 https://www.freepik.com/ :Designed by Freepik
+
 https://icons8.com/illustrations : by icons 8 from Ouch!
-https://dribbble.com/
-https://newsapi.org
-https://kontests.net/api
+
+https://dribbble.com/ : Illustrations
+
+https://newsapi.org : News API 
+
+https://kontests.net/api : Coding Events API
 

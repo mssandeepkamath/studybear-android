@@ -1,6 +1,6 @@
 # Studybear
 
-**Academic Productivity Platform for IT related Engineering Students.**
+### Academic Productivity Platform for IT related Engineering Students.
 
 ## Play store link:
 

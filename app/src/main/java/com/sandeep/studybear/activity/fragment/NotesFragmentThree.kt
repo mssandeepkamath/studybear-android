@@ -1,24 +1,31 @@
 package com.sandeep.studybear.activity.fragment
 
-import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.afollestad.materialdialogs.DialogAction
+import com.afollestad.materialdialogs.MaterialDialog
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog
+import com.github.javiersantos.materialstyleddialogs.enums.Duration
+import com.github.javiersantos.materialstyleddialogs.enums.Style
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.tasks.Continuation
@@ -37,7 +44,6 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.sandeep.studybear.R
 import com.sandeep.studybear.activity.activity.MainActivity
-import com.sandeep.studybear.activity.activity.PdfActivity
 import com.sandeep.studybear.activity.adapter.NotesAdapter
 import com.sandeep.studybear.activity.model.DatabaseReferenceClass
 import com.sandeep.studybear.activity.model.NotesDataClass
@@ -140,52 +146,45 @@ class NotesFragmentThree : Fragment() {
         fab.setOnClickListener {
 
 
-            builder = AlertDialog.Builder(context)
-            builder.setTitle("Storage Request!")
-            builder.setIcon(com.sandeep.studybear.R.drawable.company_logo)
-            builder.setMessage("Please compress pdf's before uploading... ")
-            builder.setPositiveButton("Already compressed!",
-                DialogInterface.OnClickListener { dialog, id ->
+            MaterialStyledDialog.Builder(context)
+                .setTitle("Storage Request!")
+                .setDescription("Please compress pdf's before uploading... ")
+                .setStyle(Style.HEADER_WITH_ICON)
+                .setIcon(R.drawable.company_logo)
+                .withIconAnimation(true)
+                .setHeaderColor(R.color.text_grey_new)
+                .withDialogAnimation(true)
+                .setPositiveText("Already compressed!")
+            .onPositive(object :MaterialDialog.SingleButtonCallback
+            {
+                override fun onClick(dialog: MaterialDialog, which: DialogAction) {
                     val galleryIntent = Intent()
                     galleryIntent.action = Intent.ACTION_GET_CONTENT
                     galleryIntent.type = "application/pdf"
                     startActivityForResult(galleryIntent, 1)
+                }
+
+            })
+                .setNeutralText("Take me to compressor!")
+                .onNeutral(object :MaterialDialog.SingleButtonCallback
+                {
+                    override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+                        val intent=Intent(Intent.ACTION_VIEW)
+                        intent.data=Uri.parse("https://www.ilovepdf.com/compress_pdf")
+                        (context)?.startActivity(intent)
+                    }
+
                 })
 
-            builder.setNeutralButton("Take me to compressor!",
-                DialogInterface.OnClickListener { dialog, id ->
-                    val intent=Intent(Intent.ACTION_VIEW)
-                   intent.data=Uri.parse("https://www.ilovepdf.com/compress_pdf")
-                    (context)?.startActivity(intent)
-                })
+                .setNegativeText("Cancel")
+                . onNegative(object :MaterialDialog.SingleButtonCallback
+            {
+                override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+                    dialog.cancel()
+                }
 
-            builder.setNegativeButton("Cancel",
-                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
-            builder.create().show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            })
+                .show()
 
         }
 
@@ -295,6 +294,8 @@ class NotesFragmentThree : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
+
+
             val dialog = ProgressDialog(activity as MainActivity)
             dialog.setMessage("Uploading..please wait")
             dialog.show()
@@ -318,7 +319,7 @@ class NotesFragmentThree : Fragment() {
                                 object : DatabaseReference.CompletionListener {
                                     override fun onComplete(
                                         error: DatabaseError?,
-                                        ref: DatabaseReference
+                                        ref: DatabaseReference,
                                     ) {
                                         if (error != null) {
                                             Toast.makeText(activity as MainActivity,
@@ -338,7 +339,7 @@ class NotesFragmentThree : Fragment() {
                                     object : DatabaseReference.CompletionListener {
                                         override fun onComplete(
                                             error: DatabaseError?,
-                                            ref: DatabaseReference
+                                            ref: DatabaseReference,
                                         ) {
                                             if (error != null) {
                                                 println("Error in writting")

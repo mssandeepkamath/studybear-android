@@ -23,6 +23,11 @@ import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerView
 import android.content.DialogInterface
 import android.net.Uri
+import androidx.core.app.ActivityCompat.startActivityForResult
+import com.afollestad.materialdialogs.DialogAction
+import com.afollestad.materialdialogs.MaterialDialog
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog
+import com.github.javiersantos.materialstyleddialogs.enums.Style
 import com.sandeep.studybear.R
 import java.nio.file.attribute.AclEntry
 import java.util.*
@@ -85,7 +90,7 @@ class NotesAdapter(
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position:Int) {
 
         if (id == 1) {
             val new_holder = holder as ViewHolderOne
@@ -146,7 +151,6 @@ class NotesAdapter(
             }
 
         } else {
-
             val new_holder = holder as ViewHolderThree
             new_holder.nameText.text =
                 "Author's name: " + itemArrayThree?.get(position)?.name.toString()
@@ -155,30 +159,45 @@ class NotesAdapter(
 
             new_holder.cardPdf.setOnClickListener {
 
+                MaterialStyledDialog.Builder(context)
+                    .setTitle("Hey wait!")
+                    .setDescription("Choose a option.. ")
+                    .setStyle(Style.HEADER_WITH_ICON)
+                    .setIcon(R.drawable.company_logo)
+                    .withIconAnimation(true)
+                    .setHeaderColor(R.color.text_grey_new)
+                    .withDialogAnimation(true)
+                    .setPositiveText("Download")
+                    .onPositive(object : MaterialDialog.SingleButtonCallback
+                    {
+                        override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+                            val intent= Intent(Intent.ACTION_VIEW)
+                            intent.data= Uri.parse(itemArrayThree?.get(position)?.url)
+                            (context as Activity).startActivity(intent)
+                        }
 
-               builder = AlertDialog.Builder(context)
-                builder.setTitle("Hey wait!")
-                builder.setIcon(com.sandeep.studybear.R.drawable.company_logo)
-                builder.setMessage("Choose a option.. ")
-                builder.setPositiveButton("Download",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        val intent= Intent(Intent.ACTION_VIEW)
-                        intent.data= Uri.parse(itemArrayThree?.get(position)?.url)
-                        (context as Activity).startActivity(intent)
+                    })
+                    .setNeutralText("View")
+                    .onNeutral(object :MaterialDialog.SingleButtonCallback
+                    {
+                        override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+                            val intent=Intent(context as MainActivity, PdfActivity::class.java)
+                            intent.putExtra("url", itemArrayThree?.get(position)?.url.toString())
+                            intent.putExtra("uid", itemArrayThree?.get(position)?.uid.toString())
+                            (context).startActivity(intent)
+                        }
+
                     })
 
-                builder.setNeutralButton("View",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        val intent=Intent(context as MainActivity, PdfActivity::class.java)
-                        intent.putExtra("url", itemArrayThree?.get(position)?.url.toString())
-                        intent.putExtra("uid", itemArrayThree?.get(position)?.uid.toString())
-                        (context).startActivity(intent)
+                    .setNegativeText("Cancel")
+                    . onNegative(object :MaterialDialog.SingleButtonCallback
+                    {
+                        override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+                            dialog.cancel()
+                        }
+
                     })
-
-                builder.setNegativeButton("Cancel",
-                    DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
-                builder.create().show()
-
+                    .show()
 
 //                val intent=Intent(context as MainActivity, PdfActivity::class.java)
 //                intent.putExtra("url", itemArrayThree?.get(position)?.url.toString())

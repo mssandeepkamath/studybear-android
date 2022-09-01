@@ -29,14 +29,14 @@ class EventsAdapter(val context: Context, val itemArray: ArrayList<EventsDataCla
 
 
     val urlHashMap =
-        hashMapOf("Kick Start" to "https://i.ibb.co/m999QF1/google.png",
-            "TopCoder" to "https://i.ibb.co/8YCc3x9/topcoder.png",
-            "CodeForces" to "https://i.ibb.co/WWnmV1H/code-forces.png",
-            "HackerRank" to "https://i.ibb.co/RCfD2Td/hackerrank.png",
-            "LeetCode" to "https://i.ibb.co/RPc5L4V/leetcode-2.png",
-            "AtCoder" to "https://i.ibb.co/wyNyYkX/atcoder.gif",
-            "CodeChef" to "https://i.ibb.co/ySdj6ZS/codechef.png",
-            "HackerEarth" to "https://i.ibb.co/JF9ZBsD/Hacker-Earth-logo.png")
+        hashMapOf("Kick Start" to "https://i.postimg.cc/gjZNJYR4/google.png",
+            "TopCoder" to "https://i.postimg.cc/y6gfnT59/topcoder.png",
+            "CodeForces" to "https://i.postimg.cc/0yxck1Nd/code-forces.png",
+            "HackerRank" to "https://i.postimg.cc/L4cxW1KW/hackerrank.png",
+            "LeetCode" to "https://i.postimg.cc/3J2tQx3x/leetcode-2.png",
+            "AtCoder" to "https://i.postimg.cc/52qKLNrR/atcoder.gif",
+            "CodeChef" to "https://i.postimg.cc/Dzvjg3ky/codechef.png",
+            "HackerEarth" to "https://i.postimg.cc/QtVf2gd2/Hacker-Earth-logo.png")
 
 
     @RequiresApi(Build.VERSION_CODES.O)

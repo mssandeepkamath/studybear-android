@@ -2,13 +2,15 @@
 
 ### Academic Productivity Platform for IT related Engineering Students.
 
+<img width="200" src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" align="center" alt="Untitled-designbear"  border="0">
+
 ## Play store link:
 
 https://play.google.com/store/apps/details?id=com.sandeep.studybear
 
 ## Screenshots:
 
-![Untitled design (2)](https://user-images.githubusercontent.com/90695071/187688775-0c83d2fe-c8cc-4167-848b-4265ce371130.png)
+<img width="768" alt="Untitled design (4)" src="https://user-images.githubusercontent.com/90695071/187695349-1898f4b7-6a8a-4211-a4de-2e75c8a06531.png">
 
 ## Features:
 
@@ -44,4 +46,12 @@ https://dribbble.com/ : Illustrations
 https://newsapi.org : News API 
 
 https://kontests.net/api : Coding Events API
+
+## License
+
+ Apache License
+ 
+ Version 2.0, January 2004
+ 
+ http://www.apache.org/licenses/
 

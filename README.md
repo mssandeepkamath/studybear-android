@@ -1,40 +1,57 @@
 # Studybear
 
-**Academic Productivity Platform for IT related Engineering Students.**
+### Academic Productivity Platform for IT related Engineering Students.
+
+<img width="200" src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" align="center" alt="Untitled-designbear"  border="0">
 
 ## Play store link:
 
 https://play.google.com/store/apps/details?id=com.sandeep.studybear
 
-## Previews:
-![1](https://user-images.githubusercontent.com/90695071/183243564-d4b32928-a8c4-462b-b37f-05cd7b3f7cf0.jpg)![2](https://user-images.githubusercontent.com/90695071/183243561-e7eebdf3-8ef1-4044-978b-4ce29d1109bf.jpg)
+## Screenshots:
 
-![3](https://user-images.githubusercontent.com/90695071/183243556-19e13207-dbe1-4e50-8f5b-2ed085fbb339.jpg)
-![4](https://user-images.githubusercontent.com/90695071/183243577-6fd14e3e-7b4d-4586-bc7b-276bc13838e0.jpg)
-![5](https://user-images.githubusercontent.com/90695071/183243580-a880cf1e-3243-4940-a2f8-ad2dd2b4332d.jpg)
-![6](https://user-images.githubusercontent.com/90695071/183243585-9faa3cb3-e5e2-4d8f-9a75-8727b040417b.jpg)
-![7](https://user-images.githubusercontent.com/90695071/183243592-056ac804-dbb0-4eca-90a2-4ad8a5b0f833.jpg)
-![8](https://user-images.githubusercontent.com/90695071/183243595-44db0fe9-1ddc-4f96-bae4-9919e7c32b3f.jpg)
+<img width="768" alt="Untitled design (4)" src="https://user-images.githubusercontent.com/90695071/187695349-1898f4b7-6a8a-4211-a4de-2e75c8a06531.png">
 
-## Details:
+## Features:
 
-One stop solution for all the Computer/Information Science- notes, Question papers, Lab programs and more. 
-Help our Engineering community by uploading notes!
-Got Doubts??, Connect to your Peers also have lots of fun in our server.
-Get updated about all the latest Technology and crypto.
-Get updated about all the upcoming Coding Events and more, also don't forget to add it to your calendar.
-Bored?, Consider watching some memes!
+* One stop solution for all the Computer/Information Science- notes, Question papers, Lab programs and more. 
+
+* Help our Engineering community by uploading notes!
+
+* Got Doubts??, Connect to your Peers also have lots of fun in our server.
+
+* Get updated about all the latest Technology and crypto.
+
+* Get updated about all the upcoming Coding Events and more, also don't forget to add it to your calendar.
+
+* Bored?, Consider watching some memes!
+
+## About Studybear:
+
+Our goal at Studybear is to alter the route that one takes to become an engineer(IT). We want to offer a place where people may upload and read notes. We also give students access to daily tech news, coding event announcements, memes, and more! . By expanding the Studybear family, we hope to make life easier for students pursuing engineering(CSE/ISE/IT/AI/DS).
 
 Experience Studybear now!!!
 
 Our website,
 https://studybear.tech
 
-We thank below mentioned platform for providing us with illustrations and more,
-https://www.freepik.com/ :Designed by Freepik
-https://icons8.com/illustrations : by icons 8 from Ouch!
-https://dribbble.com/
-https://newsapi.org
-https://kontests.net/api
+We thank below mentioned platform for providing us with illustrations/Images and more,
 
+https://www.freepik.com/ :Designed by Freepik
+
+https://icons8.com/illustrations : by icons 8 from Ouch!
+
+https://dribbble.com/ : Illustrations
+
+https://newsapi.org : News API 
+
+https://kontests.net/api : Coding Events API
+
+## License
+
+ Apache License
+ 
+ Version 2.0, January 2004
+ 
+ http://www.apache.org/licenses/
 

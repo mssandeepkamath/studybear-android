@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
+import android.view.PixelCopy.request
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -40,6 +41,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.sandeep.studybear.activity.activity.MainActivity
+import com.sandeep.studybear.activity.activity.PdfActivity.Companion.auth
 import com.sandeep.studybear.activity.util.ConnectionManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -76,7 +78,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         R.id.imgFour to "https://i.postimg.cc/c4Ng5Rw7/news.webp",
         R.id.imgFive to "https://i.ibb.co/pfZwBrN/funny-activity-3027486-2526705.webp",
         R.id.imgSix to "https://i.postimg.cc/MHHXbTtb/business-3d-341.png",
-        R.id.gifRewardBanner to "https://i.postimg.cc/cL6VcTGC/Copy-of-banner-studybear-Portrait-1.gif",
+        R.id.gifRewardBanner to "https://i.ibb.co/W3wx3tC/Copy-of-banner-studybear-Portrait-2.gif",
         R.id.imgNotes to "https://i.postimg.cc/d0VjbQ9V/ezgif-com-gif-maker-10.gif",
         R.id.imgDiscuss to "https://i.postimg.cc/gkwnxxxG/Group-discussion.gif",
         R.id.imgEvents to "https://i.postimg.cc/xdp3nrsy/ezgif-com-gif-maker-8.gif",

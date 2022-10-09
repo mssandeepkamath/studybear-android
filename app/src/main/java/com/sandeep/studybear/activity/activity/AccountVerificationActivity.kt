@@ -60,7 +60,7 @@ class AccountVerificationActivity : AppCompatActivity(), AccessControlInterface 
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        Glide.with(this).load("https://i.ibb.co/0FC4V4h/verification.gif")
+        Glide.with(this).load("https://i.postimg.cc/4drvH6RY/ezgif-com-gif-maker-6.gif")
             .placeholder(R.drawable.verification_placeholder)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(

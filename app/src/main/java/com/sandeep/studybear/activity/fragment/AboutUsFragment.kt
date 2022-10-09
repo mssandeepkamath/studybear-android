@@ -30,14 +30,14 @@ import com.sandeep.studybear.activity.util.ConnectionManager
 class AboutUsFragment : Fragment(),View.OnClickListener {
 
     val urlHashMap= hashMapOf<Int,String>(
-        R.id.imgRakshith to "https://i.ibb.co/k3w74vD/rakshith-min.png",
-        R.id.imgSandeep to "https://i.ibb.co/NLMXRBN/sandeep-min.png",
-        R.id.instagramrakshith to "https://i.ibb.co/7KhMg04/instagram-min.png",
-        R.id.imageWhatsappRakshith to "https://i.ibb.co/k97MbXj/whatsapp.png",
-        R.id.imageLinkedInRakshith to "https://i.ibb.co/nR2D5j9/linkedin-min.png",
-        R.id.instagramSandeep to "https://i.ibb.co/7KhMg04/instagram-min.png",
-        R.id.imageWhatsappSandeep to "https://i.ibb.co/k97MbXj/whatsapp.png",
-        R.id.imageLinkedInSandeep to "https://i.ibb.co/nR2D5j9/linkedin-min.png",
+        R.id.imgRakshith to "https://i.postimg.cc/Df8NHhWS/rakshith.png",
+        R.id.imgSandeep to "https://i.postimg.cc/Zq5HNPpW/sandeep.png",
+        R.id.instagramrakshith to "https://i.postimg.cc/BnXcQZ0F/instagram.png",
+        R.id.imageWhatsappRakshith to "https://i.postimg.cc/cLN5v8F3/whatsapp.png",
+        R.id.imageLinkedInRakshith to "https://i.postimg.cc/6qXYyk0X/linkedin.png",
+        R.id.instagramSandeep to "https://i.postimg.cc/BnXcQZ0F/instagram.png",
+        R.id.imageWhatsappSandeep to "https://i.postimg.cc/cLN5v8F3/whatsapp.png",
+        R.id.imageLinkedInSandeep to "https://i.postimg.cc/6qXYyk0X/linkedin.png",
     )
     lateinit var shimmer: ShimmerFrameLayout
     var count:Int=0

@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
+import android.view.PixelCopy.request
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -40,6 +41,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.sandeep.studybear.activity.activity.MainActivity
+import com.sandeep.studybear.activity.activity.PdfActivity.Companion.auth
 import com.sandeep.studybear.activity.util.ConnectionManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -70,18 +72,18 @@ class HomeFragment : Fragment(),View.OnClickListener {
 
 
     var count:Int=0
-    val urlHashMap= hashMapOf<Int,String>(R.id.imgOne to "https://i.ibb.co/7XY8C5r/business-3d-girl-with-a-book-1-min.png",
-        R.id.imgTwo to "https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png",
-        R.id.imgThree to "https://i.ibb.co/DKSbNk8/business-3d-min.png",
-        R.id.imgFour to "https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png",
-        R.id.imgFive to "https://i.ibb.co/rd3fMDh/meme-2.png",
-        R.id.imgSix to "https://i.ibb.co/CVXb3fh/business-3d-341-min.png",
-        R.id.gifRewardBanner to "https://i.ibb.co/nqJGQmY/Copy-of-banner-studybear-Portrait-1.gif",
-        R.id.imgNotes to "https://i.ibb.co/8xRLRcr/notes.gif",
-        R.id.imgDiscuss to "https://i.ibb.co/VYb00n7/discuss.gif",
-        R.id.imgEvents to "https://i.ibb.co/C2Qgt8Z/coding-events.gif",
-        R.id.imgNews to "https://i.ibb.co/vsrt6ZH/news.gif",
-        R.id.imgTeachers to "https://i.ibb.co/pXMZzJ0/memee.png",
+    val urlHashMap= hashMapOf<Int,String>(R.id.imgOne to "https://i.postimg.cc/P5SCx0cK/dfb492a7-6978-48a0-a5bf-99801b273d13.png",
+        R.id.imgTwo to "https://i.postimg.cc/mZ91wXz2/discord.webp",
+        R.id.imgThree to "https://i.postimg.cc/FHnNLvxW/nft-coding-6117176-4998601.webp",
+        R.id.imgFour to "https://i.postimg.cc/c4Ng5Rw7/news.webp",
+        R.id.imgFive to "https://i.ibb.co/pfZwBrN/funny-activity-3027486-2526705.webp",
+        R.id.imgSix to "https://i.postimg.cc/MHHXbTtb/business-3d-341.png",
+        R.id.gifRewardBanner to "https://i.ibb.co/W3wx3tC/Copy-of-banner-studybear-Portrait-2.gif",
+        R.id.imgNotes to "https://i.postimg.cc/d0VjbQ9V/ezgif-com-gif-maker-10.gif",
+        R.id.imgDiscuss to "https://i.postimg.cc/gkwnxxxG/Group-discussion.gif",
+        R.id.imgEvents to "https://i.postimg.cc/xdp3nrsy/ezgif-com-gif-maker-8.gif",
+        R.id.imgNews to "https://i.postimg.cc/dtG6dx1w/ezgif-com-gif-maker-11.gif",
+        R.id.imgTeachers to "https://i.postimg.cc/K8VCpLmN/memee.png",
         )
 
 

@@ -1,16 +1,18 @@
 package com.sandeep.studybear.activity.activity
 
+
 import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -35,21 +37,23 @@ class SplashActivity : Activity(), AccessControlInterface {
         //status bar color and visibilty code
         createNotificationChannel()
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        window.statusBarColor = ContextCompat.getColor(this, com.sandeep.studybear.R.color.white)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(com.sandeep.studybear.R.layout.activity_splash)
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
         val current_user = auth.currentUser
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         var builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.company_logo)
-            .setContentTitle("Hey Bear!")
-            .setContentText("Confused?, Expand my notification..")
+            .setSmallIcon(com.sandeep.studybear.R.drawable.company_logo)
+            .setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
+                com.sandeep.studybear.R.drawable.flames))
+            .setContentTitle("+1 Check-in")
+            .setContentText("Happy learning!")
             .setStyle(NotificationCompat.BigTextStyle()
                 .bigText("Learn all the concepts from hand written notes for free from Studybear, Got doubts? check out our server!, also get updated about coding events and technology news. WAIT! don't forget to watch some memes XD"))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 
@@ -69,7 +73,7 @@ class SplashActivity : Activity(), AccessControlInterface {
                     if (ConnectionManager().checkConnectivity(this) == true)
                         accessCheck(this, null,database,current_user)
                     else
-                        ConnectionManager().createDialog(findViewById(R.id.bg_SplashActivity), this)
+                        ConnectionManager().createDialog(findViewById(com.sandeep.studybear.R.id.bg_SplashActivity), this)
                 } else {
                     intentProvider(this, LoginActivity::class.java)
                 }
@@ -82,8 +86,8 @@ class SplashActivity : Activity(), AccessControlInterface {
         // the NotificationChannel class is new and not in the support library
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.channel_name)
-            val descriptionText = getString(R.string.channel_description)
+            val name = getString(com.sandeep.studybear.R.string.channel_name)
+            val descriptionText = getString(com.sandeep.studybear.R.string.channel_description)
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText

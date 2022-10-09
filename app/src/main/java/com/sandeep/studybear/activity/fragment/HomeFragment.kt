@@ -283,7 +283,7 @@ class HomeFragment : Fragment(),View.OnClickListener {
         (activity as MainActivity).supportActionBar?.title=title
         navigationView.checkedItem?.isChecked = true
         if(id2!=null)
-        bottomNavigationView.menu.findItem(id2).setChecked(flag)
+            bottomNavigationView.menu.findItem(id2).setChecked(flag)
 
     }
 

@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:shimmer_base_color="#858585"
-            app:shimmer_colored="false">
+            app:shimmer_colored="true"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -368,7 +369,7 @@
                     ads:adSize="MEDIUM_RECTANGLE"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:layout_gravity="center"
-                    ads:adUnitId="ca-app-pub-5634416739025689/8636562326">
+                    ads:adUnitId="ca-app-pub-5634416739025689/9162668091">
                 </com.google.android.gms.ads.AdView>
 
 

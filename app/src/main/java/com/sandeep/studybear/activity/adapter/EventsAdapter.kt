@@ -97,7 +97,7 @@ class EventsAdapter(val context: Context, val itemArray: ArrayList<EventsDataCla
 
     fun glideUrlToImage(url: String?, image: ImageView) {
         Glide.with(context).load(url)
-            .placeholder(R.drawable.placeholder).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.no_placeholder_new)
+            .placeholder(R.drawable.code).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.code)
             .into(image)
     }
 

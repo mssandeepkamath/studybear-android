@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.fragment.MemeFragment">
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView_new3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-5634416739025689/2405703965" />
 
 
     <ImageView
@@ -18,6 +32,7 @@
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         tools:srcCompat="@tools:sample/avatars" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,7 +48,7 @@
             android:indeterminate="true"
             app:indicatorColor="@color/red"
             app:indicatorSize="@dimen/_75sdp"
-            app:trackColor="@color/blue"
+            app:trackColor="@color/black"
             app:trackThickness="@dimen/_6sdp" />
 
 

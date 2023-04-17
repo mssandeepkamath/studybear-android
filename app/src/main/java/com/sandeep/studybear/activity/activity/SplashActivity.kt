@@ -30,12 +30,12 @@ class SplashActivity : Activity(), AccessControlInterface {
     lateinit var screen: ViewGroup
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
-    private val CHANNEL_ID = "i.apps.notifications"
+//    private val CHANNEL_ID = "i.apps.notifications"
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         //status bar color and visibilty code
-        createNotificationChannel()
+//        createNotificationChannel()
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = ContextCompat.getColor(this, com.sandeep.studybear.R.color.white)
         super.onCreate(savedInstanceState)
@@ -45,23 +45,24 @@ class SplashActivity : Activity(), AccessControlInterface {
         val current_user = auth.currentUser
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(com.sandeep.studybear.R.drawable.company_logo)
-            .setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
-                com.sandeep.studybear.R.drawable.flames))
-            .setContentTitle("+1 Check-in")
-            .setContentText("Happy learning!")
-            .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("Learn all the concepts from hand written notes for free from Studybear, Got doubts? check out our server!, also get updated about coding events and technology news. WAIT! don't forget to watch some memes XD"))
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
+
+//        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
+//            .setSmallIcon(com.sandeep.studybear.R.drawable.company_logo)
+//            .setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
+//                com.sandeep.studybear.R.drawable.flames))
+//            .setContentTitle("+1 Check-in")
+//            .setContentText("Happy learning!")
+//            .setStyle(NotificationCompat.BigTextStyle()
+//                .bigText("Learn all the concepts from hand written notes for free from Studybear, Got doubts? check out our server!, also get updated about coding events and technology news. WAIT! don't forget to watch some memes XD"))
+//            .setPriority(NotificationCompat.PRIORITY_MAX)
+//            .setContentIntent(pendingIntent)
+//            .setAutoCancel(true)
 
 
-        with(NotificationManagerCompat.from(this)) {
-            // notificationId is a unique int for each notification that you must define
-            notify(1234, builder.build())
-        }
+//        with(NotificationManagerCompat.from(this)) {
+//            // notificationId is a unique int for each notification that you must define
+//            notify(1234, builder.build())
+//        }
 
 
 
@@ -81,27 +82,27 @@ class SplashActivity : Activity(), AccessControlInterface {
             }, 1000)
     }
 
-    private fun createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(com.sandeep.studybear.R.string.channel_name)
-            val descriptionText = getString(com.sandeep.studybear.R.string.channel_description)
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
-            }
-            channel.enableVibration(true)
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-
-        }
-
-
-    }
+//    private fun createNotificationChannel() {
+//        // Create the NotificationChannel, but only on API 26+ because
+//        // the NotificationChannel class is new and not in the support library
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val name = getString(com.sandeep.studybear.R.string.channel_name)
+//            val descriptionText = getString(com.sandeep.studybear.R.string.channel_description)
+//            val importance = NotificationManager.IMPORTANCE_HIGH
+//            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+//                description = descriptionText
+//            }
+//            channel.enableVibration(true)
+//            // Register the channel with the system
+//            val notificationManager: NotificationManager =
+//                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(channel)
+//
+//        }
+//
+//
+//    }
 
 
 }

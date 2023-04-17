@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/img_home"
         android:fontFamily="@font/roboto"
-        android:text="StudyBear"
+        android:text="Studybear"
         android:textColor="@color/black"
         android:textSize="@dimen/_17sdp"
         android:singleLine="true"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-5634416739025689/8700243138" />
+        app:adUnitId="ca-app-pub-5634416739025689/4046868945" />
 
 
 

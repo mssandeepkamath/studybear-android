@@ -7,14 +7,17 @@
     tools:context=".activity.fragment.CircularFragment">
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/_10sdp"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-5634416739025689/2033293829" />
+    android:id="@+id/adView3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_10sdp"
+    ads:adSize="BANNER"
+    ads:adUnitId="ca-app-pub-5634416739025689/2033293829" />
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

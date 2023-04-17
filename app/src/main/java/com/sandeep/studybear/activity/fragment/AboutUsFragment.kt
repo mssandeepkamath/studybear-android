@@ -30,7 +30,7 @@ import com.sandeep.studybear.activity.util.ConnectionManager
 class AboutUsFragment : Fragment(),View.OnClickListener {
 
     val urlHashMap= hashMapOf<Int,String>(
-        R.id.imgRakshith to "https://i.postimg.cc/Df8NHhWS/rakshith.png",
+        R.id.imgRakshith to "https://i.postimg.cc/F15xxKKM/Whats-App-Image-2022-09-01-at-9-24-49-AM-removebg-preview.png",
         R.id.imgSandeep to "https://i.postimg.cc/Zq5HNPpW/sandeep.png",
         R.id.instagramrakshith to "https://i.postimg.cc/BnXcQZ0F/instagram.png",
         R.id.imageWhatsappRakshith to "https://i.postimg.cc/cLN5v8F3/whatsapp.png",
@@ -99,8 +99,9 @@ class AboutUsFragment : Fragment(),View.OnClickListener {
                             return false
                         }
                     })
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .error(R.drawable.no_placeholder_new)
+                    .skipMemoryCache(true)
                     .into(view.findViewById(data.key))
             }
         }else{
@@ -148,7 +149,7 @@ class AboutUsFragment : Fragment(),View.OnClickListener {
             }
             R.id.instagramSandeep->
             {
-                val uri = Uri.parse("http://instagram.com/_u/_msandeep_kamath_")
+                val uri = Uri.parse("http://instagram.com/_u/_mssandeep_kamath_")
                 val likeIng = Intent(Intent.ACTION_VIEW, uri)
                 likeIng.setPackage("com.instagram.android")
 

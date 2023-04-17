@@ -165,7 +165,7 @@ class NotesAdapter(
                     .setStyle(Style.HEADER_WITH_ICON)
                     .setIcon(R.drawable.company_logo)
                     .withIconAnimation(true)
-                    .setHeaderColor(R.color.text_grey_new)
+                    .setHeaderColor(R.color.new_color)
                     .withDialogAnimation(true)
                     .setPositiveText("Download")
                     .onPositive(object : MaterialDialog.SingleButtonCallback

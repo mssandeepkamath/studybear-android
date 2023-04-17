@@ -4,27 +4,23 @@ import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog
-import com.github.javiersantos.materialstyleddialogs.enums.Duration
 import com.github.javiersantos.materialstyleddialogs.enums.Style
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -49,6 +45,12 @@ import com.sandeep.studybear.activity.model.DatabaseReferenceClass
 import com.sandeep.studybear.activity.model.NotesDataClass
 import com.sandeep.studybear.activity.model.UserDataClass
 import com.sandeep.studybear.activity.util.ConnectionManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 
 
 class NotesFragmentThree : Fragment() {
@@ -61,6 +63,7 @@ class NotesFragmentThree : Fragment() {
     lateinit var errorText: TextView
     lateinit var refresh: SwipeRefreshLayout
     lateinit var appBar: AppBarLayout
+    lateinit var client:OkHttpClient
     val itemArray = arrayListOf<NotesDataClass>()
     var myClass: DatabaseReferenceClass? = null
     var myUsersArray = hashMapOf<String, UserDataClass>()
@@ -70,6 +73,7 @@ class NotesFragmentThree : Fragment() {
     lateinit var uri: Uri
     lateinit var storageReference: StorageReference
     var topic: String? = null
+    var email:String?=null;
     var subject: String? = null
     var unit: String? = null
     var semester: String? = null
@@ -103,17 +107,17 @@ class NotesFragmentThree : Fragment() {
         progressLayout.visibility = View.VISIBLE
         errorText.visibility = View.GONE
         empty_box.visibility = View.GONE
+        client=OkHttpClient()
         recyclerView.layoutManager = layoutManager
         database = Firebase.database.reference
         storageReference = FirebaseStorage.getInstance().reference
         auth = FirebaseAuth.getInstance()
         uid=auth.currentUser?.uid
-        val email=auth.currentUser?.email
+        email=auth.currentUser?.email
         topic = arguments?.getString("topic")
         subject = arguments?.getString("subjects")
         unit = arguments?.getString("units")
         semester = arguments?.getString("semester")
-        print("Email:$email")
         if((email!="mssandeepk.is20@rvce.edu.in" && email!="teststudybear@gmail.com" && email!="rakshithdhegde.is20@rvce.edu.in") && topic == "STUDYBEAR NOTES" )
         {
             fab.visibility=View.GONE
@@ -152,7 +156,7 @@ class NotesFragmentThree : Fragment() {
                 .setStyle(Style.HEADER_WITH_ICON)
                 .setIcon(R.drawable.company_logo)
                 .withIconAnimation(true)
-                .setHeaderColor(R.color.text_grey_new)
+                .setHeaderColor(R.color.new_color)
                 .withDialogAnimation(true)
                 .setPositiveText("Already compressed!")
             .onPositive(object :MaterialDialog.SingleButtonCallback
@@ -235,9 +239,9 @@ class NotesFragmentThree : Fragment() {
                                                         ?: 0) + (myUser.totaluploads?.times(
                                                         10) ?: 0) + (myUser.totalviews?.times(2)
                                                         ?: 0)
-                                                val reputation = if (points >= 1000) {
+                                                val reputation = if (points >= 100) {
                                                     "High"
-                                                } else if (points in 400..999) {
+                                                } else if (points in 40..99) {
                                                     "Average"
                                                 } else {
                                                     "Low"
@@ -329,6 +333,10 @@ class NotesFragmentThree : Fragment() {
                                     }
                                 })
 
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            val result = getRequest()
+                        }
+
                         val ref = database.child("users").child(auth.currentUser?.uid.toString())
                             .child("totaluploads")
                         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -355,6 +363,7 @@ class NotesFragmentThree : Fragment() {
                                                     subject,
                                                     unit,
                                                     semester)
+
                                             }
                                         }
                                     })
@@ -371,9 +380,26 @@ class NotesFragmentThree : Fragment() {
             }
     }
 
+    private fun getRequest(){
+        var result: String? = null
+        try {
+            val mediaType = "application/json".toMediaType()
+            var body = RequestBody.create(mediaType,
+                "{\r\n     \"include_segments\": [\r\n        \"Subscribed Users\"\r\n    ],\r\n    \"app_id\": \"6960997e-7277-4ee7-b740-ea0b32f17708\",\r\n    \"template_id\":\"6968f4cf-6d69-440d-b6c7-7353bc15cfb8\",\r\n    \"contents\": {\r\n        \"en\": \"$subject:$unit notes is now available on Studybear for free!, All the Best\"\r\n    },\r\n    \"headings\": {\r\n        \"en\": \"Announcement: New Notes Uploaded\"\r\n    }\r\n  }")
+            var request: Request = Request.Builder()
+                .url("https://onesignal.com/api/v1/notifications")
+                .method("POST", body)
+                .addHeader("Authorization", "Basic MzY1MWEwMTgtYjgyZC00YjIzLTkyMjUtNTFhMjM4YjAwOGZl")
+                .addHeader("Content-Type", "application/json")
+                .build()
+            val response = client.newCall(request).execute()
+            result = response.body?.string()
+        }
+        catch(err:Error) {
+            print("Error when executing get request: "+err.localizedMessage)
+        }
+    }
 
 }
-
-
 
 

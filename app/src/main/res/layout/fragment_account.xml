@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:shimmer_base_color="#858585"
-        app:shimmer_colored="false">
+        app:shimmer_colored="true">
 
         <nl.dionsegijn.konfetti.xml.KonfettiView
             android:id="@+id/konfettiView"

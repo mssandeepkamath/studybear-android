@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/_10sdp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-5634416739025689/4352900056" />
+        ads:adUnitId="ca-app-pub-5634416739025689/1523867138" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/lytRefreshNotesOne"

@@ -75,10 +75,11 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:text="@string/proceed"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/_12sdp"
                 android:fontFamily="@font/roboto"
-                android:backgroundTint="#009EFF"
+                android:backgroundTint="#030F41"
                 />
 
         </LinearLayout>

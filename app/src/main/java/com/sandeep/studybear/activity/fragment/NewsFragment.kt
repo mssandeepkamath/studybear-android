@@ -31,6 +31,9 @@ import com.sandeep.studybear.activity.adapter.NewsAdapter
 import com.sandeep.studybear.activity.model.NewsDataClass
 import com.sandeep.studybear.activity.util.ConnectionManager
 import com.sandeep.studybear.activity.util.MySingleton
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -48,6 +51,7 @@ class NewsFragment : Fragment() {
     var runnable: Runnable? = null
    lateinit var database:DatabaseReference
    lateinit var auth:FirebaseAuth
+
 
 
 
@@ -212,6 +216,8 @@ class NewsFragment : Fragment() {
     fun ToastMessage(message: String) {
         Toast.makeText(activity as MainActivity, message, Toast.LENGTH_SHORT).show()
     }
+
+
 
 
 }

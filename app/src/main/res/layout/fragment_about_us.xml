@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:shimmer_base_color="#858585"
-        app:shimmer_colored="false">
+        app:shimmer_colored="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,13 +36,13 @@
             android:layout_marginBottom="@dimen/_10sdp"
             app:adSize="BANNER"
             android:background="@color/black"
-            app:adUnitId="ca-app-pub-5634416739025689/3572309036" />
+            app:adUnitId="ca-app-pub-5634416739025689/5223438999" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/black"
+            android:background="#030F41"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
                 android:text="@string/about_us_description"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_14sdp"
                 android:justificationMode="inter_word"
@@ -349,7 +349,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             app:adSize="MEDIUM_RECTANGLE"
             android:background="@color/black"
-            app:adUnitId="ca-app-pub-5634416739025689/4952569817" />
+            app:adUnitId="ca-app-pub-5634416739025689/7554088864" />
 
 
 

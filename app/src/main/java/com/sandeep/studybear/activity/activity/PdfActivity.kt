@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.github.barteksc.pdfviewer.PDFView
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.firebase.auth.FirebaseAuth
@@ -37,6 +39,7 @@ import com.sandeep.studybear.R
          var runnable: Runnable? = null
          lateinit var database:DatabaseReference
          lateinit var auth:FirebaseAuth
+         lateinit var mAdView:AdView
      }
 
 
@@ -45,7 +48,11 @@ import com.sandeep.studybear.R
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf)
+        MobileAds.initialize(this) {}
         pdfView =findViewById(R.id.vwPdf)
+        mAdView = findViewById(R.id.adView_new1)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
         dialog = ProgressDialog(this@PdfActivity)
         dialog.setMessage("Fetching...\nPlease wait if pdf remains blank")
         dialog.setCancelable(false)

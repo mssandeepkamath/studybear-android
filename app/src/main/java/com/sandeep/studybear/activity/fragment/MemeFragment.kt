@@ -21,9 +21,12 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import com.sandeep.studybear.R
 import com.sandeep.studybear.activity.activity.MainActivity
+import com.sandeep.studybear.activity.activity.PdfActivity
 import com.sandeep.studybear.activity.util.ConnectionManager
 import com.sandeep.studybear.activity.util.MySingleton
 
@@ -31,6 +34,7 @@ import com.sandeep.studybear.activity.util.MySingleton
 class MemeFragment : Fragment(){
 
     var cururl:String?=null
+    lateinit var adunit:AdView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +46,11 @@ class MemeFragment : Fragment(){
         val iv=view.findViewById<ImageView>(R.id.imageView)
         val next=view.findViewById<ImageView>(R.id.next)
         val share=view.findViewById<ImageView>(R.id.share)
+        val mAdView1 = view.findViewById<AdView>(R.id.adView_new3)
+        val adRequest = AdRequest.Builder().build()
+        mAdView1.loadAd(adRequest)
         loadMeme(view,progress,iv)
+
 
         next.setOnClickListener {
             loadMeme(view,progress,iv)
@@ -65,7 +73,7 @@ class MemeFragment : Fragment(){
 
         progress.visibility=View.VISIBLE
 
-        val url = "https://meme-api.herokuapp.com/gimme/wholesomememes"
+        val url = "https://meme-api.com/gimme/wholesomememes"
         val jsonObjectRequest= JsonObjectRequest(
             Request.Method.GET, url,null,
             { response ->
@@ -90,7 +98,7 @@ class MemeFragment : Fragment(){
                                     return false
                                 }
                             })
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .error(R.drawable.no_placeholder_new)
                             .into(iv)
 

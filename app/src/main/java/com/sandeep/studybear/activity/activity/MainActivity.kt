@@ -452,8 +452,8 @@ class MainActivity : AppCompatActivity() {
                             homeFragment()
                         }
                         else -> {
-                            Glide.get(this).clearMemory()
-                            ClearGlideCacheAsyncTask(this).execute()
+//                            Glide.get(this).clearMemory()
+//                            ClearGlideCacheAsyncTask(this).execute()
                             if (timerFlag) {
                                 ActivityCompat.finishAffinity(this)
                             } else {
@@ -471,31 +471,31 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    companion object {
-        class ClearGlideCacheAsyncTask internal constructor(context: MainActivity) :
-            AsyncTask<Void?, Void?, Boolean>() {
-
-            private val activityReference: WeakReference<MainActivity> = WeakReference(context)
-            private var result = false
-
-            override fun onPostExecute(result: Boolean) {
-                super.onPostExecute(result)
-                if (result) println("Called Succes")
-            }
-
-            override fun doInBackground(vararg params: Void?): Boolean {
-                println("Called")
-                try {
-//                    Glide.get(activityReference.get()!!).clearDiskCache()
-                    result = true
-                } catch (e: Exception) {
-                    println("Called Error: $e")
-                }
-                return result
-            }
-        }
-
-    }
+//    companion object {
+//        class ClearGlideCacheAsyncTask internal constructor(context: MainActivity) :
+//            AsyncTask<Void?, Void?, Boolean>() {
+//
+//            private val activityReference: WeakReference<MainActivity> = WeakReference(context)
+//            private var result = false
+//
+//            override fun onPostExecute(result: Boolean) {
+//                super.onPostExecute(result)
+//                if (result) println("Called Succes")
+//            }
+//
+//            override fun doInBackground(vararg params: Void?): Boolean {
+//                println("Called")
+//                try {
+////                    Glide.get(activityReference.get()!!).clearDiskCache()
+//                    result = true
+//                } catch (e: Exception) {
+//                    println("Called Error: $e")
+//                }
+//                return result
+//            }
+//        }
+//
+//    }   // Glid cache asyc task
 
 
 

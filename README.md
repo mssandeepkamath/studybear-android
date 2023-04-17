@@ -8,7 +8,7 @@
 
 https://play.google.com/store/apps/details?id=com.sandeep.studybear
 
-## Screenshots:
+## Preview:
 
 <img width="768" alt="Untitled design (4)" src="https://user-images.githubusercontent.com/90695071/187695349-1898f4b7-6a8a-4211-a4de-2e75c8a06531.png">
 
@@ -46,6 +46,37 @@ https://dribbble.com/ : Illustrations
 https://newsapi.org : News API 
 
 https://kontests.net/api : Coding Events API
+
+## Contribute :
+
+1. Fork this repository
+
+2. Clone it into your local using
+
+       git clone 'your_cloned_https_url'
+       
+3. Add remote using 
+
+       git remote add upstream https://github.com/mssandeepkamath/women-in-cloud-rvce-api.git
+       git remote add origin your_cloned_repo_link
+         
+4. Create a new branch using
+
+        git branch name/dev ; git checkout name/dev
+           
+5. Contribute!
+
+6. Stage and commit changes using 
+
+       git add . ; git commit -m "your updates"
+           
+7. Create pull request in Github for merging the update into mssandeepkamath/women-in-cloud-rvce-api main(upstream).
+     
+8. Fetching latest changes from original repository.
+
+       git pull upstream master
+       
+
 
 ## License
 

@@ -51,6 +51,6 @@ https://kontests.net/api : Coding Events API
 
 MIT License
 
-Copyright (c) 2023 M S Sandeep Kamath
+Copyright (c) 2023
 
 

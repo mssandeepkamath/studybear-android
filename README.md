@@ -61,7 +61,7 @@ https://kontests.net/api : Coding Events API
        
 3. Add remote using 
 
-       git remote add upstream https://github.com/mssandeepkamath/women-in-cloud-rvce-api.git
+       git remote add upstream https://github.com/mssandeepkamath/studybear-android.git
        git remote add origin your_cloned_repo_link
          
 4. Create a new branch using
@@ -74,7 +74,7 @@ https://kontests.net/api : Coding Events API
 
        git add . ; git commit -m "your updates"
            
-7. Create pull request in Github for merging the update into mssandeepkamath/women-in-cloud-rvce-api main(upstream).
+7. Create pull request in Github for merging the update into mssandeepkamath/studybear-android main(upstream).
      
 8. Fetching latest changes from original repository.
 

@@ -47,6 +47,10 @@ https://newsapi.org : News API
 
 https://kontests.net/api : Coding Events API
 
+## Class diagram (Associations excluded):
+
+![image](https://user-images.githubusercontent.com/90695071/233024829-0a88d1af-2a86-484b-8a3f-61298fbf0fdd.png)
+
 ## Contribute :
 
 1. Fork this repository

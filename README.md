@@ -1,5 +1,8 @@
 # Studybear
 
+<a href="https://codeclimate.com/github/mssandeepkamath/studybear-android/maintainability"><img src="https://api.codeclimate.com/v1/badges/b89f85c728d635ca997a/maintainability" /></a>
+<a href="https://codeclimate.com/github/mssandeepkamath/muparse-android/test_coverage"><img src="https://api.codeclimate.com/v1/badges/ff1d96175429d4e716d3/test_coverage" /></a>
+
 ### Academic Productivity Platform for IT related Engineering Students.
 
 <img width="200" src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" align="center" alt="Untitled-designbear"  border="0">

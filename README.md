@@ -1,94 +1,63 @@
-# Studybear
+# Studybear - Academic Productivity Platform for IT Engineering Students
 
-<a href="https://codeclimate.com/github/mssandeepkamath/studybear-android/maintainability"><img src="https://api.codeclimate.com/v1/badges/b89f85c728d635ca997a/maintainability" /></a>
-<a href="https://codeclimate.com/github/mssandeepkamath/muparse-android/test_coverage"><img src="https://api.codeclimate.com/v1/badges/ff1d96175429d4e716d3/test_coverage" /></a>
-
-### Academic Productivity Platform for IT related Engineering Students.
+An academic productivity platform designed for IT-related engineering students, offering notes, question papers, lab programs, coding event updates, and more.
 
 <img width="200" src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" align="center" alt="Untitled-designbear"  border="0">
 
-## Play store link:
+## Table of Contents
 
-https://play.google.com/store/apps/details?id=com.sandeep.studybear
+- [About Studybear](#about-studybear)
+- [Play Store Link](#play-store-link)
+- [Preview](#preview)
+- [Features](#features)
+- [Class Diagram](#class-diagram)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Preview:
+## About Studybear
+
+Studybear is an academic productivity platform aimed at making the journey of IT engineering students easier. It provides a centralized hub for accessing and sharing notes, question papers, lab programs, and other study-related resources. Additionally, it keeps students informed about the latest technology news, coding events, and provides a fun space for engaging with memes and peers.
+
+Explore Studybear now and enhance your learning experience!
+
+Visit our website: [https://studybear.tech](https://studybear.tech)
+
+## Play Store Link
+
+Explore the app on the Play Store: [Studybear](https://play.google.com/store/apps/details?id=com.sandeep.studybear)
+
+## Preview
 
 <img width="768" alt="Untitled design (4)" src="https://user-images.githubusercontent.com/90695071/187695349-1898f4b7-6a8a-4211-a4de-2e75c8a06531.png">
 
-## Features:
 
-* One stop solution for all the Computer/Information Science- notes, Question papers, Lab programs and more. 
+## Features
 
-* Help our Engineering community by uploading notes!
+- Centralized repository for Computer/Information Science-related notes, question papers, and lab programs.
+- Peer collaboration through note sharing.
+- Stay connected with peers and engage in discussions.
+- Stay updated with the latest technology and cryptocurrency news.
+- Receive notifications about upcoming coding events.
+- Enjoy a collection of memes for relaxation.
 
-* Got Doubts??, Connect to your Peers also have lots of fun in our server.
+## Class Diagram
 
-* Get updated about all the latest Technology and crypto.
+![Class Diagram](https://user-images.githubusercontent.com/90695071/233024829-0a88d1af-2a86-484b-8a3f-61298fbf0fdd.png)
 
-* Get updated about all the upcoming Coding Events and more, also don't forget to add it to your calendar.
+## Contributing
 
-* Bored?, Consider watching some memes!
+Contributions to Studybear are welcome! To contribute:
 
-## About Studybear:
-
-Our goal at Studybear is to alter the route that one takes to become an engineer(IT). We want to offer a place where people may upload and read notes. We also give students access to daily tech news, coding event announcements, memes, and more! . By expanding the Studybear family, we hope to make life easier for students pursuing engineering(CSE/ISE/IT/AI/DS).
-
-Experience Studybear now!!!
-
-Our website,
-https://studybear.tech
-
-We thank below mentioned platform for providing us with illustrations/Images and more,
-
-https://www.freepik.com/ :Designed by Freepik
-
-https://icons8.com/illustrations : by icons 8 from Ouch!
-
-https://dribbble.com/ : Illustrations
-
-https://newsapi.org : News API 
-
-https://kontests.net/api : Coding Events API
-
-## Class diagram (Associations excluded):
-
-![image](https://user-images.githubusercontent.com/90695071/233024829-0a88d1af-2a86-484b-8a3f-61298fbf0fdd.png)
-
-## Contribute :
-
-1. Fork this repository
-
-2. Clone it into your local using
-
-       git clone 'your_cloned_https_url'
-       
-3. Add remote using 
-
-       git remote add upstream https://github.com/mssandeepkamath/studybear-android.git
-       git remote add origin your_cloned_repo_link
-         
-4. Create a new branch using
-
-        git branch name/dev ; git checkout name/dev
-           
-5. Contribute!
-
-6. Stage and commit changes using 
-
-       git add . ; git commit -m "your updates"
-           
-7. Create pull request in Github for merging the update into mssandeepkamath/studybear-android main(upstream).
-     
-8. Fetching latest changes from original repository.
-
-       git pull upstream master
-       
-
+1. Fork this repository.
+2. Clone the forked repository locally.
+3. Add the original repository as an upstream remote.
+4. Create a new branch for your feature/fix.
+5. Make your changes and commit them.
+6. Push the changes to your fork.
+7. Create a pull request in the original repository for merging.
 
 ## License
 
-MIT License
+This project is licensed under the MIT License.
 
-Copyright (c) 2023
-
-
+© 2023 Studybear Contributors

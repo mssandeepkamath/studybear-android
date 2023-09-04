@@ -20,7 +20,7 @@ Studybear is an academic productivity platform aimed at making the journey of IT
 
 Explore Studybear now and enhance your learning experience!
 
-Visit our website: [https://studybear.tech](https://studybear.tech)
+Visit our website: [https://studybear.tech](https://studybear-79c4e.web.app)
 
 ## Play Store Link
 

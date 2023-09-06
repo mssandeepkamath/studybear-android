@@ -2,7 +2,21 @@
 
 An academic productivity platform designed for IT-related engineering students, offering notes, question papers, lab programs, coding event updates, and more.
 
-<img width="200" src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" align="center" alt="Untitled-designbear"  border="0">
+
+<p align="left">
+
+<a href="https://studybear-79c4e.web.app">
+    <img alt="Studybear Web"
+        height="80"
+        src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" />
+        </a>
+
+<a href="https://play.google.com/store/apps/details?id=com.sandeep.studybear">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+</a>  
+        </p>
 
 ## Table of Contents
 

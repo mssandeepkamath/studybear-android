@@ -1,5 +1,7 @@
 # Studybear - Academic Productivity Platform for IT Engineering Students
 
+<a href="https://render.com"><img alt="Production" src="https://img.shields.io/badge/production-up-lgreen.svg"/></a>
+
 An academic productivity platform designed for IT-related engineering students, offering notes, question papers, lab programs, coding event updates, and more.
 
 

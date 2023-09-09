@@ -58,7 +58,7 @@ Explore the app on the Play Store: [Studybear](https://play.google.com/store/app
 
 ## Class Diagram
 
-![Class Diagram](https://user-images.githubusercontent.com/90695071/233024829-0a88d1af-2a86-484b-8a3f-61298fbf0fdd.png)
+Refer to the [Java class diagram](https://user-images.githubusercontent.com/90695071/233024829-0a88d1af-2a86-484b-8a3f-61298fbf0fdd.png) for an overview of the application's structure.
 
 ## Contributing
 

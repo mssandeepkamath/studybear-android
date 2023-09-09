@@ -7,7 +7,7 @@ An academic productivity platform designed for IT-related engineering students, 
 
 <p align="left">
 
-<a href="https://studybear-79c4e.web.app">
+<a href="https://studybear.vercel.app">
     <img alt="Studybear Web"
         height="80"
         src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" />
